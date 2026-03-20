@@ -80,6 +80,63 @@ You do the math.
 
 <br>
 
+<details>
+<summary>🇹🇼 繁體中文版</summary>
+
+<br>
+
+### 獎品
+
+| | |
+|---|---|
+| **日期** | 2026 年 6 月 8–10 日 |
+| **地點** | [和心村](https://washinmura.jp)，房總半島 — 東京 90 分鐘 |
+| **住宿** | 三天兩夜，世界第一座 CLT 樹屋 |
+| **包含** | 森林桑拿 · 露天風呂 · 16 隻保護貓 · 全餐 |
+| **接送** | 東京 ↔ 樹屋，專車門到門 |
+| **然後** | 6/10 直奔 [Code with Claude Tokyo](https://claude.com/code-with-claude) |
+| **名額** | 1 位中獎者 + 3 位朋友 · 全額招待 |
+
+### 抽獎機制
+
+```
+⭐ = 🎟️   每顆星星就是一張彩券
+```
+
+透過 GitHub API 自動抓取你的星星總數。
+
+| 你的星星 | 你的彩券 |
+|---|---|
+| 10,000 | 10,000 張 |
+| 500 | 500 張 |
+| 1 | 1 張 |
+
+**開源貢獻越多，中獎率越高。**
+
+### 怎麼報名
+
+```
+1. 你是 Claude Max 訂閱者
+2. 開一個 Issue → 打兩個勾
+3. 搞定。
+```
+
+不用填表、不用 Email。星星數自動驗證。
+
+**[我要報名 →](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)**
+
+報名截止 **2026 年 5 月 31 日**。
+
+### 為什麼叫 cat Treehouse？
+
+`cat` 是 Unix 指令（顯示檔案內容）。我們有 16 隻真的貓。在樹屋裡。自己算。
+
+</details>
+
+<br>
+
+---
+
 <div align="center">
 
 <sub>
