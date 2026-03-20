@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>贏一座樹屋 — Code with Claude Tokyo 2026</title>
+  <meta name="description" content="Claude Max 訂閱者專屬：抽獎贏得三天兩夜日本樹屋住宿，可帶三位朋友。Tesla Model X 接送。Code with Claude Tokyo 前夕，6 月 8–10 日。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌲</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0A0A09;
+      --bg-card: #161513;
+      --gold: #B8965A;
+      --gold-light: #D4B87A;
+      --gold-dim: rgba(184, 150, 90, 0.3);
+      --cream: #EDE6DA;
+      --cream-mid: #B5AFA3;
+      --cream-dim: #6B655B;
+      --serif: 'Noto Serif TC', 'Georgia', serif;
+      --sans: 'Inter', -apple-system, 'PingFang TC', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      line-height: 1.9;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold-dim); color: var(--cream); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    .label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 3rem auto;
+    }
+
+    /* ---------- Scroll Reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem;
+      transition: background 0.4s ease, padding 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(10, 10, 9, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      padding: 1rem 2.5rem;
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 1rem; font-weight: 400;
+      letter-spacing: 0.08em; color: var(--cream); text-decoration: none;
+    }
+    .nav-cta {
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.15em; color: var(--gold); text-decoration: none;
+      border: 1px solid var(--gold-dim); padding: 0.6rem 1.6rem;
+      border-radius: 2px; transition: all 0.3s ease;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+    .nav-lang { display: flex; gap: 0.8rem; }
+    .nav-lang a { font-size: 0.7rem; color: var(--cream-dim); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s; }
+    .nav-lang a:hover, .nav-lang a.active { color: var(--gold); }
+
+    /* ===== HERO — 全螢幕照片 ===== */
+    .hero {
+      min-height: 100vh; min-height: 100dvh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; position: relative;
+      background: url('https://treeavel.jp/images/hero.jpg') center center / cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,9,0.3) 0%,
+        rgba(10,10,9,0.5) 40%,
+        rgba(10,10,9,0.75) 100%
+      );
+    }
+    .hero-content { position: relative; z-index: 1; padding: 0 2rem; }
+
+    .hero-title-line1 {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      font-weight: 300; line-height: 1.2; letter-spacing: 0.05em;
+      color: #fff;
+      opacity: 0; animation: fadeInUp 1.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+      animation-delay: 0.4s;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+    }
+    .hero-title-line2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5.5vw, 4rem);
+      font-weight: 300; line-height: 1.3; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.85); margin-top: 0.3em;
+      opacity: 0; animation: fadeInUp 1.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+      animation-delay: 0.9s;
+      text-shadow: 0 2px 40px rgba(0,0,0,0.4);
+    }
+    .hero-sub {
+      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.6);
+      margin-top: 3rem;
+      opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 1.8s;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      opacity: 0; animation: fadeIn 1s ease forwards, float 3s ease-in-out infinite;
+      animation-delay: 2.5s, 2.5s;
+    }
+    .hero-scroll svg { width: 20px; height: 20px; stroke: rgba(255,255,255,0.4); }
+
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes float { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
+
+    /* ===== INVITATION ===== */
+    .invitation { padding: 10rem 0; text-align: center; }
+    .invitation-lead {
+      font-family: var(--serif); font-size: clamp(1.4rem,3vw,2.2rem);
+      font-weight: 300; line-height: 1.8; color: var(--cream);
+      max-width: 600px; margin: 0 auto;
+    }
+    .invitation-lead em { font-style: normal; color: var(--gold-light); }
+    .invitation-body {
+      font-size: 1rem; color: var(--cream-mid); max-width: 500px;
+      margin: 3rem auto 0; line-height: 2;
+    }
+    .invitation-aside {
+      font-family: var(--serif); font-size: 1.1rem; color: var(--cream-dim); margin-top: 3rem;
+    }
+
+    /* ===== 照片長條 — 三張滿版 ===== */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      height: 45vh;
+      min-height: 300px;
+    }
+    .photo-strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-strip-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .photo-strip-item:hover img { transform: scale(1.03); }
+    .photo-strip-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 1.5rem 1.2rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      font-family: var(--serif); font-size: 0.9rem; color: rgba(255,255,255,0.85);
+    }
+
+    /* ===== EXPERIENCE — 照片+文字交錯 ===== */
+    .experience { padding: 8rem 0; }
+    .experience > .label { text-align: center; display: block; margin-bottom: 5rem; }
+
+    .day-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      min-height: 450px;
+    }
+    .day-block.reverse { direction: rtl; }
+    .day-block.reverse > * { direction: ltr; }
+
+    .day-photo {
+      overflow: hidden;
+      position: relative;
+    }
+    .day-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      min-height: 400px;
+    }
+    .day-photo-overlay {
+      position: absolute; top: 2rem; left: 2rem;
+      font-family: var(--serif); font-size: 5rem; font-weight: 300;
+      color: rgba(255,255,255,0.15); line-height: 1;
+    }
+
+    .day-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem;
+      background: var(--bg-card);
+    }
+    .day-text .day-title {
+      font-family: var(--serif); font-size: 1.6rem; font-weight: 400;
+      color: var(--cream); margin-bottom: 1.5rem;
+    }
+    .day-text .day-desc {
+      font-size: 0.9rem; color: var(--cream-mid); line-height: 2;
+    }
+
+    .day-spacer { height: 3px; }
+
+    /* ===== PLACE — 照片牆 ===== */
+    .place { padding: 8rem 0; }
+    .place > .container { margin-bottom: 4rem; }
+
+    .place-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .place-header .label { display: block; margin-bottom: 1.5rem; }
+    .place-name {
+      font-family: var(--serif); font-size: 2.6rem; font-weight: 300;
+      color: var(--cream); margin-bottom: 0.2rem;
+    }
+    .place-name-sub {
+      font-size: 0.9rem; color: var(--cream-dim); letter-spacing: 0.15em;
+      margin-bottom: 2rem;
+    }
+    .place-desc-text {
+      font-size: 1rem; color: var(--cream-mid); line-height: 2;
+      max-width: 560px; margin: 0 auto;
+      text-align: center;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 3px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* 第一張大圖佔兩格 */
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    .place-location-bar {
+      text-align: center;
+      padding: 3rem 2rem 0;
+      font-size: 0.85rem; color: var(--cream-dim);
+    }
+
+    /* ===== RESIDENTS ===== */
+    .residents { padding: 8rem 0 6rem; text-align: center; overflow: hidden; }
+    .residents .label { display: block; margin-bottom: 1rem; }
+    .residents-title {
+      font-family: var(--serif); font-size: clamp(1.2rem,2.5vw,1.8rem);
+      font-weight: 300; color: var(--cream); margin-bottom: 4rem;
+    }
+    .marquee-wrap { margin: 0 -2rem; }
+    .marquee { display: flex; gap: 1.5rem; padding: 1rem 0; width: max-content; }
+    .marquee-row-1 .marquee { animation: scrollLeft 80s linear infinite; }
+    .marquee-row-2 .marquee { animation: scrollRight 90s linear infinite; }
+    .marquee-row-1, .marquee-row-2 { overflow: hidden; }
+    @keyframes scrollLeft  { 0% { transform:translateX(0); }   100% { transform:translateX(-50%); } }
+    @keyframes scrollRight { 0% { transform:translateX(-50%); } 100% { transform:translateX(0); } }
+    .resident { flex-shrink: 0; text-align: center; }
+    .resident-photo {
+      width: 80px; height: 80px; border-radius: 50%; overflow: hidden;
+      background: var(--bg-card); margin: 0 auto 0.6rem;
+      opacity: 0.7; transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .marquee:hover .resident-photo { opacity: 0.5; }
+    .resident:hover .resident-photo { opacity: 1 !important; transform: scale(1.08); }
+    .resident-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .resident-name { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-dim); }
+    .residents-note { font-family: var(--serif); font-size: 0.95rem; color: var(--cream-dim); margin-top: 3rem; }
+
+    /* ===== FORM ===== */
+    .apply-form { max-width: 560px; margin: 0 auto; text-align: left; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 3px; color: var(--cream); font-family: var(--sans);
+      font-size: 0.9rem; font-weight: 300; transition: border-color 0.3s ease; outline: none;
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--cream-dim); }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--gold-dim); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .apply-form .apply-btn { width: 100%; margin-top: 0.5rem; border: none; cursor: pointer; font-family: var(--sans); }
+
+    /* ===== QUALIFY ===== */
+    .qualify { padding: 10rem 0; text-align: center; }
+    .qualify-number {
+      font-family: var(--serif); font-size: clamp(3rem,8vw,6rem);
+      font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 0.3rem;
+    }
+    .qualify-unit { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 3rem; }
+    .qualify-details { font-size: 1rem; color: var(--cream-mid); line-height: 2.2; max-width: 440px; margin: 0 auto; }
+    .qualify-closing {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 300;
+      color: var(--cream); margin-top: 4rem;
+    }
+
+    /* ===== APPLY ===== */
+    .apply {
+      padding: 8rem 0 4rem; text-align: center;
+      position: relative;
+    }
+    .apply .label { display: block; margin-bottom: 2rem; }
+    .apply-title {
+      font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem);
+      font-weight: 300; color: var(--cream); margin-bottom: 1rem;
+    }
+    .apply-spots { font-size: 0.9rem; color: var(--cream-dim); margin-bottom: 3rem; }
+    .apply-btn {
+      display: inline-block; font-family: var(--sans); font-size: 0.8rem;
+      font-weight: 500; letter-spacing: 0.15em; color: var(--bg);
+      background: var(--gold); text-decoration: none;
+      padding: 1.1rem 3.5rem; border-radius: 2px; transition: all 0.35s ease;
+    }
+    .apply-btn:hover {
+      background: var(--gold-light); transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(184,150,90,0.15);
+    }
+    .apply-note { font-size: 0.85rem; color: var(--cream-dim); margin-top: 2rem; line-height: 2; }
+
+    /* ===== 結尾滿版照片 ===== */
+    .closing-photo {
+      width: 100%; height: 50vh; min-height: 300px;
+      overflow: hidden;
+    }
+    .closing-photo img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.7;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 4rem 2rem; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .footer-brand { font-family: var(--serif); font-size: 0.95rem; color: var(--cream-dim); margin-bottom: 0.5rem; }
+    .footer-location { font-size: 0.75rem; color: var(--cream-dim); opacity: 0.5; margin-bottom: 2rem; }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.75rem; letter-spacing: 0.1em; color: var(--cream-dim);
+      text-decoration: none; opacity: 0.5; transition: opacity 0.3s ease;
+    }
+    .footer-links a:hover { opacity: 1; color: var(--gold); }
+
+    /* ===== 響應式 ===== */
+    @media (max-width: 768px) {
+      .photo-strip { grid-template-columns: 1fr; height: auto; }
+      .photo-strip-item { height: 250px; }
+      .day-block, .day-block.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .day-block.reverse > * { direction: ltr; }
+      .day-photo img { min-height: 250px; }
+      .day-text { padding: 2.5rem 2rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.wide { grid-column: span 2; }
+      .gallery-item.tall { grid-row: span 1; }
+      .resident-photo { width: 64px; height: 64px; }
+      .form-row { grid-template-columns: 1fr; }
+      .nav-lang { display: none; }
+      .invitation { padding: 6rem 0; }
+      .qualify { padding: 6rem 0; }
+      nav { padding: 1.2rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-sub { font-size: 0.75rem; }
+      .invitation-lead { font-size: 1.2rem; }
+      .nav-logo { font-size: 0.9rem; }
+      .nav-cta { padding: 0.5rem 1.2rem; font-size: 0.7rem; }
+      .gallery { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== 導覽列 ===== -->
+  <nav>
+    <a href="#" class="nav-logo">和心樹屋</a>
+    <div class="nav-lang">
+      <a href="index.html">EN</a>
+      <a href="zh.html" class="active">中</a>
+      <a href="ja.html">日</a>
+    </div>
+    <a href="#apply" class="nav-cta">我要抽獎</a>
+  </nav>
+
+  <!-- ===== 首屏 — 樹屋全景照片 ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-title-line1">在森林裡</div>
+      <div class="hero-title-line2">寫程式</div>
+      <p class="hero-sub">Code with Claude Tokyo 前夕，抽獎贏樹屋住宿 · 6 月 8–10 日</p>
+    </div>
+    <div class="hero-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== 邀請函 ===== -->
+  <section class="invitation">
+    <div class="container">
+      <span class="label reveal">邀請函</span>
+      <div class="divider reveal reveal-delay-1"></div>
+      <p class="invitation-lead reveal reveal-delay-1">
+        你訂閱了 <em>Claude Max</em>。<br>
+        我們送你<em>一間樹屋</em>。
+      </p>
+      <p class="invitation-body reveal reveal-delay-2">
+        三天兩夜。一位中獎者，帶三位朋友。房總半島杉木林裡的樹屋 — Tesla Model X 從東京門到門接送。然後直奔 6 月 10 日的 Code with Claude。
+      </p>
+      <p class="invitation-aside reveal reveal-delay-3">
+        有些東西，在城市裡寫不出來。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 三張照片長條 — 第一印象 ===== -->
+  <div class="photo-strip reveal">
+    <div class="photo-strip-item">
+      <img src="https://treeavel.jp/images/forest-light.jpg" alt="陽光穿透杉木林" loading="lazy">
+      <div class="photo-strip-caption">杉木林裡的光</div>
+    </div>
+    <div class="photo-strip-item">
+      <img src="https://treeavel.jp/images/cat-dining.jpg" alt="貓咪陪你吃飯" loading="lazy">
+      <div class="photo-strip-caption">晚餐夥伴</div>
+    </div>
+    <div class="photo-strip-item">
+      <img src="https://treeavel.jp/images/canopy.jpg" alt="森林樹冠" loading="lazy">
+      <div class="photo-strip-caption">樹冠下的世界</div>
+    </div>
+  </div>
+
+  <!-- ===== 三天行程 — 照片+文字交錯 ===== -->
+  <section class="experience">
+    <span class="label reveal">三天行程</span>
+
+    <!-- Day 1 — 照片左、文字右 -->
+    <div class="day-block reveal">
+      <div class="day-photo">
+        <img src="https://treeavel.jp/images/balcony.jpg" alt="樹屋陽台望向森林" loading="lazy">
+        <div class="day-photo-overlay">01</div>
+      </div>
+      <div class="day-text">
+        <div class="day-title">抵達 — 6 月 8 日</div>
+        <p class="day-desc">
+          Tesla Model X 從東京接你出發。<br>
+          走進杉木林裡的樹屋。<br>
+          森林裡的晚餐。<br>
+          認識這裡的居民 — 牠們有四條腿。<br>
+          頭頂是星空，前方是程式。
+        </p>
+      </div>
+    </div>
+
+    <div class="day-spacer"></div>
+
+    <!-- Day 2 — 照片右、文字左 -->
+    <div class="day-block reverse reveal">
+      <div class="day-photo">
+        <img src="https://treeavel.jp/images/sauna-forest.jpg" alt="森林三溫暖" loading="lazy">
+        <div class="day-photo-overlay">02</div>
+      </div>
+      <div class="day-text">
+        <div class="day-title">創作 — 6 月 9 日</div>
+        <p class="day-desc">
+          早上 — 在樹林間安靜地寫 code。<br>
+          下午 — 森林散步、露天溫泉、和貓一起發呆。<br>
+          晚上 — 分享你正在做的東西。<br>
+          不用投影片，聊天就好。
+        </p>
+      </div>
+    </div>
+
+    <div class="day-spacer"></div>
+
+    <!-- Day 3 — 照片左、文字右 -->
+    <div class="day-block reveal">
+      <div class="day-photo">
+        <img src="https://treeavel.jp/images/treehouse-deck.jpg" alt="樹屋露台" loading="lazy">
+        <div class="day-photo-overlay">03</div>
+      </div>
+      <div class="day-text">
+        <div class="day-title">Code with Claude — 6 月 10 日</div>
+        <p class="day-desc">
+          和新朋友一起吃早餐。<br>
+          在樹下拍張合照。<br>
+          Tesla Model X 送回東京。<br>
+          走進 Code with Claude — 帶著一個故事。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 這個地方 — 照片牆 ===== -->
+  <section class="place">
+    <div class="place-header reveal">
+      <span class="label">這個地方</span>
+      <div class="divider"></div>
+      <h2 class="place-name">一樹屋</h2>
+      <p class="place-name-sub">ICHIJUKU</p>
+      <p class="place-desc-text">
+        世界第一座 CLT 樹屋 — 以五棵活生生的杉木為骨架。<br>
+        森林樹冠下的露天溫泉。框住星空的天窗。<br>
+        十六隻自由進出的救援貓。
+      </p>
+    </div>
+
+    <div class="gallery reveal">
+      <div class="gallery-item wide">
+        <img src="https://treeavel.jp/images/treehouse-3148.jpg" alt="一樹屋外觀" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/skylight.JPG" alt="天窗看星空" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/deck-view.jpg" alt="露台望向森林" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/ichijukaku-interior.jpg" alt="樹屋內部" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/bbq-food.jpg" alt="森林晚餐" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/treehouse-3152.jpg" alt="一樹屋另一角度" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://treeavel.jp/images/village-night.jpg" alt="夜晚的和心村" loading="lazy">
+      </div>
+    </div>
+
+    <div class="place-location-bar reveal">
+      房總半島，千葉縣 — 距東京 90 分鐘，卻像另一個世界
+    </div>
+  </section>
+
+  <!-- ===== 這裡的居民 ===== -->
+  <section class="residents">
+    <span class="label reveal">這裡的居民</span>
+    <h2 class="residents-title reveal reveal-delay-1">牠們不會幫你審 code，只會呼嚕呼嚕。</h2>
+    <div class="marquee-wrap">
+      <div class="marquee-row-1"><div class="marquee">
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/gold.png" alt="Gold" loading="lazy"></div><span class="resident-name">Gold</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/jerry.png" alt="Jelly" loading="lazy"></div><span class="resident-name">Jelly</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/silver.png" alt="Silver" loading="lazy"></div><span class="resident-name">Silver</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/ariel.png" alt="Ariel" loading="lazy"></div><span class="resident-name">Ariel</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/dollar.png" alt="Dollar" loading="lazy"></div><span class="resident-name">Dollar</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/anko.png" alt="Anko" loading="lazy"></div><span class="resident-name">Anko</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/cruella.png" alt="Cruella" loading="lazy"></div><span class="resident-name">Cruella</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/donut.png" alt="Donut" loading="lazy"></div><span class="resident-name">Donut</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/shasha.png" alt="Shasha" loading="lazy"></div><span class="resident-name">Shasha</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/toothless.png" alt="Toothless" loading="lazy"></div><span class="resident-name">Toothless</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/gold.png" alt="Gold" loading="lazy"></div><span class="resident-name">Gold</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/jerry.png" alt="Jelly" loading="lazy"></div><span class="resident-name">Jelly</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/silver.png" alt="Silver" loading="lazy"></div><span class="resident-name">Silver</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/ariel.png" alt="Ariel" loading="lazy"></div><span class="resident-name">Ariel</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/dollar.png" alt="Dollar" loading="lazy"></div><span class="resident-name">Dollar</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/anko.png" alt="Anko" loading="lazy"></div><span class="resident-name">Anko</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/cruella.png" alt="Cruella" loading="lazy"></div><span class="resident-name">Cruella</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/donut.png" alt="Donut" loading="lazy"></div><span class="resident-name">Donut</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/shasha.png" alt="Shasha" loading="lazy"></div><span class="resident-name">Shasha</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/toothless.png" alt="Toothless" loading="lazy"></div><span class="resident-name">Toothless</span></div>
+      </div></div>
+      <div class="marquee-row-2"><div class="marquee">
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/jasmine.png" alt="Jasmine" loading="lazy"></div><span class="resident-name">Jasmine</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/nina.png" alt="Nina" loading="lazy"></div><span class="resident-name">Nina</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/sirius.png" alt="Sirius" loading="lazy"></div><span class="resident-name">Sirius</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/okaki.png" alt="Okaki" loading="lazy"></div><span class="resident-name">Okaki</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/suzu.png" alt="Suzu" loading="lazy"></div><span class="resident-name">Suzu</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/waka.png" alt="Waka" loading="lazy"></div><span class="resident-name">Waka</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/kirin.png" alt="Kirin" loading="lazy"></div><span class="resident-name">Kirin</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/johnny.png" alt="Johnny" loading="lazy"></div><span class="resident-name">Johnny</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/ether.png" alt="Ether" loading="lazy"></div><span class="resident-name">Ether</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/jasmine.png" alt="Jasmine" loading="lazy"></div><span class="resident-name">Jasmine</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/nina.png" alt="Nina" loading="lazy"></div><span class="resident-name">Nina</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/sirius.png" alt="Sirius" loading="lazy"></div><span class="resident-name">Sirius</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/okaki.png" alt="Okaki" loading="lazy"></div><span class="resident-name">Okaki</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/suzu.png" alt="Suzu" loading="lazy"></div><span class="resident-name">Suzu</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/waka.png" alt="Waka" loading="lazy"></div><span class="resident-name">Waka</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/kirin.png" alt="Kirin" loading="lazy"></div><span class="resident-name">Kirin</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/johnny.png" alt="Johnny" loading="lazy"></div><span class="resident-name">Johnny</span></div>
+        <div class="resident"><div class="resident-photo"><img src="https://treeavel.jp/animals/ether.png" alt="Ether" loading="lazy"></div><span class="resident-name">Ether</span></div>
+      </div></div>
+    </div>
+    <p class="residents-note reveal">牠們都曾經被遺棄。現在，牠們迎接每一位客人。</p>
+  </section>
+
+  <!-- ===== 怎麼玩 ===== -->
+  <section class="qualify">
+    <div class="container">
+      <span class="label reveal">怎麼玩</span>
+      <div class="divider reveal"></div>
+      <div class="qualify-number reveal reveal-delay-1">1</div>
+      <div class="qualify-unit reveal reveal-delay-1">位中獎者 + 3 位朋友</div>
+      <p class="qualify-details reveal reveal-delay-2">
+        Claude Max 訂閱者即可參加抽獎。<br>
+        附上你的 GitHub — 星星越多，中獎率越高。<br>
+        抽出一位，你帶三個朋友一起來。
+      </p>
+      <p class="qualify-closing reveal reveal-delay-3">
+        三天兩夜在森林裡，然後直奔 Code with Claude Tokyo。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 報名抽獎 ===== -->
+  <section class="apply" id="apply">
+    <div class="container">
+      <span class="label reveal">報名抽獎</span>
+      <h2 class="apply-title reveal reveal-delay-1">2026 年 6 月 8–10 日</h2>
+      <p class="apply-spots reveal reveal-delay-1">1 位中獎者 + 3 位朋友 · 報名截止 5 月 31 日</p>
+
+      <form class="apply-form reveal reveal-delay-2" action="https://formspree.io/f/placeholder" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" id="name" name="name" required placeholder="你的名字">
+          </div>
+          <div class="form-group">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="github">GITHUB 個人頁面</label>
+          <input type="url" id="github" name="github" required placeholder="https://github.com/username">
+        </div>
+        <div class="form-group">
+          <label for="repo">你最多星星的 REPO ⭐</label>
+          <input type="text" id="repo" name="repository" placeholder="選填，但星星越多中獎率越高">
+        </div>
+        <div class="form-group">
+          <label for="message">你用 CLAUDE 在做什麼？</label>
+          <textarea id="message" name="message" rows="3" placeholder="簡單說一下"></textarea>
+        </div>
+        <button type="submit" class="apply-btn">我要抽獎</button>
+      </form>
+
+      <p class="apply-note reveal reveal-delay-3">
+        限 Claude Max 訂閱者參加。星星越多，中獎率越高。<br>
+        三天兩夜住宿、Tesla Model X 接送、餐食 — 全額招待。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 結尾 — 一張滿版夕陽 ===== -->
+  <div class="closing-photo">
+    <img src="https://treeavel.jp/images/night.jpg" alt="和心村的夜" loading="lazy">
+  </div>
+
+  <!-- ===== 底部 ===== -->
+  <footer>
+    <div class="footer-brand">和心樹屋抽獎 × Code with Claude</div>
+    <div class="footer-location">日本千葉縣 房總半島</div>
+    <div class="footer-links">
+      <a href="https://washinmura.jp" target="_blank" rel="noopener">和心村</a>
+      <a href="https://treeavel.jp" target="_blank" rel="noopener">Treeavel</a>
+      <a href="https://claude.com/code-with-claude" target="_blank" rel="noopener">Code with Claude</a>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const nav = document.querySelector('nav');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 60); ticking = false; });
+        ticking = true;
+      }
+    });
+
+    document.querySelectorAll('.marquee-row-1, .marquee-row-2').forEach(row => {
+      row.addEventListener('mouseenter', () => { row.querySelector('.marquee').style.animationPlayState = 'paused'; });
+      row.addEventListener('mouseleave', () => { row.querySelector('.marquee').style.animationPlayState = 'running'; });
+    });
+  </script>
+</body>
+</html>
