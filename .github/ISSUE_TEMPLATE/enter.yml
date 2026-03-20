@@ -1,61 +1,33 @@
-name: "🌲 Enter the Draw"
-description: "Enter to win a treehouse stay before Code with Claude Tokyo (June 8–10)"
-title: "Entry: [Your Name]"
+name: "🐱 Enter the Draw"
+description: "Win a treehouse stay for you + 3 friends before Code with Claude Tokyo"
+title: "🐱 I'm in!"
 labels: ["entry"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🌲 Code Among the Cedars — Treehouse Giveaway
+        ## 🐱 cat Treehouse — Giveaway
 
-        **1 winner + 3 friends** · 3 days, 2 nights in a Japanese treehouse · Tesla Model X from Tokyo
+        **1 winner + 3 friends** · 3 days, 2 nights · Tesla Model X from Tokyo
+        Entries close **May 31, 2026**
 
-        Fill in the fields below to enter. More GitHub stars = better odds.
-        Entries close **May 31, 2026**.
-
-  - type: input
-    id: name
-    attributes:
-      label: Your Name
-      placeholder: "e.g. John Doe"
-    validations:
-      required: true
-
-  - type: input
-    id: top-repo
-    attributes:
-      label: "Your Most-Starred Repository ⭐"
-      description: "Link to your top repo. More stars = better odds. (Optional but recommended)"
-      placeholder: "https://github.com/you/your-repo"
-    validations:
-      required: false
+        Your GitHub stars are your lottery tickets — we check automatically via API.
+        More stars = better odds. Just confirm below and you're in.
 
   - type: textarea
     id: building
     attributes:
-      label: "What are you building with Claude?"
-      description: "Tell us briefly — one or two sentences is fine."
-      placeholder: "I'm using Claude to..."
+      label: "What are you building with Claude? (optional)"
+      placeholder: "One sentence is fine. Or leave blank — your code speaks for itself."
     validations:
-      required: true
-
-  - type: dropdown
-    id: schedule
-    attributes:
-      label: "Preferred Schedule"
-      description: "The treehouse stay is June 8–9, followed by Code with Claude Tokyo on June 10."
-      options:
-        - "June 8–10 (treehouse → Code with Claude) works for me"
-        - "I'm interested but dates are flexible"
-    validations:
-      required: true
+      required: false
 
   - type: checkboxes
-    id: terms
+    id: confirm
     attributes:
       label: "Confirm"
       options:
-        - label: "I am a Claude Max subscriber"
+        - label: "I'm a Claude Max subscriber"
           required: true
-        - label: "I can travel to Tokyo in June 2026"
+        - label: "I can be in Tokyo June 8–10, 2026"
           required: true
