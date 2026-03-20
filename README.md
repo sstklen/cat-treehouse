@@ -1,5 +1,7 @@
 # 🐱 cat Treehouse
 
+> ⭐ **Star this repo to help spread the word** ／ **按星星幫忙擴散**
+
 **Your GitHub stars are your lottery tickets.**
 **你的 GitHub 星星就是你的彩券。**
 
