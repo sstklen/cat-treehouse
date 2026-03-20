@@ -8,7 +8,7 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 
 - **When**: June 8–10, 2026
 - **Where**: [Washin Village](https://washinmura.jp), Bōsō Peninsula — 90 min from Tokyo
-- **What**: 3 days, 2 nights in the world's first CLT treehouse. 16 rescue cats. Open-air onsen. Then Tesla Model X back to Tokyo for [Code with Claude](https://claude.com/code-with-claude) on June 10.
+- **What**: 3 days, 2 nights in the world's first CLT treehouse. 16 rescue cats. Open-air onsen. Then private car back to Tokyo for [Code with Claude](https://claude.com/code-with-claude) on June 10.
 - **Who**: 1 winner + 3 friends. Everything covered.
 
 ## How the Draw Works
@@ -41,9 +41,9 @@ That's it. We get your GitHub username from the Issue. Stars are checked automat
 |------|------|
 | Now → May 31 | Entries open |
 | Early June | Winner announced |
-| June 8 | Tesla Model X → treehouse |
+| June 8 | Private car → treehouse |
 | June 9 | Code, onsen, cats |
-| June 10 | Tesla Model X → Tokyo → Code with Claude |
+| June 10 | Private car → Tokyo → Code with Claude |
 
 ## Why "cat Treehouse"?
 
