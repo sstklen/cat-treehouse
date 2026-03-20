@@ -14,6 +14,8 @@ body:
         Your GitHub stars are your lottery tickets — we check automatically via API.
         More stars = better odds. Just confirm below and you're in.
 
+        ⭐ **Don't forget to star this repo** — help others discover the giveaway.
+
   - type: textarea
     id: building
     attributes:
