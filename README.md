@@ -2,6 +2,8 @@
 
 > ⭐ **Star this repo to help spread the word**
 
+**EN** [English](#the-deal) ·  **中** [繁體中文](#繁體中文版)
+
 <br>
 
 <div align="center">
@@ -80,10 +82,7 @@ You do the math.
 
 <br>
 
-<details>
-<summary>🇹🇼 繁體中文版</summary>
-
-<br>
+## 繁體中文版
 
 ### 獎品
 
@@ -130,8 +129,6 @@ You do the math.
 ### 為什麼叫 cat Treehouse？
 
 `cat` 是 Unix 指令（顯示檔案內容）。我們有 16 隻真的貓。在樹屋裡。自己算。
-
-</details>
 
 <br>
 
