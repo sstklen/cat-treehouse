@@ -20,7 +20,7 @@
       --gold-dim: rgba(184, 150, 90, 0.3);
       --cream: #EDE6DA;
       --cream-mid: #B5AFA3;
-      --cream-dim: #6B655B;
+      --cream-dim: #8A847A; /* 提亮：對比 ~6:1 on #0A0A09，原 #6B655B 僅 ~4:1 */
       --serif: 'Cormorant Garamond', 'Georgia', serif;
       --sans: 'Inter', -apple-system, sans-serif;
     }
@@ -31,9 +31,25 @@
       font-family: var(--sans);
       background: var(--bg);
       color: var(--cream);
-      line-height: 1.9;
-      font-weight: 300;
+      font-size: 1.375rem; /* 22px — reading-glasses baseline */
+      line-height: 1.75;
+      font-weight: 400; /* no Light weight */
       overflow-x: hidden;
+    }
+
+    /* Accessibility: focus ring */
+    *:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    /* Accessibility: respect user motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     ::selection { background: var(--gold-dim); color: var(--cream); }
@@ -42,7 +58,7 @@
 
     .label {
       font-family: var(--sans);
-      font-size: 0.75rem;
+      font-size: 1rem; /* 16px minimum */
       font-weight: 500;
       letter-spacing: 0.2em;
       color: var(--gold);
@@ -80,23 +96,24 @@
       padding: 1rem 2.5rem;
     }
     .nav-logo {
-      font-family: var(--serif); font-size: 1rem; font-weight: 400;
+      font-family: var(--serif); font-size: 1.125rem; font-weight: 400;
       letter-spacing: 0.08em; color: var(--cream); text-decoration: none;
     }
-    .nav-lang {
-      font-family: var(--sans); font-size: 0.7rem; font-weight: 400;
-      letter-spacing: 0.08em; color: var(--cream-dim);
-    }
+    .nav-lang { display: flex; gap: 0.5rem; }
     .nav-lang a {
-      color: var(--cream-dim); text-decoration: none; transition: color 0.3s ease;
+      font-size: 0.875rem; color: var(--cream-dim); text-decoration: none;
+      letter-spacing: 0.05em; transition: color 0.3s;
+      padding: 0.5rem 0.6rem; /* larger touch area */
+      min-height: 44px; min-width: 44px;
+      display: inline-flex; align-items: center; justify-content: center;
     }
-    .nav-lang a:hover { color: var(--gold); }
-    .nav-lang a.active { color: var(--cream); }
+    .nav-lang a:hover, .nav-lang a.active { color: var(--gold); }
     .nav-cta {
-      font-family: var(--sans); font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.15em; color: var(--gold); text-decoration: none;
-      border: 1px solid var(--gold-dim); padding: 0.6rem 1.6rem;
-      border-radius: 2px; transition: all 0.3s ease;
+      font-family: var(--sans); font-size: 1rem; font-weight: 500;
+      letter-spacing: 0.12em; color: var(--gold); text-decoration: none;
+      border: 1px solid var(--gold-dim); padding: 0.9rem 2rem;
+      border-radius: 4px; transition: all 0.3s ease;
+      min-height: 48px; /* touch target */
     }
     .nav-cta:hover { background: var(--gold); color: var(--bg); }
 
@@ -123,7 +140,7 @@
     .hero-title-line1 {
       font-family: var(--serif);
       font-size: clamp(2.8rem, 8vw, 6rem);
-      font-weight: 300; line-height: 1.2; letter-spacing: 0.05em;
+      font-weight: 400; line-height: 1.2; letter-spacing: 0.05em;
       color: #fff;
       opacity: 0; animation: fadeInUp 1.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
       animation-delay: 0.4s;
@@ -132,7 +149,7 @@
     .hero-title-line2 {
       font-family: var(--serif);
       font-size: clamp(2rem, 5.5vw, 4rem);
-      font-weight: 300; line-height: 1.3; letter-spacing: 0.08em;
+      font-weight: 400; line-height: 1.3; letter-spacing: 0.08em;
       color: rgba(255,255,255,0.85); margin-top: 0.3em;
       font-style: italic;
       opacity: 0; animation: fadeInUp 1.4s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
@@ -140,8 +157,8 @@
       text-shadow: 0 2px 40px rgba(0,0,0,0.4);
     }
     .hero-sub {
-      font-family: var(--sans); font-size: 0.85rem; font-weight: 300;
-      letter-spacing: 0.1em; color: rgba(255,255,255,0.6);
+      font-family: var(--sans); font-size: 1.125rem; font-weight: 400;
+      letter-spacing: 0.08em; color: rgba(255,255,255,0.75);
       margin-top: 3rem;
       opacity: 0; animation: fadeIn 1.2s ease forwards; animation-delay: 1.8s;
     }
@@ -159,17 +176,17 @@
     /* ===== INVITATION ===== */
     .invitation { padding: 10rem 0; text-align: center; }
     .invitation-lead {
-      font-family: var(--serif); font-size: clamp(1.4rem,3vw,2.2rem);
-      font-weight: 300; line-height: 1.8; color: var(--cream);
+      font-family: var(--serif); font-size: clamp(1.6rem,3vw,2.4rem);
+      font-weight: 400; line-height: 1.8; color: var(--cream);
       max-width: 600px; margin: 0 auto;
     }
     .invitation-lead em { font-style: italic; color: var(--gold-light); }
     .invitation-body {
-      font-size: 1rem; color: var(--cream-mid); max-width: 500px;
-      margin: 3rem auto 0; line-height: 2;
+      font-size: 1.125rem; color: var(--cream-mid); max-width: 560px;
+      margin: 3rem auto 0; line-height: 1.9;
     }
     .invitation-aside {
-      font-family: var(--serif); font-size: 1.1rem; color: var(--cream-dim); margin-top: 3rem;
+      font-family: var(--serif); font-size: 1.25rem; color: var(--cream-dim); margin-top: 3rem;
     }
 
     /* ===== PHOTO STRIP ===== */
@@ -193,7 +210,7 @@
       position: absolute; bottom: 0; left: 0; right: 0;
       padding: 2rem 1.5rem 1.2rem;
       background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-      font-family: var(--serif); font-size: 0.9rem; color: rgba(255,255,255,0.85);
+      font-family: var(--serif); font-size: 1rem; color: rgba(255,255,255,0.85);
     }
 
     /* ===== EXPERIENCE ===== */
@@ -221,7 +238,7 @@
     }
     .day-photo-overlay {
       position: absolute; top: 2rem; left: 2rem;
-      font-family: var(--serif); font-size: 5rem; font-weight: 300;
+      font-family: var(--serif); font-size: 5rem; font-weight: 400;
       color: rgba(255,255,255,0.15); line-height: 1;
     }
 
@@ -231,11 +248,11 @@
       background: var(--bg-card);
     }
     .day-text .day-title {
-      font-family: var(--serif); font-size: 1.6rem; font-weight: 400;
+      font-family: var(--serif); font-size: 1.75rem; font-weight: 500;
       color: var(--cream); margin-bottom: 1.5rem;
     }
     .day-text .day-desc {
-      font-size: 0.9rem; color: var(--cream-mid); line-height: 2;
+      font-size: 1.125rem; color: var(--cream-mid); line-height: 1.9;
     }
 
     .day-spacer { height: 3px; }
@@ -250,15 +267,15 @@
     }
     .place-header .label { display: block; margin-bottom: 1.5rem; }
     .place-name {
-      font-family: var(--serif); font-size: 2.6rem; font-weight: 300;
+      font-family: var(--serif); font-size: 2.6rem; font-weight: 400;
       color: var(--cream); margin-bottom: 0.2rem;
     }
     .place-name-sub {
-      font-size: 0.9rem; color: var(--cream-dim); letter-spacing: 0.15em;
+      font-size: 1rem; color: var(--cream-dim); letter-spacing: 0.15em;
       margin-bottom: 2rem;
     }
     .place-desc-text {
-      font-size: 1rem; color: var(--cream-mid); line-height: 2;
+      font-size: 1.125rem; color: var(--cream-mid); line-height: 1.9;
       max-width: 560px; margin: 0 auto;
       text-align: center;
     }
@@ -292,15 +309,15 @@
     .place-location-bar {
       text-align: center;
       padding: 3rem 2rem 0;
-      font-size: 0.85rem; color: var(--cream-dim);
+      font-size: 1rem; color: var(--cream-dim);
     }
 
     /* ===== RESIDENTS ===== */
     .residents { padding: 8rem 0 6rem; text-align: center; overflow: hidden; }
     .residents .label { display: block; margin-bottom: 1rem; }
     .residents-title {
-      font-family: var(--serif); font-size: clamp(1.2rem,2.5vw,1.8rem);
-      font-weight: 300; color: var(--cream); margin-bottom: 4rem;
+      font-family: var(--serif); font-size: clamp(1.4rem,2.5vw,1.8rem);
+      font-weight: 400; color: var(--cream); margin-bottom: 4rem;
     }
     .marquee-wrap { margin: 0 -2rem; }
     .marquee { display: flex; gap: 1.5rem; padding: 1rem 0; width: max-content; }
@@ -318,19 +335,19 @@
     .marquee:hover .resident-photo { opacity: 0.5; }
     .resident:hover .resident-photo { opacity: 1 !important; transform: scale(1.08); }
     .resident-photo img { width: 100%; height: 100%; object-fit: cover; }
-    .resident-name { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream-dim); }
-    .residents-note { font-family: var(--serif); font-size: 0.95rem; color: var(--cream-dim); margin-top: 3rem; }
+    .resident-name { font-size: 0.875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream-dim); }
+    .residents-note { font-family: var(--serif); font-size: 1.125rem; color: var(--cream-dim); margin-top: 3rem; }
 
     /* ===== QUALIFY ===== */
     .qualify { padding: 10rem 0; text-align: center; }
     .qualify-number {
-      font-family: var(--serif); font-size: clamp(3rem,8vw,6rem);
-      font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 0.3rem;
+      font-family: var(--serif); font-size: clamp(3rem,8vw,5rem);
+      font-weight: 400; color: var(--cream); line-height: 1; margin-bottom: 0.3rem;
     }
-    .qualify-unit { font-size: 0.8rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 3rem; }
-    .qualify-details { font-size: 1rem; color: var(--cream-mid); line-height: 2.2; max-width: 440px; margin: 0 auto; }
+    .qualify-unit { font-size: 1.125rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 3rem; }
+    .qualify-details { font-size: 1.125rem; color: var(--cream-mid); line-height: 1.9; max-width: 500px; margin: 0 auto; }
     .qualify-closing {
-      font-family: var(--serif); font-size: 1.3rem; font-weight: 300;
+      font-family: var(--serif); font-size: 1.375rem; font-weight: 400;
       color: var(--cream); margin-top: 4rem;
     }
 
@@ -342,20 +359,23 @@
     .apply .label { display: block; margin-bottom: 2rem; }
     .apply-title {
       font-family: var(--serif); font-size: clamp(1.8rem,4vw,2.8rem);
-      font-weight: 300; color: var(--cream); margin-bottom: 1rem;
+      font-weight: 400; color: var(--cream); margin-bottom: 1rem;
     }
-    .apply-spots { font-size: 0.9rem; color: var(--cream-dim); margin-bottom: 3rem; }
+    .apply-spots { font-size: 1.125rem; color: var(--cream-dim); margin-bottom: 3rem; }
     .apply-btn {
-      display: inline-block; font-family: var(--sans); font-size: 0.8rem;
-      font-weight: 500; letter-spacing: 0.15em; color: var(--bg);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--sans); font-size: 1.125rem;
+      font-weight: 600; letter-spacing: 0.12em; color: var(--bg);
       background: var(--gold); text-decoration: none;
-      padding: 1.1rem 3.5rem; border-radius: 2px; transition: all 0.35s ease;
+      padding: 1.25rem 3.5rem; border-radius: 8px;
+      min-height: 72px; /* senior-friendly touch target 19mm */
+      transition: all 0.3s ease;
     }
     .apply-btn:hover {
       background: var(--gold-light); transform: translateY(-1px);
       box-shadow: 0 8px 30px rgba(184,150,90,0.15);
     }
-    .apply-note { font-size: 0.85rem; color: var(--cream-dim); margin-top: 2rem; line-height: 2; }
+    .apply-note { font-size: 1rem; color: var(--cream-dim); margin-top: 2rem; line-height: 1.9; }
 
     /* ===== FORM ===== */
     .apply-form {
@@ -429,12 +449,15 @@
       padding: 4rem 2rem; text-align: center;
       border-top: 1px solid rgba(255,255,255,0.04);
     }
-    .footer-brand { font-family: var(--serif); font-size: 0.95rem; color: var(--cream-dim); margin-bottom: 0.5rem; }
-    .footer-location { font-size: 0.75rem; color: var(--cream-dim); opacity: 0.5; margin-bottom: 2rem; }
-    .footer-links { display: flex; justify-content: center; gap: 2rem; }
+    .footer-brand { font-family: var(--serif); font-size: 1rem; color: var(--cream-dim); margin-bottom: 0.5rem; }
+    .footer-location { font-size: 0.875rem; color: var(--cream-dim); opacity: 0.6; margin-bottom: 2rem; line-height: 1.8; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; }
     .footer-links a {
-      font-size: 0.75rem; letter-spacing: 0.1em; color: var(--cream-dim);
-      text-decoration: none; opacity: 0.5; transition: opacity 0.3s ease;
+      font-size: 0.875rem; letter-spacing: 0.08em; color: var(--cream-dim);
+      text-decoration: none; opacity: 0.6; transition: opacity 0.3s ease;
+      padding: 0.5rem 0.75rem; /* larger touch area */
+      min-height: 44px;
+      display: inline-flex; align-items: center;
     }
     .footer-links a:hover { opacity: 1; color: var(--gold); }
 
@@ -455,16 +478,17 @@
       nav { padding: 1.2rem 1.5rem; }
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
+      .nav-lang { display: none; }
     }
 
     @media (max-width: 480px) {
-      .hero-sub { font-size: 0.75rem; }
-      .invitation-lead { font-size: 1.2rem; }
-      .nav-logo { font-size: 0.9rem; }
-      .nav-cta { padding: 0.5rem 1.2rem; font-size: 0.7rem; }
+      .hero-sub { font-size: 0.9375rem; } /* 15px minimum */
+      .invitation-lead { font-size: 1.3rem; }
+      .nav-logo { font-size: 1rem; }
+      .nav-cta { padding: 0.7rem 1.4rem; font-size: 0.875rem; }
       .gallery { grid-template-columns: 1fr 1fr; }
       .gallery-item.wide { grid-column: span 1; }
-      .nav-lang { display: none; }
+      body { font-size: 1.125rem; } /* mobile 18px, still above 16px floor */
     }
   </style>
 </head>
