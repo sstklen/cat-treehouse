@@ -65,7 +65,7 @@ May 7           Winner announced
 June 7          Private car → treehouse
 June 8          Code, forest sauna, rotenburo, cats
 June 9          Private car → Tokyo → TW×JP Claude Community Meetup
-June 10         Code with Claude Tokyo + Livestream
+June 10         Code with Claude Tokyo + TW×JP Community Livestream
 Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community event)
 ```
 
@@ -76,7 +76,7 @@ Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community e
 | Date | Event | |
 |:-----|:------|:--|
 | **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | ~$60 · drinks & food included |
-| **6/10** | 🎙 Livestream + After-party | ~$60 · drinks & food included |
+| **6/10** | 🎙 Code with Claude Tokyo Livestream + After-party | ~$60 · drinks & food included · community event |
 | **Next** | 🇹🇼 Claude Code Community Meetup in Taiwan | community event · TBA |
 
 👉 Sign up when you [**Enter the Draw**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) — check the boxes for 6/9, 6/10, and/or Taiwan
@@ -88,6 +88,16 @@ Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community e
 `cat` is a Unix command that displays file contents.
 We have 16 actual cats. In a treehouse.
 You do the math.
+
+## The Story
+
+I live next to this treehouse — literally in my backyard on the Bōsō Peninsula, Japan.
+
+I've been watching Anthropic give Claude Max to top open source maintainers. That's amazing. But I thought — what if someone gave them a *treehouse*?
+
+Not a conference. Not a panel. Just three days in the forest with code, cats, and no deadlines. A place to breathe and build something you actually care about.
+
+I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. So why not?
 
 ---
 
@@ -138,7 +148,7 @@ You do the math.
 6/7             專車接人 → 抵達樹屋
 6/8             寫 code、森林桑拿、露天風呂、貓
 6/9             專車回東京 → 台日 Claude 社群交流會
-6/10            Code with Claude Tokyo + 直播
+6/10            Code with Claude Tokyo + 台日社群交流會直播
 下一次          → 🇹🇼 臺灣 Claude Code 社群交流會（民間活動）
 ```
 
@@ -149,7 +159,7 @@ You do the math.
 | 日期 | 活動 | |
 |:-----|:------|:--|
 | **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | ~$60 · 含餐點飲料 |
-| **6/10** | 🎙 直播 + 二次會 | ~$60 · 含餐點飲料 |
+| **6/10** | 🎙 Code with Claude Tokyo 直播 + 二次會 | ~$60 · 含餐點飲料 · 民間活動 |
 | **下一次** | 🇹🇼 臺灣 Claude Code 社群交流會 | 民間活動 · 時間待定 |
 
 👉 報名時順便勾選 → [**開 Issue 報名**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
@@ -159,6 +169,16 @@ You do the math.
 ### 為什麼叫 cat Treehouse？
 
 `cat` 是 Unix 指令（顯示檔案內容）。我們有 16 隻真的貓。在樹屋裡。自己算。
+
+### 這件事的由來
+
+我就住在這棟樹屋旁邊 — 就在日本房總半島我家後院。
+
+我看到 Anthropic 把 Claude Max 送給頂尖開源維護者，覺得很棒。但我想 — 如果有人送他們一棟*樹屋*呢？
+
+不是研討會，不是座談。就是三天待在森林裡，寫 code、摸貓、沒有 deadline。一個可以好好呼吸、做自己真正想做的東西的地方。
+
+我有樹屋、有 16 隻貓、有車可以去東京接你。那為什麼不呢？
 
 ---
 
