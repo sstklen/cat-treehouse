@@ -140,7 +140,7 @@ You do the math.
 
 An independent community event by [Washin Village](https://washinmura.jp) · Timed with [Code with Claude Tokyo](https://claude.com/code-with-claude) · Not affiliated with Anthropic
 
-[Trump Code](https://github.com/sstklen/trump-code) · [AEO](https://api.washinmura.jp/aeo) · [EmojiGo](https://emojigo.washinmura.jp/) · [Treeavel](https://treeavel.jp)
+[Trump Code](https://github.com/sstklen/trump-code) · [AEO](https://api.washinmura.jp/aeo) · [EmojiGo](https://emojigo.washinmura.jp/) · [Treeavel](https://treeavel.washinmura.jp)
 
 </sub>
 
