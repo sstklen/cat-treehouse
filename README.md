@@ -6,7 +6,7 @@
 你的 GitHub 星星就是你的彩券。
 
 **1 wins, 4 go.** Win a treehouse stay + bring 3 friends — right before Code with Claude Tokyo.<br>
-**一人中獎，四人同行。** 贏得樹屋住宿，帶 3 個朋友 — Code with Claude Tokyo 前夕。
+**一人中獎，四人同行。** 贏得樹屋住宿，帶 3 位朋友 — Code with Claude Tokyo 前夕。
 
 ### 🌐 [treeavel.washinmura.jp/cat-treehouse](https://treeavel.washinmura.jp/cat-treehouse/)
 
@@ -64,6 +64,8 @@ We pull your total GitHub stars automatically via API.
 
 No forms. No email. Stars checked automatically.
 
+⭐ **Star this repo — help others discover the giveaway!**
+
 > ⚠️ Winner's Claude Max subscription will be verified before confirmation.
 
 > Entries close **May 1, 2026** · Winner announced **May 7**
@@ -76,7 +78,7 @@ May 7           Winner announced
 June 7          Private car → treehouse
 June 8          Code, forest sauna, rotenburo, cats
 June 9          Private car → Tokyo → TW×JP Claude Community Meetup
-June 10         Code with Claude Tokyo + TW×JP Community Livestream
+June 10         Code with Claude Tokyo + Community Livestream & After-party
 Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community event)
 ```
 
@@ -171,7 +173,7 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 6/7             專車接人 → 抵達樹屋
 6/8             寫 code、森林桑拿、露天風呂、貓
 6/9             專車回東京 → 台日 Claude 社群交流會
-6/10            Code with Claude Tokyo + 台日社群交流會直播
+6/10            Code with Claude Tokyo + 社群直播 + 二次會
 下一次          → 🇹🇼 臺灣 Claude Code 社群交流會（民間活動）
 ```
 
