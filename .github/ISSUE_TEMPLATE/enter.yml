@@ -1,26 +1,29 @@
-name: "🐱 Enter the Draw"
-description: "Win a treehouse stay for you + 3 friends before Code with Claude Tokyo"
+name: "🐱 Enter the Draw 報名抽獎"
+description: "Win a treehouse stay for you + 3 friends 贏得樹屋住宿帶 3 個朋友"
 title: "🐱 I'm in!"
 labels: ["entry"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## 🐱 cat Treehouse — Giveaway
+        ## 🐱 cat Treehouse — Giveaway 抽獎
 
         **1 winner + 3 friends** · 3 days, 2 nights · Private car from Tokyo
-        Entries close **May 1, 2026**
+        **1 位中獎者 + 3 位朋友** · 三天兩夜 · 東京專車接送
+
+        Entries close **May 1, 2026** · 報名截止 **2026 年 5 月 1 日**
 
         Your GitHub stars are your lottery tickets — we check automatically via API.
-        More stars = better odds. Just confirm below and you're in.
+        你的 GitHub 星星就是彩券 — 透過 API 自動驗證。
 
-        ⭐ **Don't forget to star this repo** — help others discover the giveaway.
+        ⭐ **Don't forget to star this repo — more stars = better odds!**
+        ⭐ **記得按星星 — 星星越多，中獎率越高！**
 
   - type: textarea
     id: building
     attributes:
-      label: "What are you building with Claude? (optional)"
-      placeholder: "One sentence is fine. Or leave blank — your code speaks for itself."
+      label: "What are you building with Claude? 你用 Claude 做什麼？（optional 選填）"
+      placeholder: "One sentence is fine. Or leave blank. 一句話就好，也可以留空。"
     validations:
       required: false
 
@@ -29,9 +32,9 @@ body:
     attributes:
       label: "Confirm 確認"
       options:
-        - label: "I'm a Claude Max subscriber"
+        - label: "I'm a Claude Max subscriber 我是 Claude Max 訂閱者"
           required: true
-        - label: "I can be in Tokyo June 7–9, 2026"
+        - label: "I can be in Tokyo June 7–9, 2026 我 6/7–9 可以在東京"
           required: true
 
   - type: checkboxes
@@ -39,16 +42,17 @@ body:
     attributes:
       label: "🇹🇼🇯🇵 Community Events 社群活動（optional 自由參加）"
       description: |
-        Didn't win? You can still join these community events!
-        沒抽到也能來！以下是台日 Claude 社群的民間活動。
+        Didn't win? You can still join! By [TW×JP Claude Community](https://github.com/sstklen/claude-tw-jp).
+        沒抽到也能來！由[台日 Claude 社群](https://github.com/sstklen/claude-tw-jp)主辦的民間活動。
 
-        **~$60 USD per event**（each includes venue + drinks & food 每場含場地、飲料、餐點）
-        Confirmation & payment details sent 1 month before the event.
-        活動前一個月發參加通知，確認人數後預訂場地。
+        **~$60 USD per event** · each includes venue + drinks & food
+        **每場 ~$60 美元** · 含場地、飲料、餐點
+
+        Confirmation sent 1 month before · 活動前一個月發通知確認人數
       options:
-        - label: "6/9 evening — TW×JP Claude Community Meetup 台日社群交流會（~$60 USD）"
+        - label: "6/9 evening — TW×JP Claude Community Meetup 台日社群交流會（~$60）"
           required: false
-        - label: "6/10 — Livestream + After-party 直播+二次會（~$60 USD）"
+        - label: "6/10 — Code with Claude Tokyo Livestream + After-party 大會直播 + 二次會（~$60）"
           required: false
-        - label: "🇹🇼 Notify me about Claude Code Community Meetup in Taiwan! 臺灣 Claude Code 社群交流會通知我！"
+        - label: "🇹🇼 Notify me about Claude Code Meetup in Taiwan! 臺灣 Claude Code 社群交流會通知我！"
           required: false

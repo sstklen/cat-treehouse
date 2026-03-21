@@ -12,7 +12,8 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 
 [![Enter the Draw](https://img.shields.io/badge/🎟️_Enter_the_Draw-報名抽獎-green?style=for-the-badge)](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
 
-⭐ **Star this repo to help spread the word**
+⭐ **Star this repo to help spread the word**<br>
+按星星，讓更多人看到
 
 </div>
 
@@ -75,8 +76,8 @@ Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community e
 
 | Date | Event | |
 |:-----|:------|:--|
-| **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | ~$60 · drinks & food included |
-| **6/10** | 🎙 Code with Claude Tokyo Livestream + After-party | ~$60 · drinks & food included · community event |
+| **6/9 evening** | 🇹🇼🇯🇵 [TW×JP Claude Community Meetup](https://github.com/sstklen/claude-tw-jp) | ~$60 · drinks & food included |
+| **6/10** | 🎙 Code with Claude Tokyo Livestream + After-party by [TW×JP Community](https://github.com/sstklen/claude-tw-jp) | ~$60 · drinks & food included · community event |
 | **Next** | 🇹🇼 Claude Code Community Meetup in Taiwan | community event · TBA |
 
 👉 Sign up when you [**Enter the Draw**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) — check the boxes for 6/9, 6/10, and/or Taiwan
@@ -138,6 +139,8 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 不用填表、不用 Email。星星數自動驗證。
 
+⭐ **記得按星星 — 幫更多人看到這個活動！**
+
 > 報名截止 **2026 年 5 月 1 日** · 開獎 **5 月 7 日**
 
 ### 時間軸
@@ -158,8 +161,8 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 | 日期 | 活動 | |
 |:-----|:------|:--|
-| **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | ~$60 · 含餐點飲料 |
-| **6/10** | 🎙 Code with Claude Tokyo 直播 + 二次會 | ~$60 · 含餐點飲料 · 民間活動 |
+| **6/9 晚上** | 🇹🇼🇯🇵 [台日 Claude 社群交流會](https://github.com/sstklen/claude-tw-jp) | ~$60 · 含餐點飲料 |
+| **6/10** | 🎙 Code with Claude Tokyo 直播 + 二次會 by [台日社群](https://github.com/sstklen/claude-tw-jp) | ~$60 · 含餐點飲料 · 民間活動 |
 | **下一次** | 🇹🇼 臺灣 Claude Code 社群交流會 | 民間活動 · 時間待定 |
 
 👉 報名時順便勾選 → [**開 Issue 報名**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
