@@ -1,0 +1,58 @@
+name: "🏡 Book the Treehouse"
+description: "Skip the lottery — book your treehouse stay directly"
+title: "🏡 Booking inquiry"
+labels: ["booking"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🏡 Book the Treehouse Directly
+
+        No lottery needed. Fill in below and we'll get back to you within 48 hours.
+
+        3 days, 2 nights · World's first CLT treehouse · 16 rescue cats
+        Private car from Tokyo · Forest sauna · Rotenburo
+
+  - type: input
+    id: name
+    attributes:
+      label: "Name"
+      placeholder: "Your name"
+    validations:
+      required: true
+
+  - type: input
+    id: email
+    attributes:
+      label: "Email"
+      description: "We'll contact you here to confirm details."
+      placeholder: "you@example.com"
+    validations:
+      required: true
+
+  - type: input
+    id: dates
+    attributes:
+      label: "Preferred dates"
+      placeholder: "e.g. June 2026, or flexible"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: guests
+    attributes:
+      label: "Number of guests"
+      options:
+        - "1–2"
+        - "3–4"
+        - "5–6"
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: "Anything else? (optional)"
+      placeholder: "Questions, special requests, etc."
+    validations:
+      required: false

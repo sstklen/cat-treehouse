@@ -65,8 +65,8 @@ Entries close **May 1, 2026**.
 ## Timeline
 
 ```
-Now → May 1    Entries open
-Early June      Winner announced
+Now → May 1     Entries open
+May 7           Winner announced
 June 8          Private car → treehouse
 June 9          Code, forest sauna, rotenburo, cats
 June 10         Private car → Tokyo → Code with Claude
@@ -124,7 +124,7 @@ You do the math.
 
 **[我要報名 →](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)**
 
-報名截止 **2026 年 5 月 1 日**。
+報名截止 **2026 年 5 月 1 日**。5 月 7 日開獎。
 
 ### 為什麼叫 cat Treehouse？
 
