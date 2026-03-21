@@ -52,6 +52,12 @@ We pull your total GitHub stars automatically via API.
 
 ## How to Enter
 
+<div align="center">
+
+[![Enter the Draw](https://img.shields.io/badge/🎟️_Enter_the_Draw-報名抽獎-green?style=for-the-badge)](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
+
+</div>
+
 1. Be a **Claude Max** subscriber
 2. [**Open an Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → check two boxes
 3. Done.
@@ -138,6 +144,12 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 **開源貢獻越多，中獎率越高。**
 
 ### 怎麼報名
+
+<div align="center">
+
+[![報名抽獎](https://img.shields.io/badge/🎟️_報名抽獎-Enter_the_Draw-green?style=for-the-badge)](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
+
+</div>
 
 1. 你是 **Claude Max** 訂閱者
 2. [**開一個 Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → 打兩個勾
