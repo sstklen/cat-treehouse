@@ -1,47 +1,44 @@
-# 🐱 cat Treehouse
-
-> ⭐ **Star this repo to help spread the word**
-
-**EN** [English](#the-deal) ·  **中** [繁體中文](#繁體中文版)
-
-<br>
-
 <div align="center">
 
-**Your GitHub stars are your lottery tickets.**
+# 🐱 cat Treehouse
 
-Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo.
+**Your GitHub stars are your lottery tickets.**<br>
+你的 GitHub 星星就是你的彩券。
 
-[Enter the Draw →](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
+Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo.<br>
+贏得樹屋住宿，帶 3 個朋友 — Code with Claude Tokyo 前夕。
+
+[![Enter the Draw](https://img.shields.io/badge/🎟️_Enter_the_Draw-報名抽獎-green?style=for-the-badge)](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
+
+⭐ **Star this repo to help spread the word**
 
 </div>
 
-<br>
+---
+
+**EN** [English](#the-deal) ·  **中** [繁體中文](#繁體中文版)
 
 ---
 
 ## The Deal
 
 | | |
-|---|---|
+|:--|:--|
 | **When** | June 7–9, 2026 |
 | **Where** | [Washin Village](https://washinmura.jp), Bōsō Peninsula — 90 min from Tokyo |
 | **Stay** | 3 days, 2 nights in the world's first CLT treehouse |
 | **Included** | Forest sauna · Rotenburo · 16 rescue cats · All meals |
 | **Transfer** | Private car, Tokyo ↔ treehouse |
-| **Then** | Straight to [Code with Claude Tokyo](https://claude.com/code-with-claude) on June 10 (treehouse June 7–9, community meetup June 9, conference June 10) |
 | **Who** | 1 winner + 3 friends · Everything covered |
 
 ## How the Draw Works
 
-```
-⭐ = 🎟️   Every star is a lottery ticket.
-```
+> ⭐ = 🎟️ &nbsp; Every star on your GitHub is a lottery ticket.
 
 We pull your total GitHub stars automatically via API.
 
 | Your stars | Your tickets |
-|---|---|
+|---:|---:|
 | 10,000 | 10,000 |
 | 500 | 500 |
 | 1 | 1 |
@@ -50,17 +47,13 @@ We pull your total GitHub stars automatically via API.
 
 ## How to Enter
 
-```
-1. Be a Claude Max subscriber
-2. Open an Issue → check two boxes
+1. Be a **Claude Max** subscriber
+2. [**Open an Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → check two boxes
 3. Done.
-```
 
 No forms. No email. Stars checked automatically.
 
-**[Enter the Draw →](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)**
-
-Entries close **May 1, 2026**.
+> Entries close **May 1, 2026** · Winner announced **May 7**
 
 ## Timeline
 
@@ -72,6 +65,15 @@ June 8          Code, forest sauna, rotenburo, cats
 June 9          Private car → Tokyo → TW×JP Claude Community Meetup
 June 10         Code with Claude Tokyo + Livestream
 ```
+
+### Didn't win? Join us anyway.
+
+| Date | Event | |
+|:-----|:------|:--|
+| **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | community event |
+| **6/10** | 🎙 Livestream + After-party | community event, open to all |
+
+👉 Join the community → [**Taiwan × Japan Claude Community**](https://github.com/sstklen/claude-tw-jp)
 
 ## Why "cat Treehouse"?
 
@@ -88,25 +90,22 @@ You do the math.
 ### 獎品
 
 | | |
-|---|---|
+|:--|:--|
 | **日期** | 2026 年 6 月 7–9 日 |
 | **地點** | [和心村](https://washinmura.jp)，房總半島 — 東京 90 分鐘 |
 | **住宿** | 三天兩夜，世界第一座 CLT 樹屋 |
 | **包含** | 森林桑拿 · 露天風呂 · 16 隻保護貓 · 全餐 |
 | **接送** | 東京 ↔ 樹屋，專車門到門 |
-| **然後** | 6/10 直奔 [Code with Claude Tokyo](https://claude.com/code-with-claude) |
 | **名額** | 1 位中獎者 + 3 位朋友 · 全額招待 |
 
 ### 抽獎機制
 
-```
-⭐ = 🎟️   每顆星星就是一張彩券
-```
+> ⭐ = 🎟️ &nbsp; 每顆星星就是一張彩券
 
 透過 GitHub API 自動抓取你的星星總數。
 
 | 你的星星 | 你的彩券 |
-|---|---|
+|---:|---:|
 | 10,000 | 10,000 張 |
 | 500 | 500 張 |
 | 1 | 1 張 |
@@ -115,17 +114,22 @@ You do the math.
 
 ### 怎麼報名
 
-```
-1. 你是 Claude Max 訂閱者
-2. 開一個 Issue → 打兩個勾
+1. 你是 **Claude Max** 訂閱者
+2. [**開一個 Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → 打兩個勾
 3. 搞定。
-```
 
 不用填表、不用 Email。星星數自動驗證。
 
-**[我要報名 →](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)**
+> 報名截止 **2026 年 5 月 1 日** · 開獎 **5 月 7 日**
 
-報名截止 **2026 年 5 月 1 日**。5 月 7 日開獎。
+### 沒抽中？也歡迎來。
+
+| 日期 | 活動 | |
+|:-----|:------|:--|
+| **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | 民間活動 |
+| **6/10** | 🎙 直播 + 二次會 | 民間活動，所有人都能參加 |
+
+👉 加入社群 → [**台灣 × 日本 Claude 社群**](https://github.com/sstklen/claude-tw-jp)
 
 ### 為什麼叫 cat Treehouse？
 
@@ -136,13 +140,13 @@ You do the math.
 ---
 
 <div align="center">
-
 <sub>
 
 An independent community event by [Washin Village](https://washinmura.jp) · Timed with [Code with Claude Tokyo](https://claude.com/code-with-claude) · Not affiliated with Anthropic
 
-[Trump Code](https://github.com/sstklen/trump-code) · [AEO](https://api.washinmura.jp/aeo) · [EmojiGo](https://emojigo.washinmura.jp/) · [Treeavel](https://treeavel.washinmura.jp)
+和心村主辦的獨立社群活動 · 配合 Code with Claude Tokyo 時程 · 與 Anthropic 無關
+
+[TW×JP Community](https://github.com/sstklen/claude-tw-jp) · [Trump Code](https://github.com/sstklen/trump-code) · [AEO](https://api.washinmura.jp/aeo) · [EmojiGo](https://emojigo.washinmura.jp/) · [Treeavel](https://treeavel.washinmura.jp)
 
 </sub>
-
 </div>
