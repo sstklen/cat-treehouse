@@ -50,3 +50,5 @@ body:
           required: false
         - label: "6/10 — Livestream + After-party 直播+二次會（~$60 USD）"
           required: false
+        - label: "🇹🇼 Notify me about the next meetup in Taiwan! 下次臺灣交流會通知我！"
+          required: false

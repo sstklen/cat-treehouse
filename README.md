@@ -66,6 +66,7 @@ June 7          Private car → treehouse
 June 8          Code, forest sauna, rotenburo, cats
 June 9          Private car → Tokyo → TW×JP Claude Community Meetup
 June 10         Code with Claude Tokyo + Livestream
+Next            → See you in Taiwan 🇹🇼
 ```
 
 <div align="center">
@@ -76,8 +77,9 @@ June 10         Code with Claude Tokyo + Livestream
 |:-----|:------|:--|
 | **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | ~$60 · drinks & food included |
 | **6/10** | 🎙 Livestream + After-party | ~$60 · drinks & food included |
+| **Next** | 🇹🇼 See you in Taiwan! | TBA |
 
-👉 Sign up when you [**Enter the Draw**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) — check the boxes for 6/9 and/or 6/10
+👉 Sign up when you [**Enter the Draw**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) — check the boxes for 6/9, 6/10, and/or Taiwan
 
 </div>
 
@@ -137,6 +139,7 @@ You do the math.
 6/8             寫 code、森林桑拿、露天風呂、貓
 6/9             專車回東京 → 台日 Claude 社群交流會
 6/10            Code with Claude Tokyo + 直播
+下一次          → 來臺灣見 🇹🇼
 ```
 
 <div align="center">
@@ -147,6 +150,7 @@ You do the math.
 |:-----|:------|:--|
 | **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | ~$60 · 含餐點飲料 |
 | **6/10** | 🎙 直播 + 二次會 | ~$60 · 含餐點飲料 |
+| **下一次** | 🇹🇼 來臺灣見！ | 時間待定 |
 
 👉 報名時順便勾選 → [**開 Issue 報名**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
 
