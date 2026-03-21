@@ -76,7 +76,7 @@ Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community e
 
 | Date | Event | |
 |:-----|:------|:--|
-| **6/9 evening** | 🇹🇼🇯🇵 [TW×JP Claude Community Meetup](https://github.com/sstklen/claude-tw-jp) | ~$60 · drinks & food included |
+| **6/9 evening** | 🇹🇼🇯🇵 [TW×JP Claude Community Meetup](https://github.com/sstklen/claude-tw-jp) | ~$60 · drinks & food included · community event |
 | **6/10** | 🎙 Code with Claude Tokyo Livestream + After-party by [TW×JP Community](https://github.com/sstklen/claude-tw-jp) | ~$60 · drinks & food included · community event |
 | **Next** | 🇹🇼 Claude Code Community Meetup in Taiwan | community event · TBA |
 
@@ -161,7 +161,7 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 | 日期 | 活動 | |
 |:-----|:------|:--|
-| **6/9 晚上** | 🇹🇼🇯🇵 [台日 Claude 社群交流會](https://github.com/sstklen/claude-tw-jp) | ~$60 · 含餐點飲料 |
+| **6/9 晚上** | 🇹🇼🇯🇵 [台日 Claude 社群交流會](https://github.com/sstklen/claude-tw-jp) | ~$60 · 含餐點飲料 · 民間活動 |
 | **6/10** | 🎙 Code with Claude Tokyo 直播 + 二次會 by [台日社群](https://github.com/sstklen/claude-tw-jp) | ~$60 · 含餐點飲料 · 民間活動 |
 | **下一次** | 🇹🇼 臺灣 Claude Code 社群交流會 | 民間活動 · 時間待定 |
 
