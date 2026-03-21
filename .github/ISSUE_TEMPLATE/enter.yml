@@ -8,8 +8,8 @@ body:
       value: |
         ## 🐱 cat Treehouse — Giveaway 抽獎
 
-        **1 winner + 3 friends** · 3 days, 2 nights · Private car from Tokyo
-        **1 位中獎者 + 3 位朋友** · 三天兩夜 · 東京專車接送
+        **1 wins, 4 go.** · 3 days, 2 nights · Private car from Tokyo
+        **一人中獎，四人同行。** · 三天兩夜 · 東京專車接送
 
         Entries close **May 1, 2026** · 報名截止 **2026 年 5 月 1 日**
 
@@ -18,6 +18,9 @@ body:
 
         ⭐ **Don't forget to star this repo — more stars = better odds!**
         ⭐ **記得按星星 — 星星越多，中獎率越高！**
+
+        ⚠️ Winner's Claude Max subscription will be verified.
+        ⚠️ 中獎後會驗證 Claude Max 訂閱資格。
 
   - type: textarea
     id: building

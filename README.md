@@ -5,8 +5,8 @@
 **Your GitHub stars are your lottery tickets.**<br>
 你的 GitHub 星星就是你的彩券。
 
-Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo.<br>
-贏得樹屋住宿，帶 3 個朋友 — Code with Claude Tokyo 前夕。
+**1 wins, 4 go.** Win a treehouse stay + bring 3 friends — right before Code with Claude Tokyo.<br>
+**一人中獎，四人同行。** 贏得樹屋住宿，帶 3 個朋友 — Code with Claude Tokyo 前夕。
 
 ### 🌐 [treeavel.washinmura.jp/cat-treehouse](https://treeavel.washinmura.jp/cat-treehouse/)
 
@@ -32,7 +32,7 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 | **Stay** | 3 days, 2 nights in the world's first CLT treehouse |
 | **Included** | Forest sauna · Rotenburo · 16 rescue cats · All meals |
 | **Transfer** | Private car, Tokyo ↔ treehouse |
-| **Who** | 1 winner + 3 friends · Everything covered |
+| **Who** | **1 wins, 4 go.** Bring 3 friends — everything covered |
 
 ## How the Draw Works
 
@@ -55,6 +55,8 @@ We pull your total GitHub stars automatically via API.
 3. Done.
 
 No forms. No email. Stars checked automatically.
+
+> ⚠️ Winner's Claude Max subscription will be verified before confirmation.
 
 > Entries close **May 1, 2026** · Winner announced **May 7**
 
@@ -115,7 +117,7 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 | **住宿** | 三天兩夜，世界第一座 CLT 樹屋 |
 | **包含** | 森林桑拿 · 露天風呂 · 16 隻保護貓 · 全餐 |
 | **接送** | 東京 ↔ 樹屋，專車門到門 |
-| **名額** | 1 位中獎者 + 3 位朋友 · 全額招待 |
+| **名額** | **一人中獎，四人同行。** 帶 3 位朋友，全額招待 |
 
 ### 抽獎機制
 
@@ -138,6 +140,8 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 3. 搞定。
 
 不用填表、不用 Email。星星數自動驗證。
+
+> ⚠️ 中獎後會驗證 Claude Max 訂閱資格。
 
 ⭐ **記得按星星 — 幫更多人看到這個活動！**
 
