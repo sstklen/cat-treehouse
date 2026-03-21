@@ -75,7 +75,7 @@ June 10         Code with Claude Tokyo + Livestream
 | Date | Event | |
 |:-----|:------|:--|
 | **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | community event |
-| **6/10** | 🎙 Livestream + After-party | community event, join from anywhere |
+| **6/10** | 🎙 Livestream + After-party | community event, no invite needed |
 
 👉 Join the community → [**Taiwan × Japan Claude Community**](https://github.com/sstklen/claude-tw-jp)
 
@@ -146,7 +146,7 @@ You do the math.
 | 日期 | 活動 | |
 |:-----|:------|:--|
 | **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | 民間活動 |
-| **6/10** | 🎙 直播 + 二次會 | 民間活動，線上也能參加 |
+| **6/10** | 🎙 直播 + 二次會 | 民間活動，沒抽到大會也能來 |
 
 👉 加入社群 → [**台灣 × 日本 Claude 社群**](https://github.com/sstklen/claude-tw-jp)
 
