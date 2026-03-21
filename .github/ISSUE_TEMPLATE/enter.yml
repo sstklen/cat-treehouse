@@ -31,5 +31,5 @@ body:
       options:
         - label: "I'm a Claude Max subscriber"
           required: true
-        - label: "I can be in Tokyo June 8–10, 2026"
+        - label: "I can be in Tokyo June 7–9, 2026"
           required: true

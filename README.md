@@ -24,12 +24,12 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 
 | | |
 |---|---|
-| **When** | June 8–10, 2026 |
+| **When** | June 7–9, 2026 |
 | **Where** | [Washin Village](https://washinmura.jp), Bōsō Peninsula — 90 min from Tokyo |
 | **Stay** | 3 days, 2 nights in the world's first CLT treehouse |
 | **Included** | Forest sauna · Rotenburo · 16 rescue cats · All meals |
 | **Transfer** | Private car, Tokyo ↔ treehouse |
-| **Then** | Straight to [Code with Claude Tokyo](https://claude.com/code-with-claude) on June 10 |
+| **Then** | Straight to [Code with Claude Tokyo](https://claude.com/code-with-claude) on June 10 (treehouse June 7–9, community meetup June 9, conference June 10) |
 | **Who** | 1 winner + 3 friends · Everything covered |
 
 ## How the Draw Works
@@ -67,9 +67,10 @@ Entries close **May 1, 2026**.
 ```
 Now → May 1     Entries open
 May 7           Winner announced
-June 8          Private car → treehouse
-June 9          Code, forest sauna, rotenburo, cats
-June 10         Private car → Tokyo → Code with Claude
+June 7          Private car → treehouse
+June 8          Code, forest sauna, rotenburo, cats
+June 9          Private car → Tokyo → TW×JP Claude Community Meetup
+June 10         Code with Claude Tokyo + Livestream
 ```
 
 ## Why "cat Treehouse"?
@@ -88,7 +89,7 @@ You do the math.
 
 | | |
 |---|---|
-| **日期** | 2026 年 6 月 8–10 日 |
+| **日期** | 2026 年 6 月 7–9 日 |
 | **地點** | [和心村](https://washinmura.jp)，房總半島 — 東京 90 分鐘 |
 | **住宿** | 三天兩夜，世界第一座 CLT 樹屋 |
 | **包含** | 森林桑拿 · 露天風呂 · 16 隻保護貓 · 全餐 |
