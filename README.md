@@ -14,6 +14,8 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 
 ⭐ **Star this repo to help spread the word**
 
+</div>
+
 ---
 
 **EN** [English](#the-deal) ·  **中** [繁體中文](#繁體中文版)
@@ -31,11 +33,9 @@ Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo
 | **Transfer** | Private car, Tokyo ↔ treehouse |
 | **Who** | 1 winner + 3 friends · Everything covered |
 
----
-
 ## How the Draw Works
 
-⭐ = 🎟️ &nbsp; Every star on your GitHub is a lottery ticket.
+> ⭐ = 🎟️ &nbsp; Every star on your GitHub is a lottery ticket.
 
 We pull your total GitHub stars automatically via API.
 
@@ -47,8 +47,6 @@ We pull your total GitHub stars automatically via API.
 
 **More open source work = better odds.** Simple.
 
----
-
 ## How to Enter
 
 1. Be a **Claude Max** subscriber
@@ -57,9 +55,7 @@ We pull your total GitHub stars automatically via API.
 
 No forms. No email. Stars checked automatically.
 
-Entries close **May 1, 2026** · Winner announced **May 7**
-
----
+> Entries close **May 1, 2026** · Winner announced **May 7**
 
 ## Timeline
 
@@ -72,9 +68,9 @@ June 9          Private car → Tokyo → TW×JP Claude Community Meetup
 June 10         Code with Claude Tokyo + Livestream
 ```
 
----
+<div align="center">
 
-## Didn't win? Join us anyway.
+### Didn't win? Join us anyway.
 
 | Date | Event | |
 |:-----|:------|:--|
@@ -83,12 +79,12 @@ June 10         Code with Claude Tokyo + Livestream
 
 👉 Join the community → [**Taiwan × Japan Claude Community**](https://github.com/sstklen/claude-tw-jp)
 
----
+</div>
 
 ## Why "cat Treehouse"?
 
-`cat` is a Unix command that displays file contents.<br>
-We have 16 actual cats. In a treehouse.<br>
+`cat` is a Unix command that displays file contents.
+We have 16 actual cats. In a treehouse.
 You do the math.
 
 ---
@@ -108,11 +104,9 @@ You do the math.
 | **接送** | 東京 ↔ 樹屋，專車門到門 |
 | **名額** | 1 位中獎者 + 3 位朋友 · 全額招待 |
 
----
-
 ### 抽獎機制
 
-⭐ = 🎟️ &nbsp; 每顆星星就是一張彩券
+> ⭐ = 🎟️ &nbsp; 每顆星星就是一張彩券
 
 透過 GitHub API 自動抓取你的星星總數。
 
@@ -124,8 +118,6 @@ You do the math.
 
 **開源貢獻越多，中獎率越高。**
 
----
-
 ### 怎麼報名
 
 1. 你是 **Claude Max** 訂閱者
@@ -134,9 +126,9 @@ You do the math.
 
 不用填表、不用 Email。星星數自動驗證。
 
-報名截止 **2026 年 5 月 1 日** · 開獎 **5 月 7 日**
+> 報名截止 **2026 年 5 月 1 日** · 開獎 **5 月 7 日**
 
----
+<div align="center">
 
 ### 沒抽中？也歡迎來。
 
@@ -147,7 +139,7 @@ You do the math.
 
 👉 加入社群 → [**台灣 × 日本 Claude 社群**](https://github.com/sstklen/claude-tw-jp)
 
----
+</div>
 
 ### 為什麼叫 cat Treehouse？
 
@@ -155,6 +147,7 @@ You do the math.
 
 ---
 
+<div align="center">
 <sub>
 
 An independent community event by [Washin Village](https://washinmura.jp) · Timed with [Code with Claude Tokyo](https://claude.com/code-with-claude) · Not affiliated with Anthropic
@@ -164,5 +157,4 @@ An independent community event by [Washin Village](https://washinmura.jp) · Tim
 [TW×JP Community](https://github.com/sstklen/claude-tw-jp) · [Trump Code](https://github.com/sstklen/trump-code) · [AEO](https://api.washinmura.jp/aeo) · [EmojiGo](https://emojigo.washinmura.jp/) · [Treeavel](https://treeavel.washinmura.jp)
 
 </sub>
-
 </div>
