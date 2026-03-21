@@ -8,6 +8,8 @@
 Win a treehouse stay for you + 3 friends — right before Code with Claude Tokyo.<br>
 贏得樹屋住宿，帶 3 個朋友 — Code with Claude Tokyo 前夕。
 
+### 🌐 [treeavel.washinmura.jp/cat-treehouse](https://treeavel.washinmura.jp/cat-treehouse/)
+
 [![Enter the Draw](https://img.shields.io/badge/🎟️_Enter_the_Draw-報名抽獎-green?style=for-the-badge)](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
 
 ⭐ **Star this repo to help spread the word**
