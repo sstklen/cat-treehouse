@@ -32,7 +32,9 @@
 | **Stay** | 3 days, 2 nights in the world's first CLT treehouse |
 | **Included** | Forest sauna · Rotenburo · 16 rescue cats · All meals |
 | **Transfer** | Private car, Tokyo ↔ treehouse |
-| **Who** | **1 wins, 4 go.** Bring 3 friends — everything covered |
+| **Who** | **1 wins, 4 go.** Bring 3 friends — everything covered from Tokyo* |
+
+\* *Flights to Tokyo not included. Everything on the ground is covered: private car, treehouse, meals, sauna, the works.*
 
 ## How the Draw Works
 
@@ -117,7 +119,9 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 | **住宿** | 三天兩夜，世界第一座 CLT 樹屋 |
 | **包含** | 森林桑拿 · 露天風呂 · 16 隻保護貓 · 全餐 |
 | **接送** | 東京 ↔ 樹屋，專車門到門 |
-| **名額** | **一人中獎，四人同行。** 帶 3 位朋友，全額招待 |
+| **名額** | **一人中獎，四人同行。** 帶 3 位朋友，東京落地後全額招待* |
+
+\* *不含飛東京的機票。落地後全包：專車接送、樹屋住宿、餐食、桑拿，通通招待。*
 
 ### 抽獎機制
 
