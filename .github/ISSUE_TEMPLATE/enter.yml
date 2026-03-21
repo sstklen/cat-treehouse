@@ -42,11 +42,11 @@ body:
         Didn't win? You can still join these community events!
         沒抽到也能來！以下是台日 Claude 社群的民間活動。
 
-        **6/10 After-party: ~$60 USD** (venue + basic drinks & food 場地費含基本飲料餐點)
+        **~$60 USD per event**（each includes venue + drinks & food 每場含場地、飲料、餐點）
         Confirmation & payment details sent 1 month before the event.
         活動前一個月發參加通知，確認人數後預訂場地。
       options:
-        - label: "6/9 evening — TW×JP Claude Community Meetup 台日社群交流會（free 免費）"
+        - label: "6/9 evening — TW×JP Claude Community Meetup 台日社群交流會（~$60 USD）"
           required: false
-        - label: "6/10 — Livestream + After-party 直播+二次會（~$60 USD 含場地飲料餐點）"
+        - label: "6/10 — Livestream + After-party 直播+二次會（~$60 USD）"
           required: false

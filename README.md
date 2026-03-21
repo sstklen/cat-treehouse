@@ -74,10 +74,10 @@ June 10         Code with Claude Tokyo + Livestream
 
 | Date | Event | |
 |:-----|:------|:--|
-| **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | community event |
-| **6/10** | 🎙 Livestream + After-party | community event, no invite needed |
+| **6/9 evening** | 🇹🇼🇯🇵 TW×JP Claude Community Meetup | ~$60 · drinks & food included |
+| **6/10** | 🎙 Livestream + After-party | ~$60 · drinks & food included |
 
-👉 Join the community → [**Taiwan × Japan Claude Community**](https://github.com/sstklen/claude-tw-jp)
+👉 Sign up when you [**Enter the Draw**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) — check the boxes for 6/9 and/or 6/10
 
 </div>
 
@@ -145,10 +145,10 @@ You do the math.
 
 | 日期 | 活動 | |
 |:-----|:------|:--|
-| **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | 民間活動 |
-| **6/10** | 🎙 直播 + 二次會 | 民間活動，沒抽到大會也能來 |
+| **6/9 晚上** | 🇹🇼🇯🇵 台日 Claude 社群交流會 | ~$60 · 含餐點飲料 |
+| **6/10** | 🎙 直播 + 二次會 | ~$60 · 含餐點飲料 |
 
-👉 加入社群 → [**台灣 × 日本 Claude 社群**](https://github.com/sstklen/claude-tw-jp)
+👉 報名時順便勾選 → [**開 Issue 報名**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)
 
 </div>
 
