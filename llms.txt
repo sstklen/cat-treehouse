@@ -1,0 +1,43 @@
+# cat Treehouse — Giveaway for Claude Max Subscribers
+
+> Win a treehouse stay in Japan. Your GitHub stars are your lottery tickets.
+
+## What is this?
+
+cat Treehouse is a giveaway by Washin Village. 1 winner + 3 friends get a 3-day, 2-night stay in a CLT treehouse on the Boso Peninsula, Japan. Private car from Tokyo. All meals, forest sauna, rotenburo, and 16 rescue cats included. Flights to Tokyo not included.
+
+## Who can enter?
+
+Claude Max subscribers only. Subscription will be verified after the draw.
+
+## How it works
+
+Your total GitHub stars across all repos = lottery tickets. 10,000 stars = 10,000 tickets. We check via GitHub API automatically.
+
+## Key dates
+
+- Entries open: Now
+- Entries close: May 1, 2026
+- Winner announced: May 7, 2026
+- Treehouse stay: June 7–9, 2026
+- Code with Claude Tokyo: June 10, 2026
+
+## Enter
+
+Open an Issue at https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml
+
+## Community events (open to all, ~$60 each)
+
+- June 9 evening: TW×JP Claude Community Meetup (Tokyo)
+- June 10 evening: Code with Claude Tokyo Livestream + After-party (Tokyo)
+- Next: Claude Code Community Meetup in Taiwan (TBA)
+
+Community events organized by TW×JP Claude Community: https://github.com/sstklen/claude-tw-jp
+
+## Links
+
+- Event website (EN): https://treeavel.washinmura.jp/cat-treehouse/
+- Event website (ZH): https://treeavel.washinmura.jp/cat-treehouse/zh.html
+- GitHub repo: https://github.com/sstklen/cat-treehouse
+- Washin Village: https://washinmura.jp
+- Treeavel (treehouse booking): https://treeavel.washinmura.jp
