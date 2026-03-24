@@ -51,7 +51,18 @@
       align-items: center;
       justify-content: center;
       padding: 2rem;
+      position: relative;
     }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: url('https://treeavel.jp/images/treehouse-deck.jpg') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .card, .footer { position: relative; z-index: 1; }
     *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
     ::selection { background: var(--gold-dim); color: var(--cream); }
 
