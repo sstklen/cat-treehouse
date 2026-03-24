@@ -207,8 +207,8 @@
   </div>
 
   <div class="footer">
-    <p>🎟️ Everyone starts with 100 tickets + your GitHub stars + referral bonuses</p>
-    <p>每人保底 100 張彩券 + GitHub 星星數 + 推薦加成</p>
+    <p>🎟️ Early bird: 1,000 → 100 base tickets (fewer spots = fewer tickets) + stars + referrals</p>
+    <p>早鳥保底 1,000 張起跳，每多一人少一張（最低 100）+ 星星 + 推薦</p>
     <p style="margin-top: 0.5rem; font-size: 0.875rem;">Deadline 截止: May 1, 2026 · Claude Max verified after draw 中獎後驗證</p>
     <p style="margin-top: 1rem;">
       <a href="https://github.com/sstklen/cat-treehouse">GitHub</a> ·
@@ -298,19 +298,29 @@ async function checkTickets() {
       }
     } catch (e) {}
 
-    // 彩券計算：100 保底 + 星星 + 推薦加成
-    const baseTickets = 100;
+    // 查目前報名人數（算早鳥保底）
+    var entryCount = 0;
+    try {
+      var countRes = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry&per_page=1', { signal });
+      if (countRes.ok) {
+        var countData = await countRes.json();
+        entryCount = countData.total_count || 0;
+      }
+    } catch (e) {}
+
+    // 早鳥保底：第1人=1000，每多1人少1，最低100
+    const baseTickets = Math.max(100, 1000 - entryCount);
     const referralBonus = referralCount * 100;
     const totalTickets = baseTickets + totalStars + referralBonus;
 
     // 儲存報名資料
-    entryData = { username: username, stars: totalStars, tickets: totalTickets, avatarUrl: user.avatar_url, repos: user.public_repos };
+    entryData = { username: username, stars: totalStars, tickets: totalTickets, baseTickets: baseTickets, avatarUrl: user.avatar_url, repos: user.public_repos };
 
     // 顯示結果
     document.getElementById('avatar').src = user.avatar_url;
     document.getElementById('avatar').alt = username + "'s avatar";
     document.getElementById('ticketCount').textContent = totalTickets.toLocaleString();
-    var breakdown = '🎫 100 base 保底 + ⭐ ' + totalStars.toLocaleString() + ' stars';
+    var breakdown = '🎫 ' + baseTickets + ' early bird 早鳥保底（#' + (entryCount + 1) + '）+ ⭐ ' + totalStars.toLocaleString() + ' stars';
     if (referralCount > 0) breakdown += ' + 🤝 ' + referralCount + ' referrals (' + referralBonus.toLocaleString() + ')';
     if (rateLimited) breakdown += ' ⚠️ partial';
     document.getElementById('ticketBreakdown').textContent = breakdown;
