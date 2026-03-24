@@ -207,6 +207,7 @@
 <script>
 let currentController = null;
 let entryData = {};
+const initialRef = new URLSearchParams(window.location.search).get('ref') || '';
 
 async function checkTickets() {
   const input = document.getElementById('username');
@@ -310,7 +311,7 @@ async function submitEntry() {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting... 送出中...';
 
-  var referrer = new URLSearchParams(window.location.search).get('ref') || '';
+  var referrer = initialRef;
   var chk69 = document.getElementById('chk69').checked;
   var chk610 = document.getElementById('chk610').checked;
   var chkTW = document.getElementById('chkTW').checked;
