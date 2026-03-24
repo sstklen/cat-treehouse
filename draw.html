@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎟️ Enter the Draw — cat Treehouse</title>
+  <meta name="description" content="Enter GitHub username, see your lottery tickets, sign up in one click. Everyone starts with 100 tickets + your GitHub stars.">
+
+  <link rel="canonical" href="https://treeavel.washinmura.jp/cat-treehouse/draw.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🎟️ Enter the Draw — cat Treehouse">
+  <meta property="og:description" content="Everyone gets 100 tickets + your GitHub stars. Enter now — win a treehouse stay in Japan.">
+  <meta property="og:url" content="https://treeavel.washinmura.jp/cat-treehouse/draw.html">
+  <meta property="og:image" content="https://treeavel.washinmura.jp/cat-treehouse/og-check.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🎟️ Enter the Draw — cat Treehouse">
+  <meta name="twitter:description" content="Everyone gets 100 tickets + GitHub stars. Win a treehouse in Japan.">
+  <meta name="twitter:image" content="https://treeavel.washinmura.jp/cat-treehouse/og-check.png">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0A0A09; --bg-card: #161513;
+      --gold: #B8965A; --gold-light: #D4B87A; --gold-dim: rgba(184, 150, 90, 0.3);
+      --cream: #EDE6DA; --cream-mid: #B5AFA3; --cream-dim: #8A847A;
+      --serif: 'Cormorant Garamond', 'Georgia', serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --green: #4CAF50;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--sans); background: var(--bg); color: var(--cream);
+      font-size: 1.375rem; line-height: 1.75; font-weight: 400;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; padding: 2rem; position: relative;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: url('https://treeavel.jp/images/hero.jpg') center/cover no-repeat;
+      opacity: 0.2; z-index: 0; pointer-events: none;
+    }
+    .card, .footer { position: relative; z-index: 1; }
+    *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    ::selection { background: var(--gold-dim); color: var(--cream); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    .card { max-width: 560px; width: 100%; text-align: center; }
+    .logo { font-family: var(--serif); font-size: 1.125rem; letter-spacing: 0.08em; color: var(--cream-mid); text-decoration: none; display: block; margin-bottom: 2rem; }
+    h1 { font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 500; line-height: 1.2; color: #fff; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--cream-dim); font-size: 1rem; margin-bottom: 1.5rem; }
+    .peek-link { color: var(--gold); font-size: 1rem; text-decoration: none; display: inline-block; margin-bottom: 2rem; }
+    .peek-link:hover { text-decoration: underline; }
+
+    .input-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; }
+    .input-wrap { flex: 1; position: relative; }
+    .input-wrap .gh-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0.5; }
+    .input-row input { width: 100%; font-family: var(--sans); font-size: 1.125rem; padding: 0.875rem 1.25rem 0.875rem 3rem; border: 1px solid var(--gold-dim); border-radius: 6px; background: var(--bg-card); color: var(--cream); outline: none; transition: border-color 0.3s; }
+    .input-row input::placeholder { color: var(--cream-dim); opacity: 0.6; }
+    .input-row input:focus { border-color: var(--gold); }
+    .input-row button { font-family: var(--sans); font-size: 1rem; font-weight: 500; padding: 0.875rem 1.5rem; border: none; border-radius: 6px; background: var(--gold); color: var(--bg); cursor: pointer; transition: background 0.3s; white-space: nowrap; }
+    .input-row button:hover { background: var(--gold-light); }
+    .input-row button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .result, .form-section, .success-section { display: none; margin-top: 2rem; }
+    .result.show, .form-section.show, .success-section.show { display: block; }
+
+    .ticket-count { font-family: var(--serif); font-size: clamp(4rem, 12vw, 8rem); font-weight: 600; color: var(--gold-light); line-height: 1; margin: 1rem 0 0.25rem; }
+    .ticket-label { font-size: 1.375rem; color: var(--gold); letter-spacing: 0.15em; font-weight: 500; margin-bottom: 0.5rem; }
+    .ticket-breakdown { color: var(--cream-dim); font-size: 1rem; margin-bottom: 1.5rem; }
+    .user-info { color: var(--cream-mid); font-size: 1.125rem; margin-bottom: 1.5rem; }
+    .user-info a { color: var(--gold); text-decoration: none; }
+    .avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--gold-dim); margin: 0 auto 0.5rem; display: block; }
+
+    /* 勾選區 */
+    .checkbox-group { text-align: left; margin: 1.5rem 0; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 8px; }
+    .checkbox-group h3 { font-size: 1rem; color: var(--gold); margin-bottom: 1rem; font-weight: 500; text-align: center; }
+    .checkbox-item { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 1rem; color: var(--cream); cursor: pointer; }
+    .checkbox-item:last-child { margin-bottom: 0; }
+    .checkbox-item input[type="checkbox"] { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+    .checkbox-item .optional { color: var(--cream-dim); font-size: 0.875rem; }
+    .checkbox-item .required { color: var(--gold); font-size: 0.875rem; }
+
+    .btn { display: inline-block; font-family: var(--sans); font-size: 1.125rem; font-weight: 500; padding: 1rem 2.5rem; border-radius: 6px; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+    .btn-gold { background: var(--gold); color: var(--bg); }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold-dim); }
+    .btn-outline:hover { border-color: var(--gold); }
+
+    .error { color: #e57373; font-size: 1rem; margin-top: 1rem; display: none; }
+    .error.show { display: block; }
+    .loading { display: none; margin-top: 2rem; color: var(--gold); }
+    .loading.show { display: block; }
+
+    /* 成功區 */
+    .success-title { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3rem); color: var(--green); margin-bottom: 0.5rem; }
+    .success-sub { color: var(--cream); font-size: 1.125rem; margin-bottom: 2rem; }
+
+    .share-hint { color: var(--gold); font-size: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    .share-row { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.75rem; }
+    .share-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--gold-dim); color: var(--cream); font-size: 1.125rem; font-weight: 600; text-decoration: none; transition: all 0.3s; font-family: var(--sans); }
+    .share-icon:hover { border-color: var(--gold); background: var(--gold-dim); }
+    .referral-link { margin: 0.75rem 0; padding: 0.75rem 1rem; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 6px; font-size: 0.95rem; color: var(--cream-mid); word-break: break-all; cursor: pointer; }
+    .referral-link:hover { border-color: var(--gold); }
+
+    .actions { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; margin-top: 1rem; }
+    .footer { margin-top: 3rem; font-size: 1rem; color: var(--cream-dim); }
+    .footer a { color: var(--cream-mid); text-decoration: none; }
+    .footer a:hover { color: var(--gold); }
+
+    @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .result.show .ticket-count { animation: countUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .success-section.show .success-title { animation: pop 0.5s ease-out; }
+
+    @media (max-width: 480px) { .input-row { flex-direction: column; } .input-row button { width: 100%; } }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <a href="./" class="logo">cat Treehouse 🐱</a>
+
+  <h1>Enter the Draw</h1>
+  <p class="subtitle">參加抽獎</p>
+  <a href="./" class="peek-link">🏡 What are you winning? 看看你在抽什麼 →</a>
+
+  <div class="input-row">
+    <div class="input-wrap">
+      <svg class="gh-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      <label for="username" class="sr-only">GitHub username or URL</label>
+      <input type="text" id="username" placeholder="GitHub username or URL" autocomplete="off" autofocus aria-label="GitHub username or profile URL">
+    </div>
+    <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
+  </div>
+
+  <div class="error" id="error" role="alert" aria-live="assertive"></div>
+  <div class="loading" id="loading" role="status" aria-live="polite">⏳ Counting your stars... 正在數星星...</div>
+
+  <!-- 結果 + 報名表 -->
+  <div class="result" id="result" role="status" aria-live="polite">
+    <img class="avatar" id="avatar" src="" alt="GitHub avatar">
+    <div class="ticket-count" id="ticketCount">0</div>
+    <div class="ticket-label">🎟️ LOTTERY TICKETS 彩券</div>
+    <div class="ticket-breakdown" id="ticketBreakdown"></div>
+    <div class="user-info" id="userInfo"></div>
+  </div>
+
+  <!-- 勾選報名區 -->
+  <div class="form-section" id="formSection">
+    <div class="checkbox-group">
+      <h3>Confirm & Enter 確認報名</h3>
+      <label class="checkbox-item"><input type="checkbox" id="chkMax" required> I'm a Claude Max subscriber 我是 Claude Max 訂閱者 <span class="required">*</span></label>
+      <label class="checkbox-item"><input type="checkbox" id="chkTokyo" required> I can be in Tokyo June 7–9 我可以到東京 <span class="required">*</span></label>
+      <label class="checkbox-item"><input type="checkbox" id="chk69"> 6/9 TW×JP Meetup 交流會 (~$60) <span class="optional">optional 選填</span></label>
+      <label class="checkbox-item"><input type="checkbox" id="chk610"> 6/10 Livestream + After-party 直播+二次會 (~$60) <span class="optional">optional 選填</span></label>
+      <label class="checkbox-item"><input type="checkbox" id="chkTW"> 🇹🇼 Notify me about Taiwan meetup 臺灣交流會通知我 <span class="optional">optional 選填</span></label>
+    </div>
+
+    <div style="margin-top: 1rem; text-align: center;">
+      <button class="btn btn-gold" id="submitBtn" onclick="submitEntry()">Submit 送出報名 →</button>
+    </div>
+    <div class="error" id="submitError" role="alert" aria-live="assertive" style="text-align:center;"></div>
+  </div>
+
+  <!-- 報名成功 -->
+  <div class="success-section" id="successSection">
+    <div class="success-title">🎉 +1 !</div>
+    <div class="success-sub">You're in! 報名成功！</div>
+
+    <a href="./" class="peek-link">🏡 See what you're winning 看看你贏到什麼 →</a>
+
+    <p class="share-hint">📣 Share your link — each referral = +100 bonus tickets!<br>分享你的專屬連結 — 每推薦 1 人報名 = +100 張彩券！</p>
+
+    <div class="referral-link" id="referralLink" onclick="navigator.clipboard.writeText(this.textContent.trim()); this.style.borderColor='var(--gold)'; var el=this; el.dataset.orig=el.textContent.trim(); el.textContent=el.dataset.orig + ' ✓ copied';"></div>
+
+    <div class="share-row">
+      <a class="share-icon" id="shareX" href="#" target="_blank" title="X / Twitter">𝕏</a>
+      <a class="share-icon" id="shareFB" href="#" target="_blank" title="Facebook">f</a>
+      <a class="share-icon" id="shareThreads" href="#" target="_blank" title="Threads">🧵</a>
+      <a class="share-icon" id="shareIG" href="#" target="_blank" title="Instagram">IG</a>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse" target="_blank">⭐ Star this repo 按星星讓更多人看到</a>
+      <a class="btn btn-outline" href="./">← Back to cat Treehouse 回活動首頁</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🎟️ Everyone starts with 100 tickets + your GitHub stars + referral bonuses</p>
+    <p>每人保底 100 張彩券 + GitHub 星星數 + 推薦加成</p>
+    <p style="margin-top: 0.5rem; font-size: 0.875rem;">Deadline 截止: May 1, 2026 · Claude Max verified after draw 中獎後驗證</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/sstklen/cat-treehouse">GitHub</a> ·
+      <a href="https://github.com/sstklen/claude-tw-jp">TW×JP Community</a> ·
+      <a href="./">Event Page 活動首頁</a>
+    </p>
+  </div>
+</div>
+
+<script>
+let currentController = null;
+let entryData = {};
+
+async function checkTickets() {
+  const input = document.getElementById('username');
+  const btn = document.getElementById('checkBtn');
+  const error = document.getElementById('error');
+  const loading = document.getElementById('loading');
+  const result = document.getElementById('result');
+  const formSection = document.getElementById('formSection');
+  const successSection = document.getElementById('successSection');
+
+  if (currentController) currentController.abort();
+  currentController = new AbortController();
+  const signal = currentController.signal;
+
+  let raw = input.value.trim();
+  const urlMatch = raw.match(/github\.com\/([a-zA-Z0-9_-]+)/);
+  const username = urlMatch ? urlMatch[1] : raw.replace('@', '');
+  if (!username) { showError('error', 'Please enter a GitHub username or URL 請輸入 GitHub 帳號或連結'); return; }
+
+  error.classList.remove('show');
+  result.classList.remove('show');
+  formSection.classList.remove('show');
+  successSection.classList.remove('show');
+  loading.classList.add('show');
+  btn.disabled = true;
+
+  try {
+    const userRes = await fetch('https://api.github.com/users/' + username, { signal });
+    if (userRes.status === 404) { showError('error', 'User "' + username + '" not found 找不到此帳號'); return; }
+    if (userRes.status === 403) { showError('error', 'GitHub API rate limit. Try again in a minute. API 限流，請稍後再試。'); return; }
+    if (!userRes.ok) { showError('error', 'Something went wrong. 出了點問題。'); return; }
+    const user = await userRes.json();
+
+    const totalPages = Math.min(Math.ceil((user.public_repos || 1) / 100), 10);
+    const pagePromises = [];
+    for (let p = 1; p <= totalPages; p++) {
+      pagePromises.push(
+        fetch('https://api.github.com/users/' + username + '/repos?per_page=100&page=' + p + '&type=owner', { signal })
+          .then(function(r) { if (r.status === 403) throw new Error('rate_limit'); if (!r.ok) return []; return r.json(); })
+      );
+    }
+    const pages = await Promise.all(pagePromises);
+
+    let totalStars = 0;
+    let rateLimited = false;
+    for (const batch of pages) {
+      if (!Array.isArray(batch)) { rateLimited = true; continue; }
+      for (const repo of batch) { totalStars += repo.stargazers_count || 0; }
+    }
+
+    // 彩券計算：100 保底 + 星星
+    const baseTickets = 100;
+    const totalTickets = baseTickets + totalStars;
+
+    // 儲存報名資料
+    entryData = { username: username, stars: totalStars, tickets: totalTickets, avatarUrl: user.avatar_url, repos: user.public_repos };
+
+    // 顯示結果
+    document.getElementById('avatar').src = user.avatar_url;
+    document.getElementById('avatar').alt = username + "'s avatar";
+    document.getElementById('ticketCount').textContent = totalTickets.toLocaleString();
+    document.getElementById('ticketBreakdown').textContent = '🎫 100 base 保底 + ⭐ ' + totalStars.toLocaleString() + ' stars' + (rateLimited ? ' ⚠️ partial' : '');
+
+    const infoEl = document.getElementById('userInfo');
+    infoEl.textContent = '';
+    var link = document.createElement('a');
+    link.href = 'https://github.com/' + encodeURIComponent(username);
+    link.target = '_blank';
+    link.textContent = '@' + username;
+    infoEl.appendChild(link);
+    infoEl.appendChild(document.createTextNode(' · ' + user.public_repos + ' repos · ' + totalStars.toLocaleString() + ' stars'));
+
+    result.classList.add('show');
+    formSection.classList.add('show');
+    history.replaceState(null, '', '?user=' + encodeURIComponent(username));
+
+    // 記錄
+    fetch('/cat-treehouse/log?user=' + encodeURIComponent(username) + '&stars=' + totalStars + '&tickets=' + totalTickets, {
+      method: 'HEAD', signal: AbortSignal.timeout(3000)
+    }).catch(function() {});
+
+  } catch (e) {
+    if (e.name === 'AbortError') return;
+    if (e.message === 'rate_limit') { showError('error', 'GitHub API rate limit. Try again in a minute. API 限流，請稍後再試。'); return; }
+    showError('error', 'Network error. 網路錯誤。');
+  } finally {
+    btn.disabled = false;
+    loading.classList.remove('show');
+  }
+}
+
+async function submitEntry() {
+  var chkMax = document.getElementById('chkMax');
+  var chkTokyo = document.getElementById('chkTokyo');
+  if (!chkMax.checked || !chkTokyo.checked) {
+    showError('submitError', 'Please check the two required boxes 請勾選兩個必填項');
+    return;
+  }
+
+  var submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting... 送出中...';
+
+  var referrer = new URLSearchParams(window.location.search).get('ref') || '';
+  var chk69 = document.getElementById('chk69').checked;
+  var chk610 = document.getElementById('chk610').checked;
+  var chkTW = document.getElementById('chkTW').checked;
+
+  var body = 'GitHub: https://github.com/' + entryData.username +
+    '\nStars: ' + entryData.stars.toLocaleString() + ' ⭐' +
+    '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (100 base + ' + entryData.stars.toLocaleString() + ' stars)' +
+    (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
+    '\n\n---\n✅ Claude Max subscriber' +
+    '\n✅ Available Tokyo June 7–9' +
+    (chk69 ? '\n☑️ 6/9 TW×JP Meetup' : '') +
+    (chk610 ? '\n☑️ 6/10 Livestream + After-party' : '') +
+    (chkTW ? '\n☑️ Notify me about Taiwan meetup' : '') +
+    '\n\nSubmitted via draw page at ' + new Date().toISOString().slice(0, 16);
+
+  var title = '🐱 I\'m in! — @' + entryData.username + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+
+  try {
+    var res = await fetch('/cat-treehouse/api/enter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: title, body: body, username: entryData.username })
+    });
+
+    if (!res.ok) {
+      // fallback：直接跳 GitHub Issue
+      var fallbackUrl = 'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+      window.open(fallbackUrl, '_blank');
+    }
+  } catch (e) {
+    // fallback
+    var fallbackUrl = 'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+    window.open(fallbackUrl, '_blank');
+  }
+
+  // 顯示成功
+  document.getElementById('formSection').classList.remove('show');
+  document.getElementById('result').classList.remove('show');
+  document.getElementById('successSection').classList.add('show');
+
+  // 推薦連結
+  var drawUrl = 'https://treeavel.washinmura.jp/cat-treehouse/draw.html';
+  var refUrl = drawUrl + '?ref=' + encodeURIComponent(entryData.username);
+  document.getElementById('referralLink').textContent = refUrl;
+
+  // 分享
+  var shareText = 'I just entered the cat Treehouse draw with ' + entryData.tickets.toLocaleString() + ' tickets! 🐱🎟️\n\nYour GitHub stars = lottery tickets for a treehouse stay in Japan.\nEveryone gets 100 free tickets.\n\nCheck yours:\n' + refUrl;
+
+  document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
+  document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
+  document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
+  document.getElementById('shareIG').onclick = function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
+      alert('Copied! Open Instagram and paste to your story.\n已複製！打開 IG 貼到限動。');
+    });
+  };
+}
+
+function showError(id, msg) {
+  var el = document.getElementById(id);
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+document.getElementById('username').addEventListener('keydown', function(e) { if (e.key === 'Enter') checkTickets(); });
+
+var params = new URLSearchParams(window.location.search);
+if (params.get('user')) { document.getElementById('username').value = params.get('user'); checkTickets(); }
+</script>
+</body>
+</html>
