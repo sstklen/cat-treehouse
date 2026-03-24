@@ -204,6 +204,7 @@
   </div>
 </div>
 
+<script src="config.js"></script>
 <script>
 let currentController = null;
 let entryData = {};
@@ -330,21 +331,28 @@ async function submitEntry() {
   var title = '🐱 I\'m in! — @' + entryData.username + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
 
   try {
-    var res = await fetch('/cat-treehouse/api/enter', {
+    var res = await fetch('https://api.github.com/repos/sstklen/cat-treehouse/issues', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: title, body: body, username: entryData.username })
+      headers: {
+        'Authorization': 'Bearer ' + atob((window.__CT_CONFIG || {}).k || ''),
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ title: title, body: body, labels: ['entry'] })
     });
 
     if (!res.ok) {
-      // fallback：直接跳 GitHub Issue
-      var fallbackUrl = 'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-      window.open(fallbackUrl, '_blank');
+      var errData = await res.json().catch(function() { return {}; });
+      showError('submitError', 'Registration failed. Please try again. 報名失敗，請重試。');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit 送出報名 →';
+      return;
     }
   } catch (e) {
-    // fallback
-    var fallbackUrl = 'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
-    window.open(fallbackUrl, '_blank');
+    showError('submitError', 'Network error. Please try again. 網路錯誤，請重試。');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit 送出報名 →';
+    return;
   }
 
   // 顯示成功
