@@ -268,9 +268,20 @@ async function checkTickets() {
       for (const repo of batch) { totalStars += repo.stargazers_count || 0; }
     }
 
-    // 彩券計算：100 保底 + 星星
+    // 搜推薦數（從 GitHub Issues）
+    var referralCount = 0;
+    try {
+      var searchRes = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+%22Referred+by%22+%22%40' + username + '%22', { signal });
+      if (searchRes.ok) {
+        var searchData = await searchRes.json();
+        referralCount = searchData.total_count || 0;
+      }
+    } catch (e) { /* 搜不到也沒關係 */ }
+
+    // 彩券計算：100 保底 + 星星 + 推薦加成
     const baseTickets = 100;
-    const totalTickets = baseTickets + totalStars;
+    const referralBonus = referralCount * 100;
+    const totalTickets = baseTickets + totalStars + referralBonus;
 
     // 儲存報名資料
     entryData = { username: username, stars: totalStars, tickets: totalTickets, avatarUrl: user.avatar_url, repos: user.public_repos };
@@ -279,7 +290,10 @@ async function checkTickets() {
     document.getElementById('avatar').src = user.avatar_url;
     document.getElementById('avatar').alt = username + "'s avatar";
     document.getElementById('ticketCount').textContent = totalTickets.toLocaleString();
-    document.getElementById('ticketBreakdown').textContent = '🎫 100 base 保底 + ⭐ ' + totalStars.toLocaleString() + ' stars' + (rateLimited ? ' ⚠️ partial' : '');
+    var breakdown = '🎫 100 base 保底 + ⭐ ' + totalStars.toLocaleString() + ' stars';
+    if (referralCount > 0) breakdown += ' + 🤝 ' + referralCount + ' referrals (' + referralBonus.toLocaleString() + ')';
+    if (rateLimited) breakdown += ' ⚠️ partial';
+    document.getElementById('ticketBreakdown').textContent = breakdown;
 
     const infoEl = document.getElementById('userInfo');
     infoEl.textContent = '';
