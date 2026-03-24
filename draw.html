@@ -118,7 +118,16 @@
     @keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     .success-section.show .success-title { animation: pop 0.5s ease-out; }
 
-    @media (max-width: 480px) { .input-row { flex-direction: column; } .input-row button { width: 100%; } }
+    @media (max-width: 600px) {
+      .input-row { flex-direction: column; }
+      .input-row button { width: 100%; }
+      .btn { width: 100%; text-align: center; padding: 1rem 1rem; font-size: 1rem; }
+      .peek-link { font-size: 0.9rem; }
+      .share-hint { font-size: 0.9rem; }
+      .referral-link { font-size: 0.8rem; }
+      .footer { font-size: 0.875rem; }
+      .card { padding: 0; }
+    }
   </style>
 </head>
 <body>
@@ -183,7 +192,7 @@
       <a class="share-icon" id="shareX" href="#" target="_blank" title="X / Twitter">𝕏</a>
       <a class="share-icon" id="shareFB" href="#" target="_blank" title="Facebook">f</a>
       <a class="share-icon" id="shareThreads" href="#" target="_blank" title="Threads">🧵</a>
-      <a class="share-icon" id="shareIG" href="#" target="_blank" title="Instagram">IG</a>
+      <a class="share-icon" id="shareIG" href="javascript:void(0)" title="Instagram">IG</a>
     </div>
 
     <div class="actions">
