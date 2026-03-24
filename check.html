@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🎟️ Check Your Tickets — cat Treehouse</title>
+  <meta name="description" content="How many lottery tickets do you have? Enter your GitHub username to find out. Your stars = your tickets.">
+
+  <!-- OG -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="🎟️ How many lottery tickets do you have?">
+  <meta property="og:description" content="Your GitHub stars are your lottery tickets for a treehouse stay in Japan. Check yours now.">
+  <meta property="og:url" content="https://treeavel.washinmura.jp/cat-treehouse/check.html">
+  <meta property="og:image" content="https://treeavel.jp/images/treehouse-deck.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🎟️ How many treehouse lottery tickets do you have?">
+  <meta name="twitter:description" content="GitHub stars = lottery tickets. Check yours.">
+  <meta name="twitter:image" content="https://treeavel.jp/images/treehouse-deck.jpg">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0A0A09;
+      --bg-card: #161513;
+      --gold: #B8965A;
+      --gold-light: #D4B87A;
+      --gold-dim: rgba(184, 150, 90, 0.3);
+      --cream: #EDE6DA;
+      --cream-mid: #B5AFA3;
+      --cream-dim: #8A847A;
+      --serif: 'Cormorant Garamond', 'Georgia', serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--cream);
+      font-size: 1.375rem;
+      line-height: 1.75;
+      font-weight: 400;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    ::selection { background: var(--gold-dim); color: var(--cream); }
+
+    .card {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      letter-spacing: 0.08em;
+      color: var(--cream-mid);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 3rem;
+    }
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 500;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      color: var(--cream-dim);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* 輸入區 */
+    .input-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .input-row input {
+      flex: 1;
+      font-family: var(--sans);
+      font-size: 1.125rem;
+      padding: 0.875rem 1.25rem;
+      border: 1px solid var(--gold-dim);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .input-row input::placeholder { color: var(--cream-dim); opacity: 0.6; }
+    .input-row input:focus { border-color: var(--gold); }
+    .input-row button {
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.875rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      background: var(--gold);
+      color: var(--bg);
+      cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .input-row button:hover { background: var(--gold-light); }
+    .input-row button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* 結果區 */
+    .result { display: none; margin-top: 2rem; }
+    .result.show { display: block; }
+
+    .ticket-count {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 12vw, 8rem);
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+      margin: 1rem 0 0.25rem;
+    }
+    .ticket-label {
+      font-size: 1.25rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+    .user-info {
+      color: var(--cream-mid);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .user-info a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .user-info a:hover { text-decoration: underline; }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-dim);
+      margin: 0 auto 0.5rem;
+      display: block;
+    }
+
+    /* 分享 + CTA */
+    .actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+    }
+    .btn-outline:hover { border-color: var(--gold); }
+
+    .error {
+      color: #e57373;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+      display: none;
+    }
+    .error.show { display: block; }
+
+    .loading {
+      display: none;
+      margin-top: 2rem;
+      color: var(--gold);
+    }
+    .loading.show { display: block; }
+
+    /* 底部連結 */
+    .footer {
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+    }
+    .footer a {
+      color: var(--cream-mid);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--gold); }
+
+    /* 動畫 */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result.show .ticket-count {
+      animation: countUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @media (max-width: 480px) {
+      .input-row { flex-direction: column; }
+      .input-row button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <a href="./" class="logo">cat Treehouse 🐱</a>
+
+  <h1>How many tickets do you have?</h1>
+  <p class="subtitle">你有幾張彩券？</p>
+
+  <div class="input-row">
+    <input type="text" id="username" placeholder="GitHub username" autocomplete="off" autofocus>
+    <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
+  </div>
+
+  <div class="error" id="error"></div>
+  <div class="loading" id="loading">⏳ Counting your stars... 正在數星星...</div>
+
+  <div class="result" id="result">
+    <img class="avatar" id="avatar" src="" alt="">
+    <div class="ticket-count" id="ticketCount">0</div>
+    <div class="ticket-label">🎟️ LOTTERY TICKETS 彩券</div>
+    <div class="user-info" id="userInfo"></div>
+
+    <div class="actions">
+      <a class="btn btn-gold" id="shareBtn" href="#" target="_blank">Share on X 分享到推特</a>
+      <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml">Enter the Draw 報名抽獎 →</a>
+      <a class="btn btn-outline" href="./">← Back to cat Treehouse</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>⭐ = 🎟️ · Every star on your GitHub is a lottery ticket</p>
+    <p>每一顆 GitHub 星星就是一張彩券</p>
+    <p style="margin-top: 1rem;">
+      <a href="https://github.com/sstklen/cat-treehouse">GitHub</a> ·
+      <a href="https://github.com/sstklen/claude-tw-jp">TW×JP Community</a> ·
+      <a href="./">Event Page</a>
+    </p>
+  </div>
+</div>
+
+<script>
+// 用 GitHub API 抓使用者的「被別人給的星星總數」
+// 方法：列出所有 public repos，加總 stargazers_count
+async function checkTickets() {
+  const input = document.getElementById('username');
+  const btn = document.getElementById('checkBtn');
+  const error = document.getElementById('error');
+  const loading = document.getElementById('loading');
+  const result = document.getElementById('result');
+
+  const username = input.value.trim().replace('@', '');
+  if (!username) { showError('Please enter a GitHub username 請輸入 GitHub 帳號'); return; }
+
+  // 重設
+  error.classList.remove('show');
+  result.classList.remove('show');
+  loading.classList.add('show');
+  btn.disabled = true;
+
+  try {
+    // 先抓使用者資料
+    const userRes = await fetch(`https://api.github.com/users/${username}`);
+    if (userRes.status === 404) { showError(`User "${username}" not found 找不到此帳號`); return; }
+    if (userRes.status === 403) { showError('GitHub API rate limit reached. Try again in a minute. API 限流，請稍後再試。'); return; }
+    if (!userRes.ok) { showError('Something went wrong. 出了點問題。'); return; }
+    const user = await userRes.json();
+
+    // 列出所有 public repos，抓星星數（每頁 100，最多 10 頁 = 1000 repos）
+    let totalStars = 0;
+    let page = 1;
+    let repos = [];
+    while (page <= 10) {
+      const repoRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&page=${page}&type=owner`);
+      if (!repoRes.ok) break;
+      const batch = await repoRes.json();
+      if (batch.length === 0) break;
+      repos = repos.concat(batch);
+      for (const repo of batch) {
+        totalStars += repo.stargazers_count || 0;
+      }
+      if (batch.length < 100) break;
+      page++;
+    }
+
+    // 顯示結果
+    document.getElementById('avatar').src = user.avatar_url;
+    document.getElementById('ticketCount').textContent = totalStars.toLocaleString();
+    document.getElementById('userInfo').innerHTML =
+      `<a href="https://github.com/${username}" target="_blank">@${username}</a> · ` +
+      `${user.public_repos} repos · ` +
+      `${totalStars.toLocaleString()} total stars`;
+
+    // 分享按鈕
+    const shareText = totalStars > 0
+      ? `I have ${totalStars.toLocaleString()} lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html\n\n→ github.com/sstklen/cat-treehouse`
+      : `I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html`;
+    document.getElementById('shareBtn').href =
+      `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+
+    loading.classList.remove('show');
+    result.classList.add('show');
+
+    // URL 更新方便分享
+    history.replaceState(null, '', `?user=${username}`);
+
+  } catch (e) {
+    showError('Network error. 網路錯誤。');
+  } finally {
+    btn.disabled = false;
+    loading.classList.remove('show');
+  }
+}
+
+function showError(msg) {
+  const error = document.getElementById('error');
+  error.textContent = msg;
+  error.classList.add('show');
+  document.getElementById('loading').classList.remove('show');
+  document.getElementById('checkBtn').disabled = false;
+}
+
+// Enter 鍵觸發
+document.getElementById('username').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkTickets();
+});
+
+// 如果 URL 帶 ?user=xxx 自動查
+const params = new URLSearchParams(window.location.search);
+if (params.get('user')) {
+  document.getElementById('username').value = params.get('user');
+  checkTickets();
+}
+</script>
+
+</body>
+</html>
