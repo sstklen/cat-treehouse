@@ -65,6 +65,7 @@
     .card, .footer { position: relative; z-index: 1; }
     *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
     ::selection { background: var(--gold-dim); color: var(--cream); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
     .card {
       max-width: 560px;
@@ -241,6 +242,15 @@
     }
     .footer a:hover { color: var(--gold); }
 
+    /* 無障礙：尊重動畫偏好 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
     /* 動畫 */
     @keyframes countUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -267,16 +277,17 @@
   <div class="input-row">
     <div class="input-wrap">
       <svg class="gh-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <input type="text" id="username" placeholder="username or github.com/..." autocomplete="off" autofocus>
+      <label for="username" class="sr-only">GitHub username or URL</label>
+      <input type="text" id="username" placeholder="username or github.com/..." autocomplete="off" autofocus aria-label="GitHub username or profile URL">
     </div>
     <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
   </div>
 
-  <div class="error" id="error"></div>
-  <div class="loading" id="loading">⏳ Counting your stars... 正在數星星...</div>
+  <div class="error" id="error" role="alert" aria-live="assertive"></div>
+  <div class="loading" id="loading" role="status" aria-live="polite">⏳ Counting your stars... 正在數星星...</div>
 
-  <div class="result" id="result">
-    <img class="avatar" id="avatar" src="" alt="">
+  <div class="result" id="result" role="status" aria-live="polite">
+    <img class="avatar" id="avatar" src="" alt="GitHub avatar">
     <div class="ticket-count" id="ticketCount">0</div>
     <div class="ticket-label">🎟️ LOTTERY TICKETS 彩券</div>
     <div class="user-info" id="userInfo"></div>
@@ -300,8 +311,8 @@
 </div>
 
 <script>
-// 用 GitHub API 抓使用者的「被別人給的星星總數」
-// 方法：列出所有 public repos，加總 stargazers_count
+let currentController = null;
+
 async function checkTickets() {
   const input = document.getElementById('username');
   const btn = document.getElementById('checkBtn');
@@ -309,68 +320,86 @@ async function checkTickets() {
   const loading = document.getElementById('loading');
   const result = document.getElementById('result');
 
+  // 取消上一次還在跑的查詢
+  if (currentController) currentController.abort();
+  currentController = new AbortController();
+  const signal = currentController.signal;
+
   let raw = input.value.trim();
-  // 支援貼 URL：https://github.com/username 或 github.com/username
   const urlMatch = raw.match(/github\.com\/([a-zA-Z0-9_-]+)/);
   const username = urlMatch ? urlMatch[1] : raw.replace('@', '');
   if (!username) { showError('Please enter a GitHub username or profile URL 請輸入 GitHub 帳號或連結'); return; }
 
-  // 重設
   error.classList.remove('show');
   result.classList.remove('show');
   loading.classList.add('show');
   btn.disabled = true;
 
   try {
-    // 先抓使用者資料
-    const userRes = await fetch(`https://api.github.com/users/${username}`);
-    if (userRes.status === 404) { showError(`User "${username}" not found 找不到此帳號`); return; }
+    const userRes = await fetch(`https://api.github.com/users/${username}`, { signal });
+    if (userRes.status === 404) { showError('User "' + username + '" not found 找不到此帳號'); return; }
     if (userRes.status === 403) { showError('GitHub API rate limit reached. Try again in a minute. API 限流，請稍後再試。'); return; }
     if (!userRes.ok) { showError('Something went wrong. 出了點問題。'); return; }
     const user = await userRes.json();
 
-    // 列出所有 public repos，抓星星數（每頁 100，最多 10 頁 = 1000 repos）
+    // 並行抓所有 repo 分頁，只取 stargazers_count
+    const totalPages = Math.min(Math.ceil((user.public_repos || 1) / 100), 10);
+    const pagePromises = [];
+    for (let p = 1; p <= totalPages; p++) {
+      pagePromises.push(
+        fetch(`https://api.github.com/users/${username}/repos?per_page=100&page=${p}&type=owner`, { signal })
+          .then(r => {
+            if (r.status === 403) throw new Error('rate_limit');
+            if (!r.ok) return [];
+            return r.json();
+          })
+      );
+    }
+    const pages = await Promise.all(pagePromises);
+
     let totalStars = 0;
-    let page = 1;
-    let repos = [];
-    while (page <= 10) {
-      const repoRes = await fetch(`https://api.github.com/users/${username}/repos?per_page=100&page=${page}&type=owner`);
-      if (!repoRes.ok) break;
-      const batch = await repoRes.json();
-      if (batch.length === 0) break;
-      repos = repos.concat(batch);
+    let rateLimited = false;
+    for (const batch of pages) {
+      if (!Array.isArray(batch)) { rateLimited = true; continue; }
       for (const repo of batch) {
         totalStars += repo.stargazers_count || 0;
       }
-      if (batch.length < 100) break;
-      page++;
     }
 
-    // 顯示結果
+    // 顯示結果（用 textContent 防 XSS，連結用 DOM API）
     document.getElementById('avatar').src = user.avatar_url;
+    document.getElementById('avatar').alt = username + "'s avatar";
     document.getElementById('ticketCount').textContent = totalStars.toLocaleString();
-    document.getElementById('userInfo').innerHTML =
-      `<a href="https://github.com/${username}" target="_blank">@${username}</a> · ` +
-      `${user.public_repos} repos · ` +
-      `${totalStars.toLocaleString()} total stars`;
 
-    // 分享按鈕
+    const infoEl = document.getElementById('userInfo');
+    infoEl.textContent = '';
+    const link = document.createElement('a');
+    link.href = 'https://github.com/' + encodeURIComponent(username);
+    link.target = '_blank';
+    link.textContent = '@' + username;
+    infoEl.appendChild(link);
+    infoEl.appendChild(document.createTextNode(' · ' + user.public_repos + ' repos · ' + totalStars.toLocaleString() + ' total stars'));
+    if (rateLimited) {
+      infoEl.appendChild(document.createTextNode(' ⚠️ partial (rate limited)'));
+    }
+
     const shareText = totalStars > 0
-      ? `I have ${totalStars.toLocaleString()} lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html\n\n→ github.com/sstklen/cat-treehouse`
-      : `I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html`;
+      ? 'I have ' + totalStars.toLocaleString() + ' lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html\n\n→ github.com/sstklen/cat-treehouse'
+      : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html';
     document.getElementById('shareBtn').href =
-      `https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+      'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
 
-    loading.classList.remove('show');
     result.classList.add('show');
+    history.replaceState(null, '', '?user=' + encodeURIComponent(username));
 
-    // URL 更新方便分享
-    history.replaceState(null, '', `?user=${username}`);
-
-    // 記錄查詢（寫入 Caddy access log，不需後端）
-    fetch(`/cat-treehouse/log?user=${username}&stars=${totalStars}&repos=${user.public_repos}`, { method: 'HEAD' }).catch(() => {});
+    // 記錄查詢
+    fetch('/cat-treehouse/log?user=' + encodeURIComponent(username) + '&stars=' + totalStars + '&repos=' + user.public_repos, {
+      method: 'HEAD', signal: AbortSignal.timeout(3000)
+    }).catch(() => {});
 
   } catch (e) {
+    if (e.name === 'AbortError') return;
+    if (e.message === 'rate_limit') { showError('GitHub API rate limit reached. Try again in a minute. API 限流，請稍後再試。'); return; }
     showError('Network error. 網路錯誤。');
   } finally {
     btn.disabled = false;
@@ -379,11 +408,9 @@ async function checkTickets() {
 }
 
 function showError(msg) {
-  const error = document.getElementById('error');
-  error.textContent = msg;
-  error.classList.add('show');
-  document.getElementById('loading').classList.remove('show');
-  document.getElementById('checkBtn').disabled = false;
+  const el = document.getElementById('error');
+  el.textContent = msg;
+  el.classList.add('show');
 }
 
 // Enter 鍵觸發
