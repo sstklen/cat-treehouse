@@ -57,8 +57,8 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: url('https://treeavel.jp/images/treehouse-deck.jpg') center/cover no-repeat;
-      opacity: 0.15;
+      background: url('https://treeavel.jp/images/canopy.jpg') center/cover no-repeat;
+      opacity: 0.2;
       z-index: 0;
       pointer-events: none;
     }
@@ -252,7 +252,7 @@
   <p class="subtitle">你有幾張彩券？</p>
 
   <div class="input-row">
-    <input type="text" id="username" placeholder="GitHub username" autocomplete="off" autofocus>
+    <input type="text" id="username" placeholder="username or github.com/..." autocomplete="off" autofocus>
     <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
   </div>
 
@@ -293,8 +293,11 @@ async function checkTickets() {
   const loading = document.getElementById('loading');
   const result = document.getElementById('result');
 
-  const username = input.value.trim().replace('@', '');
-  if (!username) { showError('Please enter a GitHub username 請輸入 GitHub 帳號'); return; }
+  let raw = input.value.trim();
+  // 支援貼 URL：https://github.com/username 或 github.com/username
+  const urlMatch = raw.match(/github\.com\/([a-zA-Z0-9_-]+)/);
+  const username = urlMatch ? urlMatch[1] : raw.replace('@', '');
+  if (!username) { showError('Please enter a GitHub username or profile URL 請輸入 GitHub 帳號或連結'); return; }
 
   // 重設
   error.classList.remove('show');
@@ -347,6 +350,9 @@ async function checkTickets() {
 
     // URL 更新方便分享
     history.replaceState(null, '', `?user=${username}`);
+
+    // 記錄查詢（寫入 Caddy access log，不需後端）
+    fetch(`/cat-treehouse/log?user=${username}&stars=${totalStars}&repos=${user.public_repos}`, { method: 'HEAD' }).catch(() => {});
 
   } catch (e) {
     showError('Network error. 網路錯誤。');
