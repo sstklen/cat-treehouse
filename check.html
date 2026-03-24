@@ -183,13 +183,49 @@
       display: block;
     }
 
+    /* 分享提示 */
+    .share-hint {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* 分享按鈕列 */
+    .share-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .share-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-dim);
+      color: var(--cream);
+      font-size: 1.125rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-family: var(--sans);
+    }
+    .share-icon:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
     /* 分享 + CTA */
     .actions {
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
       align-items: center;
-      margin-top: 1.5rem;
+      margin-top: 0.75rem;
     }
     .btn {
       display: inline-block;
@@ -292,9 +328,18 @@
     <div class="ticket-label">🎟️ LOTTERY TICKETS 彩券</div>
     <div class="user-info" id="userInfo"></div>
 
+    <p class="share-hint">📣 Share to boost your odds! 分享可以提高中獎機率！</p>
+
+    <div class="share-row" id="shareRow">
+      <a class="share-icon" id="shareX" href="#" target="_blank" title="X / Twitter">𝕏</a>
+      <a class="share-icon" id="shareFB" href="#" target="_blank" title="Facebook">f</a>
+      <a class="share-icon" id="shareThreads" href="#" target="_blank" title="Threads">🧵</a>
+      <a class="share-icon" id="shareIG" href="#" target="_blank" title="Instagram">IG</a>
+    </div>
+    <input type="hidden" id="shareText" value="">
+
     <div class="actions">
       <a class="btn btn-gold" id="enterBtn" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml" target="_blank">Enter the Draw 報名抽獎 →</a>
-      <a class="btn btn-gold" id="shareBtn" href="#" target="_blank">Share on X 分享到推特</a>
       <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse" target="_blank">⭐ Star this repo — help others discover it 按星星讓更多人看到</a>
       <a class="btn btn-outline" href="./">← Back to cat Treehouse</a>
     </div>
@@ -384,11 +429,32 @@ async function checkTickets() {
       infoEl.appendChild(document.createTextNode(' ⚠️ partial (rate limited)'));
     }
 
+    // 分享文案
+    const checkUrl = 'https://treeavel.washinmura.jp/cat-treehouse/check.html';
+    const repoUrl = 'https://github.com/sstklen/cat-treehouse';
     const shareText = totalStars > 0
-      ? 'I have ' + totalStars.toLocaleString() + ' lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html\n\n→ github.com/sstklen/cat-treehouse'
-      : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html';
-    document.getElementById('shareBtn').href =
-      'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
+      ? 'I have ' + totalStars.toLocaleString() + ' lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\n' + checkUrl + '\n\n→ ' + repoUrl
+      : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\n' + checkUrl;
+
+    // X / Twitter
+    document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
+
+    // Facebook
+    document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(checkUrl + '?user=' + username);
+
+    // Threads（開 Threads app 的分享）
+    document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
+
+    // IG（複製文案到剪貼簿，提示用戶去貼）
+    document.getElementById('shareIG').onclick = function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
+        alert('Copied! Open Instagram and paste to your story.\n已複製！打開 IG 貼到限動。');
+      });
+    };
+
+    // hidden input 備用
+    document.getElementById('shareText').value = shareText;
 
     // 報名按鈕帶入 username + 星星數
     const issueTitle = encodeURIComponent('🐱 I\'m in! — @' + username + ' (' + totalStars.toLocaleString() + ' ⭐)');
