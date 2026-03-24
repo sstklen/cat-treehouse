@@ -328,7 +328,14 @@
     <div class="ticket-label">🎟️ LOTTERY TICKETS 彩券</div>
     <div class="user-info" id="userInfo"></div>
 
-    <p class="share-hint">📣 Share with friends! 告訴朋友來查查看！</p>
+    <div class="actions">
+      <a class="btn btn-gold" id="enterBtn" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml" target="_blank">Enter the Draw 報名抽獎 →</a>
+    </div>
+
+    <p class="share-hint">📣 Share your link — each referral = +100 bonus tickets!<br>分享你的專屬連結 — 每推薦 1 人報名 = +100 張彩券！</p>
+
+    <div class="referral-link" id="referralLink" style="margin: 0.75rem 0; padding: 0.75rem 1rem; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 6px; font-size: 0.95rem; color: var(--cream-mid); word-break: break-all; cursor: pointer;" onclick="navigator.clipboard.writeText(this.textContent.trim()); this.style.borderColor='var(--gold)'; this.innerHTML=this.textContent.trim() + ' <span style=color:var(--gold)>✓ copied</span>';">
+    </div>
 
     <div class="share-row" id="shareRow">
       <a class="share-icon" id="shareX" href="#" target="_blank" title="X / Twitter">𝕏</a>
@@ -336,11 +343,9 @@
       <a class="share-icon" id="shareThreads" href="#" target="_blank" title="Threads">🧵</a>
       <a class="share-icon" id="shareIG" href="#" target="_blank" title="Instagram">IG</a>
     </div>
-    <input type="hidden" id="shareText" value="">
 
-    <div class="actions">
-      <a class="btn btn-gold" id="enterBtn" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml" target="_blank">Enter the Draw 報名抽獎 →</a>
-      <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse" target="_blank">⭐ Star this repo — help others discover it 按星星讓更多人看到</a>
+    <div class="actions" style="margin-top: 0.5rem;">
+      <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse" target="_blank">⭐ Star this repo 按星星讓更多人看到</a>
       <a class="btn btn-outline" href="./">← Back to cat Treehouse</a>
     </div>
   </div>
@@ -429,23 +434,32 @@ async function checkTickets() {
       infoEl.appendChild(document.createTextNode(' ⚠️ partial (rate limited)'));
     }
 
-    // 分享文案
+    // 推薦連結系統
     const checkUrl = 'https://treeavel.washinmura.jp/cat-treehouse/check.html';
+    const refUrl = checkUrl + '?ref=' + encodeURIComponent(username);
     const repoUrl = 'https://github.com/sstklen/cat-treehouse';
-    const shareText = totalStars > 0
-      ? 'I have ' + totalStars.toLocaleString() + ' lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\n' + checkUrl + '\n\n→ ' + repoUrl
-      : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\n' + checkUrl;
 
-    // X / Twitter
+    // 顯示專屬推薦連結
+    document.getElementById('referralLink').textContent = refUrl;
+
+    // 讀取推薦人（從 URL ?ref= 來的）
+    const referrer = new URLSearchParams(window.location.search).get('ref') || '';
+
+    // 分享文案（帶推薦連結）
+    const shareText = totalStars > 0
+      ? 'I have ' + totalStars.toLocaleString() + ' lottery tickets for a treehouse stay in Japan 🐱🎟️\n\nYour GitHub stars = your tickets. Check yours:\n' + refUrl + '\n\n→ ' + repoUrl
+      : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nCheck yours:\n' + refUrl;
+
+    // X
     document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
 
     // Facebook
-    document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(checkUrl + '?user=' + username);
+    document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
 
-    // Threads（開 Threads app 的分享）
+    // Threads
     document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
 
-    // IG（複製文案到剪貼簿，提示用戶去貼）
+    // IG
     document.getElementById('shareIG').onclick = function(e) {
       e.preventDefault();
       navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
@@ -453,12 +467,10 @@ async function checkTickets() {
       });
     };
 
-    // hidden input 備用
-    document.getElementById('shareText').value = shareText;
-
-    // 報名按鈕帶入 username + 星星數
+    // 報名按鈕帶入 username + 星星數 + 推薦人
     const issueTitle = encodeURIComponent('🐱 I\'m in! — @' + username + ' (' + totalStars.toLocaleString() + ' ⭐)');
-    const issueBody = encodeURIComponent('GitHub: https://github.com/' + username + '\nStars: ' + totalStars.toLocaleString() + ' ⭐\nChecked at: ' + new Date().toISOString().slice(0, 10) + '\n\n---\n');
+    const refLine = referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '';
+    const issueBody = encodeURIComponent('GitHub: https://github.com/' + username + '\nStars: ' + totalStars.toLocaleString() + ' ⭐' + refLine + '\nChecked at: ' + new Date().toISOString().slice(0, 10) + '\n\n---\n');
     document.getElementById('enterBtn').href =
       'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + issueTitle + '&body=' + issueBody;
 
