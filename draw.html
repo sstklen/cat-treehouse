@@ -141,6 +141,12 @@
 
   <h1>Enter the Draw</h1>
   <p class="subtitle">參加抽獎</p>
+
+  <div id="earlyBirdBanner" style="margin-bottom: 1.5rem; padding: 0.75rem 1.25rem; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 8px;">
+    <div style="color: var(--gold); font-size: 1.125rem; font-weight: 500;">⏰ Early bird: <span id="earlyBirdCount" style="color: var(--gold-light);">...</span> base tickets left</div>
+    <div style="color: var(--cream-dim); font-size: 0.9rem;">早鳥保底 <span id="earlyBirdCountZH">...</span> 張 — 每多一人少一張，手慢就沒了</div>
+  </div>
+
   <a href="./" class="peek-link">🏡 What are you winning? 看看你在抽什麼 →</a>
 
   <div class="input-row">
@@ -420,7 +426,7 @@ async function submitEntry() {
 
   var body = 'GitHub: https://github.com/' + entryData.username +
     '\nStars: ' + entryData.stars.toLocaleString() + ' ⭐' +
-    '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (100 base + ' + entryData.stars.toLocaleString() + ' stars)' +
+    '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird + ' + entryData.stars.toLocaleString() + ' stars)' +
     (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
     '\n\n---\n✅ Claude Max subscriber' +
     '\n✅ Available Tokyo June 7–9' +
@@ -490,6 +496,23 @@ document.getElementById('username').addEventListener('keydown', function(e) { if
 
 var params = new URLSearchParams(window.location.search);
 if (params.get('user')) { document.getElementById('username').value = params.get('user'); checkTickets(); }
+
+// 頁面載入時即時顯示早鳥保底
+(async function() {
+  try {
+    var r = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry&per_page=1');
+    if (r.ok) {
+      var d = await r.json();
+      var count = d.total_count || 0;
+      var base = Math.max(100, 1000 - count);
+      document.getElementById('earlyBirdCount').textContent = base.toLocaleString();
+      document.getElementById('earlyBirdCountZH').textContent = base.toLocaleString();
+    }
+  } catch (e) {
+    document.getElementById('earlyBirdCount').textContent = '—';
+    document.getElementById('earlyBirdCountZH').textContent = '—';
+  }
+})();
 </script>
 </body>
 </html>
