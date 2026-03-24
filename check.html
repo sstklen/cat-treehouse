@@ -294,7 +294,7 @@
 
     <div class="actions">
       <a class="btn btn-gold" id="shareBtn" href="#" target="_blank">Share on X 分享到推特</a>
-      <a class="btn btn-outline" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml">Enter the Draw 報名抽獎 →</a>
+      <a class="btn btn-gold" id="enterBtn" href="https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml" target="_blank">Enter the Draw 報名抽獎 →</a>
       <a class="btn btn-outline" href="./">← Back to cat Treehouse</a>
     </div>
   </div>
@@ -388,6 +388,12 @@ async function checkTickets() {
       : 'I just checked my lottery tickets for a treehouse in Japan 🐱\n\nYour GitHub stars = your tickets. Check yours:\nhttps://treeavel.washinmura.jp/cat-treehouse/check.html';
     document.getElementById('shareBtn').href =
       'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
+
+    // 報名按鈕帶入 username + 星星數
+    const issueTitle = encodeURIComponent('🐱 I\'m in! — @' + username + ' (' + totalStars.toLocaleString() + ' ⭐)');
+    const issueBody = encodeURIComponent('GitHub: https://github.com/' + username + '\nStars: ' + totalStars.toLocaleString() + ' ⭐\nChecked at: ' + new Date().toISOString().slice(0, 10) + '\n\n---\n');
+    document.getElementById('enterBtn').href =
+      'https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml&title=' + issueTitle + '&body=' + issueBody;
 
     result.classList.add('show');
     history.replaceState(null, '', '?user=' + encodeURIComponent(username));
