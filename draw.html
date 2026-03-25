@@ -419,9 +419,30 @@ async function submitEntry() {
     return;
   }
 
+  // 防重複：localStorage 檢查
+  if (localStorage.getItem('cat-treehouse-entered-' + entryData.username)) {
+    showError('submitError', 'You already entered! 你已經報名過了！');
+    return;
+  }
+
   var submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting... 送出中...';
+
+  // 防重複：再查一次 GitHub Issues
+  try {
+    var dupCheck = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry+%22%40' + entryData.username + '%22+in:title&per_page=1');
+    if (dupCheck.ok) {
+      var dupData = await dupCheck.json();
+      if ((dupData.total_count || 0) > 0) {
+        localStorage.setItem('cat-treehouse-entered-' + entryData.username, '1');
+        showError('submitError', 'You already entered! 你已經報名過了！');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit 送出報名 →';
+        return;
+      }
+    }
+  } catch (e) {}
 
   var referrer = initialRef;
   var chk69 = document.getElementById('chk69').checked;
@@ -465,6 +486,9 @@ async function submitEntry() {
     submitBtn.textContent = 'Submit 送出報名 →';
     return;
   }
+
+  // 記住已報名，防重複
+  localStorage.setItem('cat-treehouse-entered-' + entryData.username, '1');
 
   // 顯示成功
   document.getElementById('formSection').classList.remove('show');
