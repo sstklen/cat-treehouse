@@ -62,7 +62,9 @@ We pull your total GitHub stars automatically via API.
 2. [**Open an Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → check two boxes
 3. Done.
 
-No forms. No email. Stars checked automatically.
+No forms. Stars checked automatically.
+
+**No GitHub?** You can also enter with just your email at the [draw page](https://treeavel.washinmura.jp/cat-treehouse/draw.html) — you get early bird base tickets (the earlier you enter, the more you get).
 
 ⭐ **Star this repo — help others discover the giveaway!**
 
@@ -157,7 +159,9 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 2. [**開一個 Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → 打兩個勾
 3. 搞定。
 
-不用填表、不用 Email。星星數自動驗證。
+不用填表。星星數自動驗證。
+
+**沒有 GitHub？** 也可以用 Email 在[報名頁面](https://treeavel.washinmura.jp/cat-treehouse/draw.html)報名 — 越早報名保底彩券越多。
 
 > ⚠️ 中獎後會驗證 Claude Max 訂閱資格。
 

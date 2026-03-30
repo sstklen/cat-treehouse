@@ -158,11 +158,12 @@
   <div class="input-row">
     <div class="input-wrap">
       <svg class="gh-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <label for="username" class="sr-only">GitHub username or URL</label>
-      <input type="text" id="username" placeholder="GitHub username or URL" autocomplete="off" autofocus aria-label="GitHub username or profile URL">
+      <label for="username" class="sr-only">GitHub username, URL, or email</label>
+      <input type="text" id="username" placeholder="GitHub username or email" autocomplete="off" autofocus aria-label="GitHub username, profile URL, or email address">
     </div>
     <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
   </div>
+  <div style="color: var(--cream-dim); font-size: 0.9rem; margin-top: 0.25rem; text-align: center;">No GitHub? Enter your email 沒有 GitHub？填 Email 也能報名</div>
 
   <div class="error" id="error" role="alert" aria-live="assertive"></div>
   <div class="loading" id="loading" role="status" aria-live="polite">⏳ Counting your stars... 正在數星星...</div>
@@ -248,9 +249,17 @@ async function checkTickets() {
   const signal = currentController.signal;
 
   let raw = input.value.trim();
+  if (!raw) { showError('error', 'Please enter a GitHub username or email 請輸入 GitHub 帳號或 Email'); return; }
+
+  // 自動判斷：有 @ 和 . 就是 Email
+  if (raw.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    checkEmail(raw);
+    return;
+  }
+
   const urlMatch = raw.match(/github\.com\/([a-zA-Z0-9_-]+)/);
   const username = urlMatch ? urlMatch[1] : raw.replace('@', '');
-  if (!username) { showError('error', 'Please enter a GitHub username or URL 請輸入 GitHub 帳號或連結'); return; }
+  if (!username) { showError('error', 'Please enter a GitHub username or email 請輸入 GitHub 帳號或 Email'); return; }
 
   error.classList.remove('show');
   result.classList.remove('show');
@@ -419,8 +428,12 @@ async function submitEntry() {
     return;
   }
 
+  // 識別報名身份（GitHub 或 Email）
+  var entryId = entryData.username || entryData.email;
+  var isEmailEntry = !entryData.username && entryData.email;
+
   // 防重複：localStorage 檢查
-  if (localStorage.getItem('cat-treehouse-entered-' + entryData.username)) {
+  if (localStorage.getItem('cat-treehouse-entered-' + entryId)) {
     showError('submitError', 'You already entered! 你已經報名過了！');
     return;
   }
@@ -429,30 +442,30 @@ async function submitEntry() {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Submitting... 送出中...';
 
-  // 防重複：再查一次 GitHub Issues
-  try {
-    var dupCheck = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry+%22%40' + entryData.username + '%22+in:title&per_page=1');
-    if (dupCheck.ok) {
-      var dupData = await dupCheck.json();
-      if ((dupData.total_count || 0) > 0) {
-        localStorage.setItem('cat-treehouse-entered-' + entryData.username, '1');
-        showError('submitError', 'You already entered! 你已經報名過了！');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit 送出報名 →';
-        return;
+  // 防重複：再查一次 GitHub Issues（GitHub 模式）
+  if (!isEmailEntry) {
+    try {
+      var dupCheck = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry+%22%40' + entryData.username + '%22+in:title&per_page=1');
+      if (dupCheck.ok) {
+        var dupData = await dupCheck.json();
+        if ((dupData.total_count || 0) > 0) {
+          localStorage.setItem('cat-treehouse-entered-' + entryId, '1');
+          showError('submitError', 'You already entered! 你已經報名過了！');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit 送出報名 →';
+          return;
+        }
       }
-    }
-  } catch (e) {}
+    } catch (e) {}
+  }
 
   var referrer = initialRef;
   var chk69 = document.getElementById('chk69').checked;
   var chk610 = document.getElementById('chk610').checked;
   var chkTW = document.getElementById('chkTW').checked;
 
-  var body = 'GitHub: https://github.com/' + entryData.username +
-    '\nStars: ' + entryData.stars.toLocaleString() + ' ⭐' +
-    '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird + ' + entryData.stars.toLocaleString() + ' stars)' +
-    (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
+  // 共用尾段（兩種模式都一樣）
+  var sharedTail = (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
     '\n\n---\n✅ Claude Max subscriber' +
     '\n✅ Available Tokyo June 7–9' +
     (chk69 ? '\n☑️ 6/9 TW×JP Meetup' : '') +
@@ -460,7 +473,22 @@ async function submitEntry() {
     (chkTW ? '\n☑️ Notify me about Taiwan meetup' : '') +
     '\n\nSubmitted via draw page at ' + new Date().toISOString().slice(0, 16);
 
-  var title = '🐱 I\'m in! — @' + entryData.username + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+  var body, title;
+
+  if (isEmailEntry) {
+    var masked = maskEmail(entryData.email);
+    body = '📧 Email: ' + masked +
+      '\nEntry type: Email (no GitHub)' +
+      '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird)' +
+      sharedTail;
+    title = '🐱 I\'m in! — 📧 ' + masked + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+  } else {
+    body = 'GitHub: https://github.com/' + entryData.username +
+      '\nStars: ' + entryData.stars.toLocaleString() + ' ⭐' +
+      '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird + ' + entryData.stars.toLocaleString() + ' stars)' +
+      sharedTail;
+    title = '🐱 I\'m in! — @' + entryData.username + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+  }
 
   try {
     var res = await fetch('https://api.github.com/repos/sstklen/cat-treehouse/issues', {
@@ -488,20 +516,28 @@ async function submitEntry() {
   }
 
   // 記住已報名，防重複
-  localStorage.setItem('cat-treehouse-entered-' + entryData.username, '1');
+  localStorage.setItem('cat-treehouse-entered-' + entryId, '1');
+
+  // 完整資料打到 server log（Issue 裡的 email 是遮蔽的，這裡保留完整版）
+  var logParams = isEmailEntry
+    ? 'email=' + encodeURIComponent(entryData.email) + '&tickets=' + entryData.tickets
+    : 'user=' + encodeURIComponent(entryData.username) + '&stars=' + entryData.stars + '&tickets=' + entryData.tickets;
+  fetch('/cat-treehouse/log?' + logParams, { method: 'HEAD', signal: AbortSignal.timeout(3000) }).catch(function() {});
 
   // 顯示成功
   document.getElementById('formSection').classList.remove('show');
   document.getElementById('result').classList.remove('show');
   document.getElementById('successSection').classList.add('show');
 
-  // 推薦連結
+  // 推薦連結（Email 用戶用 drawUrl 不帶 ref，因為沒有 GitHub username）
   var drawUrl = 'https://treeavel.washinmura.jp/cat-treehouse/draw.html';
-  var refUrl = drawUrl + '?ref=' + encodeURIComponent(entryData.username);
+  var refUrl = isEmailEntry ? drawUrl : drawUrl + '?ref=' + encodeURIComponent(entryData.username);
   document.getElementById('referralLink').textContent = refUrl;
 
   // 分享
-  var shareText = 'I just entered the cat Treehouse draw with ' + entryData.tickets.toLocaleString() + ' tickets! 🐱🎟️\n\nYour GitHub stars = lottery tickets for a treehouse stay in Japan.\nEveryone gets 100 free tickets.\n\nCheck yours:\n' + refUrl;
+  var shareText = isEmailEntry
+    ? 'I just entered the cat Treehouse draw! 🐱🎟️\n\nWin a treehouse stay in Japan — no GitHub needed, enter with email.\nEveryone gets 100 free tickets.\n\nEnter here:\n' + refUrl
+    : 'I just entered the cat Treehouse draw with ' + entryData.tickets.toLocaleString() + ' tickets! 🐱🎟️\n\nYour GitHub stars = lottery tickets for a treehouse stay in Japan.\nEveryone gets 100 free tickets.\n\nCheck yours:\n' + refUrl;
 
   document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
   document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
@@ -518,6 +554,69 @@ function showError(id, msg) {
   var el = document.getElementById(id);
   el.textContent = msg;
   el.classList.add('show');
+}
+
+// Email 遮蔽：t***@gmail.com（保護隱私，Issue 是公開的）
+function maskEmail(email) {
+  var parts = email.split('@');
+  var name = parts[0];
+  var domain = parts[1] || '';
+  var masked = name.charAt(0) + '***';
+  return masked + '@' + domain;
+}
+
+// === Email 報名模式（沒有 GitHub 帳號的人）===
+async function checkEmail(email) {
+  // 共用 AbortController，避免快速切換時舊回應覆蓋新資料
+  if (currentController) currentController.abort();
+  currentController = new AbortController();
+  var signal = currentController.signal;
+
+  var btn = document.getElementById('checkBtn');
+  var error = document.getElementById('error');
+  var loading = document.getElementById('loading');
+  var result = document.getElementById('result');
+  var formSection = document.getElementById('formSection');
+  var successSection = document.getElementById('successSection');
+
+  error.classList.remove('show');
+  result.classList.remove('show');
+  formSection.classList.remove('show');
+  successSection.classList.remove('show');
+  loading.classList.add('show');
+  btn.disabled = true;
+
+  try {
+    var entryCount = 0;
+    try {
+      var countRes = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+label:entry&per_page=1', { signal: signal });
+      if (countRes.ok) {
+        var countData = await countRes.json();
+        entryCount = countData.total_count || 0;
+      }
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+
+    var baseTickets = Math.max(100, 1000 - entryCount);
+
+    entryData = { email: email, username: null, stars: 0, tickets: baseTickets, baseTickets: baseTickets, avatarUrl: null, repos: 0 };
+
+    document.getElementById('avatar').src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23161513" width="100" height="100" rx="50"/><text x="50" y="62" text-anchor="middle" font-size="50">🐱</text></svg>');
+    document.getElementById('avatar').alt = 'Email entry';
+    document.getElementById('ticketCount').textContent = baseTickets.toLocaleString();
+    document.getElementById('ticketBreakdown').textContent = '🎫 ' + baseTickets + ' early bird 早鳥保底（#' + (entryCount + 1) + '）· Email entry';
+    document.getElementById('referralList').innerHTML = '';
+    document.getElementById('userInfo').textContent = '📧 ' + email;
+
+    result.classList.add('show');
+    formSection.classList.add('show');
+  } catch (e) {
+    if (e.name === 'AbortError') return;
+  } finally {
+    btn.disabled = false;
+    loading.classList.remove('show');
+  }
 }
 
 document.getElementById('username').addEventListener('keydown', function(e) { if (e.key === 'Enter') checkTickets(); });
