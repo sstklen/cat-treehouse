@@ -1,6 +1,6 @@
-# cat Treehouse — Giveaway for Claude Max Subscribers
+# cat Treehouse — Win a Dreamy Treehouse Stay in Japan
 
-> Win a treehouse stay in Japan. Your GitHub stars are your lottery tickets.
+> 3 days, 2 nights in a treehouse. 1 wins, 4 go. Open to everyone.
 
 ## What is this?
 
@@ -8,11 +8,11 @@ cat Treehouse is a giveaway by Washin Village. 1 winner + 3 friends get a 3-day,
 
 ## Who can enter?
 
-Claude Max subscribers only. Subscription will be verified after the draw.
+Everyone. Enter with just your email. GitHub stars and Claude Max subscription = bonus lottery tickets.
 
 ## How it works
 
-Your total GitHub stars across all repos = lottery tickets. 10,000 stars = 10,000 tickets. We check via GitHub API automatically.
+Enter your email to get base tickets (early bird — the earlier, the more). Connect your GitHub for bonus tickets (1 star = 1 ticket). Claude Max subscribers get +200 bonus tickets.
 
 ## Key dates
 
@@ -24,7 +24,8 @@ Your total GitHub stars across all repos = lottery tickets. 10,000 stars = 10,00
 
 ## Enter
 
-Open an Issue at https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml
+Visit the draw page: https://treeavel.washinmura.jp/cat-treehouse/draw.html
+Or open an Issue at https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml
 
 ## Community events (open to all, ~$60 each)
 

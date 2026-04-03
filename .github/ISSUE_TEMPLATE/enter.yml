@@ -19,8 +19,8 @@ body:
         ⭐ **Don't forget to star this repo — more stars = better odds!**
         ⭐ **記得按星星 — 星星越多，中獎率越高！**
 
-        ⚠️ Winner's Claude Max subscription will be verified.
-        ⚠️ 中獎後會驗證 Claude Max 訂閱資格。
+        🎉 Open to everyone! Claude Max subscribers get +200 bonus tickets.
+        🎉 所有人都能參加！Claude Max 訂閱者額外 +200 張彩券。
 
   - type: textarea
     id: building
@@ -35,8 +35,8 @@ body:
     attributes:
       label: "Confirm 確認"
       options:
-        - label: "I'm a Claude Max subscriber 我是 Claude Max 訂閱者"
-          required: true
+        - label: "I'm a Claude Max subscriber 我是 Claude Max 訂閱者 (+200 🎟️ bonus)"
+          required: false
         - label: "I can be in Tokyo June 7–9, 2026 我 6/7–9 可以在東京"
           required: true
 

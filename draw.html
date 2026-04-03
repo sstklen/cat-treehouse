@@ -158,12 +158,12 @@
   <div class="input-row">
     <div class="input-wrap">
       <svg class="gh-icon" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <label for="username" class="sr-only">GitHub username, URL, or email</label>
-      <input type="text" id="username" placeholder="GitHub username or email" autocomplete="off" autofocus aria-label="GitHub username, profile URL, or email address">
+      <label for="username" class="sr-only">Email address, GitHub username, or URL</label>
+      <input type="text" id="username" placeholder="Email or GitHub username" autocomplete="off" autofocus aria-label="Email address, GitHub username, or profile URL">
     </div>
     <button id="checkBtn" onclick="checkTickets()">Check 查詢</button>
   </div>
-  <div style="color: var(--cream-dim); font-size: 0.9rem; margin-top: 0.25rem; text-align: center;">No GitHub? Enter your email 沒有 GitHub？填 Email 也能報名</div>
+  <div style="color: var(--cream-dim); font-size: 0.9rem; margin-top: 0.25rem; text-align: center;">Email alone works · Connect GitHub for bonus tickets 填 Email 就能參加 · 連結 GitHub 可獲得更多彩券</div>
 
   <div class="error" id="error" role="alert" aria-live="assertive"></div>
   <div class="loading" id="loading" role="status" aria-live="polite">⏳ Counting your stars... 正在數星星...</div>
@@ -182,7 +182,7 @@
   <div class="form-section" id="formSection">
     <div class="checkbox-group">
       <h3>Confirm & Enter 確認報名</h3>
-      <label class="checkbox-item"><input type="checkbox" id="chkMax" required> I'm a Claude Max subscriber 我是 Claude Max 訂閱者 <span class="required">*</span></label>
+      <label class="checkbox-item"><input type="checkbox" id="chkMax"> I'm a Claude Max subscriber 我是 Claude Max 訂閱者 <span class="optional">(+200 🎟️ bonus)</span></label>
       <label class="checkbox-item"><input type="checkbox" id="chkTokyo" required> I can be in Tokyo June 7–9 我可以到東京 <span class="required">*</span></label>
       <label class="checkbox-item"><input type="checkbox" id="chk69"> 6/9 TW×JP Meetup 交流會 (~$60) <span class="optional">optional 選填</span></label>
       <label class="checkbox-item"><input type="checkbox" id="chk610"> 6/10 Livestream + After-party 直播+二次會 (~$60) <span class="optional">optional 選填</span></label>
@@ -423,8 +423,8 @@ async function checkTickets() {
 async function submitEntry() {
   var chkMax = document.getElementById('chkMax');
   var chkTokyo = document.getElementById('chkTokyo');
-  if (!chkMax.checked || !chkTokyo.checked) {
-    showError('submitError', 'Please check the two required boxes 請勾選兩個必填項');
+  if (!chkTokyo.checked) {
+    showError('submitError', 'Please confirm you can be in Tokyo 請確認你可以到東京');
     return;
   }
 
@@ -464,9 +464,14 @@ async function submitEntry() {
   var chk610 = document.getElementById('chk610').checked;
   var chkTW = document.getElementById('chkTW').checked;
 
+  // Claude Max bonus（勾了 +200 張彩券，不 mutate entryData 避免重試 double bonus）
+  var claudeMaxBonus = chkMax.checked ? 200 : 0;
+  var finalTickets = entryData.tickets + claudeMaxBonus;
+
   // 共用尾段（兩種模式都一樣）
   var sharedTail = (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
-    '\n\n---\n✅ Claude Max subscriber' +
+    '\n\n---' +
+    (chkMax.checked ? '\n☑️ Claude Max subscriber (+200 bonus 🎟️)' : '') +
     '\n✅ Available Tokyo June 7–9' +
     (chk69 ? '\n☑️ 6/9 TW×JP Meetup' : '') +
     (chk610 ? '\n☑️ 6/10 Livestream + After-party' : '') +
@@ -479,15 +484,15 @@ async function submitEntry() {
     var masked = maskEmail(entryData.email);
     body = '📧 Email: ' + masked +
       '\nEntry type: Email (no GitHub)' +
-      '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird)' +
+      '\nTickets: ' + finalTickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird' + (claudeMaxBonus > 0 ? ' + 200 Claude Max' : '') + ')' +
       sharedTail;
-    title = '🐱 I\'m in! — 📧 ' + masked + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+    title = '🐱 I\'m in! — 📧 ' + masked + ' (' + finalTickets.toLocaleString() + ' 🎟️)';
   } else {
     body = 'GitHub: https://github.com/' + entryData.username +
       '\nStars: ' + entryData.stars.toLocaleString() + ' ⭐' +
-      '\nTickets: ' + entryData.tickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird + ' + entryData.stars.toLocaleString() + ' stars)' +
+      '\nTickets: ' + finalTickets.toLocaleString() + ' 🎟️ (' + entryData.baseTickets + ' early bird + ' + entryData.stars.toLocaleString() + ' stars' + (claudeMaxBonus > 0 ? ' + 200 Claude Max' : '') + ')' +
       sharedTail;
-    title = '🐱 I\'m in! — @' + entryData.username + ' (' + entryData.tickets.toLocaleString() + ' 🎟️)';
+    title = '🐱 I\'m in! — @' + entryData.username + ' (' + finalTickets.toLocaleString() + ' 🎟️)';
   }
 
   try {
@@ -520,8 +525,8 @@ async function submitEntry() {
 
   // 完整資料打到 server log（Issue 裡的 email 是遮蔽的，這裡保留完整版）
   var logParams = isEmailEntry
-    ? 'email=' + encodeURIComponent(entryData.email) + '&tickets=' + entryData.tickets
-    : 'user=' + encodeURIComponent(entryData.username) + '&stars=' + entryData.stars + '&tickets=' + entryData.tickets;
+    ? 'email=' + encodeURIComponent(entryData.email) + '&tickets=' + finalTickets
+    : 'user=' + encodeURIComponent(entryData.username) + '&stars=' + entryData.stars + '&tickets=' + finalTickets;
   fetch('/cat-treehouse/log?' + logParams, { method: 'HEAD', signal: AbortSignal.timeout(3000) }).catch(function() {});
 
   // 顯示成功
@@ -537,7 +542,7 @@ async function submitEntry() {
   // 分享
   var shareText = isEmailEntry
     ? 'I just entered the cat Treehouse draw! 🐱🎟️\n\nWin a treehouse stay in Japan — no GitHub needed, enter with email.\nEveryone gets 100 free tickets.\n\nEnter here:\n' + refUrl
-    : 'I just entered the cat Treehouse draw with ' + entryData.tickets.toLocaleString() + ' tickets! 🐱🎟️\n\nYour GitHub stars = lottery tickets for a treehouse stay in Japan.\nEveryone gets 100 free tickets.\n\nCheck yours:\n' + refUrl;
+    : 'I just entered the cat Treehouse draw with ' + finalTickets.toLocaleString() + ' tickets! 🐱🎟️\n\nYour GitHub stars = lottery tickets for a treehouse stay in Japan.\nEveryone gets 100 free tickets.\n\nCheck yours:\n' + refUrl;
 
   document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
   document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
@@ -640,6 +645,15 @@ if (params.get('user')) { document.getElementById('username').value = params.get
     document.getElementById('earlyBirdCountZH').textContent = '—';
   }
 })();
+
+// Claude Max checkbox 動態更新票數顯示（勾選 +200，取消 -200）
+document.getElementById('chkMax').addEventListener('change', function() {
+  if (!entryData.tickets) return;
+  var countEl = document.getElementById('ticketCount');
+  if (!countEl) return;
+  var total = entryData.tickets + (this.checked ? 200 : 0);
+  countEl.textContent = total.toLocaleString();
+});
 </script>
 </body>
 </html>

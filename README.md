@@ -58,17 +58,15 @@ We pull your total GitHub stars automatically via API.
 
 </div>
 
-1. Be a **Claude Max** subscriber
-2. [**Open an Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → check two boxes
-3. Done.
+1. Enter your **email** at the [draw page](https://treeavel.washinmura.jp/cat-treehouse/draw.html) — that's it!
+2. **Connect GitHub** for bonus tickets (1 star = 1 ticket)
+3. **Claude Max subscriber?** Check the box for +200 bonus tickets
 
-No forms. Stars checked automatically.
-
-**No GitHub?** You can also enter with just your email at the [draw page](https://treeavel.washinmura.jp/cat-treehouse/draw.html) — you get early bird base tickets (the earlier you enter, the more you get).
+Or [**Open an Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) on GitHub directly.
 
 ⭐ **Star this repo — help others discover the giveaway!**
 
-> ⚠️ Winner's Claude Max subscription will be verified before confirmation.
+> 🎉 Open to everyone. The earlier you enter, the more base tickets you get.
 
 > Entries close **May 1, 2026** · Winner announced **May 7**
 
@@ -108,7 +106,7 @@ You do the math.
 
 I live next to this treehouse — literally in my backyard on the Bōsō Peninsula, Japan.
 
-I've been watching Anthropic give Claude Max to top open source maintainers. That's amazing. But I thought — what if someone gave them a *treehouse*?
+I thought — what if I just gave someone a *treehouse*?
 
 Not a conference. Not a panel. Just three days in the forest with code, cats, and no deadlines. A place to breathe and build something you actually care about.
 
@@ -155,17 +153,15 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 </div>
 
-1. 你是 **Claude Max** 訂閱者
-2. [**開一個 Issue**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml) → 打兩個勾
-3. 搞定。
+1. 在[報名頁面](https://treeavel.washinmura.jp/cat-treehouse/draw.html)填 **Email** — 就這樣！
+2. **連結 GitHub** 可獲得更多彩券（1 顆星 = 1 張彩券）
+3. **Claude Max 訂閱者？** 打勾就多 +200 張彩券
 
-不用填表。星星數自動驗證。
-
-**沒有 GitHub？** 也可以用 Email 在[報名頁面](https://treeavel.washinmura.jp/cat-treehouse/draw.html)報名 — 越早報名保底彩券越多。
-
-> ⚠️ 中獎後會驗證 Claude Max 訂閱資格。
+或直接在 GitHub [**開 Issue 報名**](https://github.com/sstklen/cat-treehouse/issues/new?template=enter.yml)。
 
 ⭐ **記得按星星 — 幫更多人看到這個活動！**
+
+> 🎉 所有人都能參加。越早報名，保底彩券越多。
 
 > 報名截止 **2026 年 5 月 1 日** · 開獎 **5 月 7 日**
 
@@ -203,7 +199,7 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 我就住在這棟樹屋旁邊 — 就在日本房總半島我家後院。
 
-我看到 Anthropic 把 Claude Max 送給頂尖開源維護者，覺得很棒。但我想 — 如果有人送他們一棟*樹屋*呢？
+我想 — 如果我直接送人一棟*樹屋*呢？
 
 不是研討會，不是座談。就是三天待在森林裡，寫 code、摸貓、沒有 deadline。一個可以好好呼吸、做自己真正想做的東西的地方。
 
