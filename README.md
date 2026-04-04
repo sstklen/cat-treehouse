@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🐱 cat Treehouse
+# 🐱 1+3 cat Treehouse
 
 **Your GitHub stars are your lottery tickets.**<br>
 你的 GitHub 星星就是你的彩券。
@@ -96,7 +96,7 @@ Next            → 🇹🇼 Claude Code Community Meetup in Taiwan (community e
 
 </div>
 
-## Why "cat Treehouse"?
+## Why "1+3 cat Treehouse"?
 
 `cat` is a Unix command that displays file contents.
 We have 16 actual cats. In a treehouse.
@@ -191,7 +191,7 @@ I have a treehouse. I have 16 cats. I have a car that can pick you up in Tokyo. 
 
 </div>
 
-### 為什麼叫 cat Treehouse？
+### 為什麼叫 1+3 cat Treehouse？
 
 `cat` 是 Unix 指令（顯示檔案內容）。我們有 16 隻真的貓。在樹屋裡。自己算。
 
