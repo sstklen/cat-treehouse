@@ -203,8 +203,8 @@
 
   <!-- 報名成功 -->
   <div class="success-section" id="successSection">
-    <div class="success-title">🎉 +1 !</div>
-    <div class="success-sub">You're in! 報名成功！</div>
+    <div class="success-title" id="successTitle">🎉 +1 !</div>
+    <div class="success-sub" id="successSub">You're in! 報名成功！</div>
 
     <a href="./" class="peek-link">🏡 See what you're winning 看看你贏到什麼 →</a>
 
@@ -395,8 +395,10 @@ async function checkTickets() {
     history.replaceState(null, '', '?user=' + encodeURIComponent(username));
 
     if (alreadyEntered) {
-      // 已報名 → 跳過表單，直接顯示成功區+推薦
+      // 已報名 → 跳過表單，改成「查詢」模式顯示
       formSection.classList.remove('show');
+      document.getElementById('successTitle').textContent = '🎟️ Your Tickets 你的彩券';
+      document.getElementById('successSub').textContent = 'You already entered! Find more friends to boost your odds. 你已經報名了！找更多朋友提高中獎率。';
 
       // 設定推薦連結 + 分享按鈕
       var drawUrl = 'https://treeavel.washinmura.jp/cat-treehouse/draw.html';
@@ -484,8 +486,11 @@ async function submitEntry() {
   var claudeMaxBonus = chkMax.checked ? 200 : 0;
   var finalTickets = entryData.tickets + claudeMaxBonus;
 
+  // 判斷推薦人是 email 還是 GitHub username（email 不加 @ 前綴，避免搜尋失敗）
+  var isEmailReferrer = referrer && referrer.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+
   // 共用尾段（兩種模式都一樣）
-  var sharedTail = (referrer ? '\nReferred by 推薦人: @' + referrer + ' (+100 🎟️)' : '') +
+  var sharedTail = (referrer ? '\nReferred by 推薦人: ' + (isEmailReferrer ? '' : '@') + referrer + ' (+100 🎟️)' : '') +
     '\n\n---' +
     (chkMax.checked ? '\n☑️ Claude Max subscriber (+200 bonus 🎟️)' : '') +
     '\n✅ Available Tokyo June 7–9' +
@@ -621,12 +626,28 @@ async function checkEmail(email) {
 
     var baseTickets = Math.max(100, 1000 - entryCount);
 
-    entryData = { email: email, username: null, stars: 0, tickets: baseTickets, baseTickets: baseTickets, avatarUrl: null, repos: 0 };
+    // 搜推薦數（Email 用戶也要算推薦獎勵）
+    var referralCount = 0;
+    try {
+      var refSearch = await fetch('https://api.github.com/search/issues?q=repo:sstklen/cat-treehouse+%22Referred+by%22+%22' + encodeURIComponent(email) + '%22', { signal: signal });
+      if (refSearch.ok) {
+        var refData = await refSearch.json();
+        referralCount = refData.total_count || 0;
+      }
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+    var referralBonus = referralCount * 100;
+    var totalTickets = baseTickets + referralBonus;
+
+    entryData = { email: email, username: null, stars: 0, tickets: totalTickets, baseTickets: baseTickets, avatarUrl: null, repos: 0 };
 
     document.getElementById('avatar').src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23161513" width="100" height="100" rx="50"/><text x="50" y="62" text-anchor="middle" font-size="50">🐱</text></svg>');
     document.getElementById('avatar').alt = 'Email entry';
-    document.getElementById('ticketCount').textContent = baseTickets.toLocaleString();
-    document.getElementById('ticketBreakdown').textContent = '🎫 ' + baseTickets + ' early bird 早鳥保底（#' + (entryCount + 1) + '）· Email entry';
+    document.getElementById('ticketCount').textContent = totalTickets.toLocaleString();
+    var breakdown = '🎫 ' + baseTickets + ' early bird 早鳥保底（#' + (entryCount + 1) + '）';
+    if (referralCount > 0) breakdown += ' + 🤝 ' + referralCount + ' referrals (' + referralBonus + ')';
+    document.getElementById('ticketBreakdown').textContent = breakdown;
     document.getElementById('referralList').innerHTML = '';
     document.getElementById('userInfo').textContent = '📧 ' + email;
 
