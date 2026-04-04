@@ -216,7 +216,8 @@
       <a class="share-icon" id="shareX" href="#" target="_blank" title="X / Twitter">𝕏</a>
       <a class="share-icon" id="shareFB" href="#" target="_blank" title="Facebook">f</a>
       <a class="share-icon" id="shareThreads" href="#" target="_blank" title="Threads">🧵</a>
-      <a class="share-icon" id="shareIG" href="javascript:void(0)" title="Instagram">IG</a>
+      <a class="share-icon" id="shareLINE" href="#" target="_blank" title="LINE">L</a>
+      <a class="share-icon" id="shareMore" href="javascript:void(0)" title="More 更多">⋯</a>
     </div>
 
     <div class="actions">
@@ -409,15 +410,7 @@ async function checkTickets() {
       var shareText = isZH
         ? '我有 ' + totalTickets.toLocaleString() + ' 張彩券！🐱🏡\n\n找三個朋友一起報名 1+3 cat Treehouse，中獎率更高！你中獎，大家跟你去日本樹屋\n\n來報名：\n' + refUrl
         : 'I have ' + totalTickets.toLocaleString() + ' tickets in the 1+3 cat Treehouse draw! 🐱🏡\n\nFind 3 friends — enter together, better odds. You win, everyone goes to a treehouse in Japan\n\nEnter here:\n' + refUrl;
-      document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
-      document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
-      document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
-      document.getElementById('shareIG').onclick = function(e) {
-        e.preventDefault();
-        navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
-          alert('Copied! Open Instagram and paste.\n已複製！打開 IG 貼上。');
-        });
-      };
+      setupShareButtons(shareText, refUrl);
 
       successSection.classList.add('show');
     } else {
@@ -574,14 +567,24 @@ async function submitEntry() {
       ? 'I just entered the 1+3 cat Treehouse draw! 🐱🏡\n\nFind 3 friends — enter together, better odds. You win, everyone goes to a treehouse in Japan\n\nEnter with email:\n' + refUrl
       : 'I have ' + finalTickets.toLocaleString() + ' tickets in the 1+3 cat Treehouse draw! 🐱🏡\n\nFind 3 friends — enter together, better odds. You win, everyone goes\n\nCheck yours:\n' + refUrl);
 
+  setupShareButtons(shareText, refUrl);
+}
+
+// 設定所有分享按鈕（共用，避免三處重複）
+function setupShareButtons(shareText, refUrl) {
   document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
   document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
   document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
-  document.getElementById('shareIG').onclick = function(e) {
+  document.getElementById('shareLINE').href = 'https://line.me/R/share?text=' + encodeURIComponent(shareText);
+  document.getElementById('shareMore').onclick = function(e) {
     e.preventDefault();
-    navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
-      alert('Copied! Open Instagram and paste to your story.\n已複製！打開 IG 貼到限動。');
-    });
+    if (navigator.share) {
+      navigator.share({ title: '1+3 cat Treehouse', text: shareText, url: refUrl }).catch(function() {});
+    } else {
+      navigator.clipboard.writeText(shareText).then(function() {
+        alert(isZH ? '已複製！貼到任何地方分享。' : 'Copied! Paste anywhere to share.');
+      });
+    }
   };
 }
 
@@ -690,15 +693,7 @@ async function checkEmail(email) {
       var shareText = isZH
         ? '我有 ' + totalTickets.toLocaleString() + ' 張彩券！🐱🏡\n\n找三個朋友一起報名 1+3 cat Treehouse，中獎率更高！你中獎，大家跟你去日本樹屋\n\n來報名：\n' + refUrl
         : 'I have ' + totalTickets.toLocaleString() + ' tickets in the 1+3 cat Treehouse draw! 🐱🏡\n\nFind 3 friends — enter together, better odds. You win, everyone goes\n\nEnter here:\n' + refUrl;
-      document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
-      document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
-      document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
-      document.getElementById('shareIG').onclick = function(e) {
-        e.preventDefault();
-        navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
-          alert(isZH ? '已複製！打開 IG 貼到限動。' : 'Copied! Open Instagram and paste to your story.');
-        });
-      };
+      setupShareButtons(shareText, refUrl);
       successSection.classList.add('show');
     } else {
       formSection.classList.add('show');
