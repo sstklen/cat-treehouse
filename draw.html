@@ -181,6 +181,11 @@
 
   <!-- 勾選報名區 -->
   <div class="form-section" id="formSection">
+    <div style="margin-bottom: 1rem; text-align: left; padding: 1rem 1.5rem; background: var(--bg-card); border: 1px solid var(--gold-dim); border-radius: 8px;">
+      <label for="referrerInput" style="font-size: 1rem; color: var(--gold); display: block; margin-bottom: 0.5rem;">🤝 Who told you about this? 誰推薦你來的？<span style="color: var(--cream-dim);"> (optional 選填)</span></label>
+      <input type="text" id="referrerInput" placeholder="GitHub username or email" style="width: 100%; font-family: var(--sans); font-size: 1rem; padding: 0.75rem 1rem; border: 1px solid var(--gold-dim); border-radius: 6px; background: var(--bg); color: var(--cream); outline: none;" autocomplete="off">
+      <div style="color: var(--cream-dim); font-size: 0.875rem; margin-top: 0.375rem;">Each referral = +100 tickets for them 每推薦一人 = 推薦人多 +100 張</div>
+    </div>
     <div class="checkbox-group">
       <h3>Confirm & Enter 確認報名</h3>
       <label class="checkbox-item"><input type="checkbox" id="chkMax"> I'm a Claude Max subscriber 我是 Claude Max 訂閱者 <span class="optional">(+200 🎟️ bonus)</span></label>
@@ -237,6 +242,13 @@
 let currentController = null;
 let entryData = {};
 const initialRef = new URLSearchParams(window.location.search).get('ref') || '';
+// 推薦碼自動帶入欄位
+if (initialRef) {
+  document.addEventListener('DOMContentLoaded', function() {
+    var ri = document.getElementById('referrerInput');
+    if (ri) { ri.value = initialRef; ri.readOnly = true; ri.style.opacity = '0.7'; }
+  });
+}
 
 async function checkTickets() {
   const input = document.getElementById('username');
@@ -462,7 +474,8 @@ async function submitEntry() {
     } catch (e) {}
   }
 
-  var referrer = initialRef;
+  // 優先用欄位值（手動填的），否則用 URL 帶入的
+  var referrer = (document.getElementById('referrerInput').value || '').trim() || initialRef;
   var chk69 = document.getElementById('chk69').checked;
   var chk610 = document.getElementById('chk610').checked;
   var chkTW = document.getElementById('chkTW').checked;
