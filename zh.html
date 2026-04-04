@@ -499,7 +499,7 @@
       .gallery-item.tall { grid-row: span 1; }
       .resident-photo { width: 64px; height: 64px; }
       .form-row { grid-template-columns: 1fr; }
-      .nav-lang { display: none; }
+      .nav-lang { font-size: 0.75rem; }
       .invitation { padding: 6rem 0; }
       .qualify { padding: 6rem 0; }
       nav { padding: 1.2rem 1.5rem; }
@@ -523,7 +523,7 @@
   <nav>
     <a href="#" class="nav-logo">1+3 cat Treehouse</a>
     <div class="nav-lang">
-      <a href="index.html">EN</a>
+      <a href="index.html" onclick="sessionStorage.setItem('lang-override','1')">EN</a>
       <a href="zh.html" class="active">中</a>
     </div>
     <a href="#apply" class="nav-cta">我要抽獎</a>

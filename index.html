@@ -540,7 +540,7 @@
       nav { padding: 1.2rem 1.5rem; }
       nav.scrolled { padding: 0.8rem 1.5rem; }
       .form-row { grid-template-columns: 1fr; }
-      .nav-lang { display: none; }
+      .nav-lang { font-size: 0.75rem; }
     }
 
     @media (max-width: 480px) {
@@ -560,7 +560,7 @@
   <nav>
     <a href="#" class="nav-logo">1+3 cat Treehouse</a>
     <span class="nav-lang">
-      <a href="index.html" class="active">EN</a> &middot;
+      <a href="index.html" class="active" onclick="sessionStorage.setItem('lang-override','1')">EN</a> &middot;
       <a href="zh.html">中</a>
     </span>
     <a href="#apply" class="nav-cta">Enter to Win</a>
@@ -853,6 +853,11 @@
   </footer>
 
   <script>
+    // 中文瀏覽器自動跳轉中文版（只在英文首頁觸發，不影響直連 zh.html 的人）
+    if ((navigator.language || '').startsWith('zh') && !sessionStorage.getItem('lang-override')) {
+      location.replace('zh.html' + location.search + location.hash);
+    }
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
