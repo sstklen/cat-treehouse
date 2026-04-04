@@ -659,7 +659,37 @@ async function checkEmail(email) {
     document.getElementById('userInfo').textContent = '📧 ' + email;
 
     result.classList.add('show');
-    formSection.classList.add('show');
+
+    // 檢查是否已報名（localStorage 優先，快且不需 API）
+    var emailAlreadyEntered = localStorage.getItem('cat-treehouse-entered-' + email);
+    if (emailAlreadyEntered) {
+      // 已報名 → 跳過表單，顯示推薦連結 + 分享按鈕
+      formSection.classList.remove('show');
+      document.getElementById('successTitle').textContent = '🎟️ Your Tickets 你的彩券';
+      document.getElementById('successSub').textContent = isZH
+        ? '你已經報名了！找更多朋友提高中獎率。'
+        : 'You already entered! Find more friends to boost your odds.';
+
+      var drawUrl = 'https://treeavel.washinmura.jp/cat-treehouse/draw.html';
+      var refUrl = drawUrl + '?ref=' + encodeURIComponent(email);
+      document.getElementById('referralLink').textContent = refUrl;
+
+      var shareText = isZH
+        ? '我有 ' + totalTickets.toLocaleString() + ' 張彩券！🐱🏡\n\n找三個朋友一起報名 1+3 cat Treehouse，中獎率更高！你中獎，大家跟你去日本樹屋\n\n來報名：\n' + refUrl
+        : 'I have ' + totalTickets.toLocaleString() + ' tickets in the 1+3 cat Treehouse draw! 🐱🏡\n\nFind 3 friends — enter together, better odds. You win, everyone goes\n\nEnter here:\n' + refUrl;
+      document.getElementById('shareX').href = 'https://x.com/intent/tweet?text=' + encodeURIComponent(shareText);
+      document.getElementById('shareFB').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(refUrl);
+      document.getElementById('shareThreads').href = 'https://www.threads.net/intent/post?text=' + encodeURIComponent(shareText);
+      document.getElementById('shareIG').onclick = function(e) {
+        e.preventDefault();
+        navigator.clipboard.writeText(shareText.replace(/\n/g, ' ')).then(function() {
+          alert(isZH ? '已複製！打開 IG 貼到限動。' : 'Copied! Open Instagram and paste to your story.');
+        });
+      };
+      successSection.classList.add('show');
+    } else {
+      formSection.classList.add('show');
+    }
   } catch (e) {
     if (e.name === 'AbortError') return;
   } finally {
