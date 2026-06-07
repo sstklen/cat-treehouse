@@ -1,0 +1,285 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>🐱 cat Treehouse 抽獎 — 公開名單與開獎承諾</title>
+<style>
+:root{--gold:#c9a227;--bg:#14110d;--card:#1e1a14;--cream:#efe7d6;--dim:#a89e88}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--cream);font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding:2rem 1.2rem 4rem}
+h1{font-size:1.7rem;color:#e8d48a;margin:.2rem 0}h2{color:var(--gold);border-bottom:1px solid #3a3326;padding-bottom:.3rem;margin-top:2.2rem}
+.sub{color:var(--dim)}
+.card{background:var(--card);border:1px solid #332c1f;border-radius:10px;padding:1rem 1.2rem;margin:1rem 0}
+.kv{display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}.kv div{min-width:140px}.kv b{color:#e8d48a}
+code{background:#000;color:#9fe0a0;padding:.15rem .4rem;border-radius:4px;font-size:.82rem;word-break:break-all}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:.6rem}
+th,td{padding:.35rem .5rem;border-bottom:1px solid #2a2419;text-align:left}
+th{position:sticky;top:0;background:#241f17;color:var(--gold)}
+td.t,td.r{font-variant-numeric:tabular-nums;color:#d8cca8}td.r{color:var(--dim)}
+.tablebox{max-height:560px;overflow:auto;border:1px solid #332c1f;border-radius:8px}
+.note{color:var(--dim);font-size:.85rem}.ok{color:#7ec77e}
+ol{padding-left:1.2rem}li{margin:.3rem 0}
+</style></head><body><div class="wrap">
+<h1>🐱 cat Treehouse 抽獎 — 公開名單與開獎承諾</h1>
+<p class="sub">一人中獎、四人同行 · 公開可驗證開獎 · 公布於 2026-06-07（開獎號產生前）</p>
+
+<div class="card"><div class="kv">
+<div><b>抽獎池</b><br>231 筆報名</div>
+<div><b>總票數</b><br>219,367 張</div>
+<div><b>中獎名額</b><br>1 名（+3 友）</div>
+<div><b>計票基準</b><br>照各報名 issue 實際記錄</div>
+</div></div>
+
+<h2>🔒 開獎前承諾（Commitment）</h2>
+<div class="card">
+<p>名單與演算法在「開獎隨機種子產生之前」就鎖定公布。開獎後任何人可重算驗證，若有人事後竄改任何一筆，指紋立刻對不上。</p>
+<p>名單指紋 <code>ROSTER_SHA256 = 0dfd15aebb26d75e382fb0060023d73c64c9cf93f9662a45a795989695458aab</code></p>
+<p>演算法指紋 <code>DRAW_PY_SHA256 = b9d004e567911ef5283eeb130641e41389cb88e26193d75ee29f290472710dbe</code></p>
+</div>
+
+<h2>🎲 開獎方式（先承諾、後開獎）</h2>
+<div class="card">
+<ol>
+<li><b>種子來源</b>：台灣彩券「威力彩」2026-06-08 開獎號（全國公開、主辦無法操控）。</li>
+<li><b>正準種子</b>（程式強制唯一寫法）：<code>威力彩|2026-06-08|第一區6號(小到大補零)|第二區1號</code></li>
+<li><b>演算法</b>：<code>H=SHA256(ROSTER_SHA256+":"+seed)</code> → <code>中獎票號=int(H,16) mod 219367 +1</code> → 找該票號所屬區間。</li>
+<li><b>可重跑</b>：下載 <code>roster.csv</code> + <code>draw.py</code>，核對兩個指紋，輸入官方開獎號 → 得到與主辦完全相同的中獎者。</li>
+</ol>
+<p class="note">誠實揭露：為保護隱私，系統從未保存原始 email；公開名單以「遮罩 email + issue 編號」識別（遮罩無法寄信、亦已公開於 GitHub issues）。票數一律照報名當下實際記錄，不事後追加。</p>
+</div>
+
+<h2>📋 完整名單（231 筆，含票號區間）</h2>
+<div class="tablebox"><table>
+<thead><tr><th>issue</th><th>身份（GitHub / 遮罩Email）</th><th>票數</th><th>票號區間</th><th>報名日</th></tr></thead>
+<tbody><tr><td>#18</td><td>@jimmy0816</td><td class="t">996</td><td class="r">1–996</td><td>2026-03-25</td></tr>
+<tr><td>#19</td><td>@Temmo1004</td><td class="t">1,002</td><td class="r">997–1,998</td><td>2026-03-25</td></tr>
+<tr><td>#20</td><td>@harvey3630-hue</td><td class="t">994</td><td class="r">1,999–2,992</td><td>2026-03-25</td></tr>
+<tr><td>#21</td><td>@harvey3630-hue</td><td class="t">992</td><td class="r">2,993–3,984</td><td>2026-03-25</td></tr>
+<tr><td>#23</td><td>@viviank889-star</td><td class="t">990</td><td class="r">3,985–4,974</td><td>2026-03-25</td></tr>
+<tr><td>#24</td><td>@jasonch1u</td><td class="t">989</td><td class="r">4,975–5,963</td><td>2026-03-25</td></tr>
+<tr><td>#25</td><td>@ShiriNmi1520</td><td class="t">999</td><td class="r">5,964–6,962</td><td>2026-03-26</td></tr>
+<tr><td>#28</td><td>a***@gmail.com</td><td class="t">985</td><td class="r">6,963–7,947</td><td>2026-03-30</td></tr>
+<tr><td>#29</td><td>a***@gmail.com</td><td class="t">1,184</td><td class="r">7,948–9,131</td><td>2026-04-04</td></tr>
+<tr><td>#30</td><td>w***@gmail.com</td><td class="t">983</td><td class="r">9,132–10,114</td><td>2026-04-04</td></tr>
+<tr><td>#31</td><td>I***@gmail.com</td><td class="t">1,182</td><td class="r">10,115–11,296</td><td>2026-04-04</td></tr>
+<tr><td>#32</td><td>s***@gmail.com</td><td class="t">1,181</td><td class="r">11,297–12,477</td><td>2026-04-04</td></tr>
+<tr><td>#33</td><td>p***@gmail.com</td><td class="t">1,180</td><td class="r">12,478–13,657</td><td>2026-04-04</td></tr>
+<tr><td>#34</td><td>s***@gmail.com</td><td class="t">1,179</td><td class="r">13,658–14,836</td><td>2026-04-04</td></tr>
+<tr><td>#35</td><td>m***@gmail.com</td><td class="t">978</td><td class="r">14,837–15,814</td><td>2026-04-04</td></tr>
+<tr><td>#36</td><td>n***@gmail.com</td><td class="t">1,278</td><td class="r">15,815–17,092</td><td>2026-04-04</td></tr>
+<tr><td>#37</td><td>b***@gmail.com</td><td class="t">976</td><td class="r">17,093–18,068</td><td>2026-04-04</td></tr>
+<tr><td>#38</td><td>a***@gmail.com</td><td class="t">1,175</td><td class="r">18,069–19,243</td><td>2026-04-04</td></tr>
+<tr><td>#39</td><td>a***@gmail.com</td><td class="t">1,174</td><td class="r">19,244–20,417</td><td>2026-04-04</td></tr>
+<tr><td>#40</td><td>J***@yahoo.com.tw</td><td class="t">973</td><td class="r">20,418–21,390</td><td>2026-04-04</td></tr>
+<tr><td>#41</td><td>s***@gmail.com</td><td class="t">1,173</td><td class="r">21,391–22,563</td><td>2026-04-04</td></tr>
+<tr><td>#42</td><td>e***@hotmail.com</td><td class="t">971</td><td class="r">22,564–23,534</td><td>2026-04-04</td></tr>
+<tr><td>#43</td><td>g***@gmail.com</td><td class="t">1,170</td><td class="r">23,535–24,704</td><td>2026-04-04</td></tr>
+<tr><td>#44</td><td>a***@gmail.com</td><td class="t">969</td><td class="r">24,705–25,673</td><td>2026-04-04</td></tr>
+<tr><td>#45</td><td>a***@gmail.com</td><td class="t">968</td><td class="r">25,674–26,641</td><td>2026-04-04</td></tr>
+<tr><td>#46</td><td>c***@gmail.com</td><td class="t">1,067</td><td class="r">26,642–27,708</td><td>2026-04-04</td></tr>
+<tr><td>#47</td><td>o***@gmail.com</td><td class="t">1,166</td><td class="r">27,709–28,874</td><td>2026-04-04</td></tr>
+<tr><td>#48</td><td>c***@gmail.com</td><td class="t">966</td><td class="r">28,875–29,840</td><td>2026-04-04</td></tr>
+<tr><td>#49</td><td>c***@gmail.com</td><td class="t">964</td><td class="r">29,841–30,804</td><td>2026-04-04</td></tr>
+<tr><td>#50</td><td>m***@gmail.com</td><td class="t">963</td><td class="r">30,805–31,767</td><td>2026-04-04</td></tr>
+<tr><td>#51</td><td>h***@groupg.org</td><td class="t">1,162</td><td class="r">31,768–32,929</td><td>2026-04-04</td></tr>
+<tr><td>#52</td><td>z***@gmail.com</td><td class="t">1,161</td><td class="r">32,930–34,090</td><td>2026-04-04</td></tr>
+<tr><td>#53</td><td>h***@gmail.com</td><td class="t">1,160</td><td class="r">34,091–35,250</td><td>2026-04-04</td></tr>
+<tr><td>#54</td><td>l***@gmail.com</td><td class="t">959</td><td class="r">35,251–36,209</td><td>2026-04-04</td></tr>
+<tr><td>#55</td><td>A***@gmail.com</td><td class="t">958</td><td class="r">36,210–37,167</td><td>2026-04-04</td></tr>
+<tr><td>#56</td><td>h***@gmail.com</td><td class="t">1,158</td><td class="r">37,168–38,325</td><td>2026-04-04</td></tr>
+<tr><td>#57</td><td>a***@gmail.com</td><td class="t">956</td><td class="r">38,326–39,281</td><td>2026-04-04</td></tr>
+<tr><td>#58</td><td>d***@gmail.com</td><td class="t">956</td><td class="r">39,282–40,237</td><td>2026-04-04</td></tr>
+<tr><td>#59</td><td>a***@gmail.com</td><td class="t">954</td><td class="r">40,238–41,191</td><td>2026-04-04</td></tr>
+<tr><td>#60</td><td>k***@gmail.com</td><td class="t">1,153</td><td class="r">41,192–42,344</td><td>2026-04-04</td></tr>
+<tr><td>#61</td><td>x***@gmail.com</td><td class="t">1,152</td><td class="r">42,345–43,496</td><td>2026-04-04</td></tr>
+<tr><td>#62</td><td>a***@gmail.con</td><td class="t">1,151</td><td class="r">43,497–44,647</td><td>2026-04-04</td></tr>
+<tr><td>#63</td><td>z***@gmail.com</td><td class="t">950</td><td class="r">44,648–45,597</td><td>2026-04-04</td></tr>
+<tr><td>#64</td><td>s***@gmail.com</td><td class="t">949</td><td class="r">45,598–46,546</td><td>2026-04-04</td></tr>
+<tr><td>#65</td><td>T***@UDNGROUP.COM.TW</td><td class="t">948</td><td class="r">46,547–47,494</td><td>2026-04-04</td></tr>
+<tr><td>#66</td><td>A***@GMAIL.COM</td><td class="t">947</td><td class="r">47,495–48,441</td><td>2026-04-04</td></tr>
+<tr><td>#67</td><td>A***@GMAIL.COM</td><td class="t">946</td><td class="r">48,442–49,387</td><td>2026-04-04</td></tr>
+<tr><td>#68</td><td>1***@gmail.com</td><td class="t">947</td><td class="r">49,388–50,334</td><td>2026-04-04</td></tr>
+<tr><td>#69</td><td>z***@gmail.com</td><td class="t">944</td><td class="r">50,335–51,278</td><td>2026-04-04</td></tr>
+<tr><td>#70</td><td>o***@gmail.com</td><td class="t">944</td><td class="r">51,279–52,222</td><td>2026-04-04</td></tr>
+<tr><td>#71</td><td>@devbrightraven</td><td class="t">1,147</td><td class="r">52,223–53,369</td><td>2026-04-04</td></tr>
+<tr><td>#72</td><td>a***@gapp.nthu.edu.tw</td><td class="t">941</td><td class="r">53,370–54,310</td><td>2026-04-04</td></tr>
+<tr><td>#73</td><td>p***@gmail.com</td><td class="t">941</td><td class="r">54,311–55,251</td><td>2026-04-04</td></tr>
+<tr><td>#74</td><td>s***@cjc.edu.tw</td><td class="t">939</td><td class="r">55,252–56,190</td><td>2026-04-04</td></tr>
+<tr><td>#75</td><td>r***@gmail.com</td><td class="t">1,138</td><td class="r">56,191–57,328</td><td>2026-04-04</td></tr>
+<tr><td>#76</td><td>k***@gmail.com</td><td class="t">937</td><td class="r">57,329–58,265</td><td>2026-04-04</td></tr>
+<tr><td>#77</td><td>h***@gmail.com</td><td class="t">1,136</td><td class="r">58,266–59,401</td><td>2026-04-04</td></tr>
+<tr><td>#78</td><td>G***@gmail.com</td><td class="t">935</td><td class="r">59,402–60,336</td><td>2026-04-04</td></tr>
+<tr><td>#79</td><td>K***@gmail.com</td><td class="t">1,134</td><td class="r">60,337–61,470</td><td>2026-04-04</td></tr>
+<tr><td>#80</td><td>h***@gmail.com</td><td class="t">1,133</td><td class="r">61,471–62,603</td><td>2026-04-04</td></tr>
+<tr><td>#81</td><td>c***@gmail.com</td><td class="t">1,132</td><td class="r">62,604–63,735</td><td>2026-04-04</td></tr>
+<tr><td>#82</td><td>J***@gmail.com</td><td class="t">1,131</td><td class="r">63,736–64,866</td><td>2026-04-04</td></tr>
+<tr><td>#83</td><td>v***@gmail.com</td><td class="t">1,130</td><td class="r">64,867–65,996</td><td>2026-04-04</td></tr>
+<tr><td>#84</td><td>a***@gmail.com</td><td class="t">929</td><td class="r">65,997–66,925</td><td>2026-04-04</td></tr>
+<tr><td>#85</td><td>c***@gmail.com</td><td class="t">928</td><td class="r">66,926–67,853</td><td>2026-04-04</td></tr>
+<tr><td>#86</td><td>g***@mail2000.com.tw</td><td class="t">927</td><td class="r">67,854–68,780</td><td>2026-04-04</td></tr>
+<tr><td>#87</td><td>c***@gmail.com</td><td class="t">1,126</td><td class="r">68,781–69,906</td><td>2026-04-04</td></tr>
+<tr><td>#88</td><td>c***@gmail.com</td><td class="t">1,125</td><td class="r">69,907–71,031</td><td>2026-04-04</td></tr>
+<tr><td>#89</td><td>v***@hotmail.com</td><td class="t">924</td><td class="r">71,032–71,955</td><td>2026-04-04</td></tr>
+<tr><td>#90</td><td>k***@yahoo.com.tw</td><td class="t">1,123</td><td class="r">71,956–73,078</td><td>2026-04-04</td></tr>
+<tr><td>#91</td><td>l***@gmail.com</td><td class="t">1,222</td><td class="r">73,079–74,300</td><td>2026-04-04</td></tr>
+<tr><td>#92</td><td>l***@yahoo.com.tw</td><td class="t">1,121</td><td class="r">74,301–75,421</td><td>2026-04-04</td></tr>
+<tr><td>#93</td><td>h***@gmail.com</td><td class="t">920</td><td class="r">75,422–76,341</td><td>2026-04-04</td></tr>
+<tr><td>#94</td><td>w***@gmail.com</td><td class="t">919</td><td class="r">76,342–77,260</td><td>2026-04-04</td></tr>
+<tr><td>#95</td><td>c***@gmail.com</td><td class="t">918</td><td class="r">77,261–78,178</td><td>2026-04-04</td></tr>
+<tr><td>#96</td><td>I***@gmail.com</td><td class="t">917</td><td class="r">78,179–79,095</td><td>2026-04-04</td></tr>
+<tr><td>#97</td><td>b***@jonesandvining.com</td><td class="t">916</td><td class="r">79,096–80,011</td><td>2026-04-04</td></tr>
+<tr><td>#98</td><td>o***@gmail.com</td><td class="t">1,115</td><td class="r">80,012–81,126</td><td>2026-04-05</td></tr>
+<tr><td>#99</td><td>u***@gmail.com</td><td class="t">914</td><td class="r">81,127–82,040</td><td>2026-04-05</td></tr>
+<tr><td>#100</td><td>d***@gmail.com</td><td class="t">1,113</td><td class="r">82,041–83,153</td><td>2026-04-05</td></tr>
+<tr><td>#101</td><td>s***@gmail.com</td><td class="t">1,112</td><td class="r">83,154–84,265</td><td>2026-04-05</td></tr>
+<tr><td>#102</td><td>z***@gmail.com</td><td class="t">1,200</td><td class="r">84,266–85,465</td><td>2026-04-05</td></tr>
+<tr><td>#103</td><td>j***@gmail.com</td><td class="t">1,111</td><td class="r">85,466–86,576</td><td>2026-04-05</td></tr>
+<tr><td>#104</td><td>c***@hotmail.com</td><td class="t">911</td><td class="r">86,577–87,487</td><td>2026-04-05</td></tr>
+<tr><td>#105</td><td>k***@gmail.com</td><td class="t">908</td><td class="r">87,488–88,395</td><td>2026-04-05</td></tr>
+<tr><td>#106</td><td>c***@gmail.com</td><td class="t">907</td><td class="r">88,396–89,302</td><td>2026-04-05</td></tr>
+<tr><td>#107</td><td>t***@ggininder.dev</td><td class="t">907</td><td class="r">89,303–90,209</td><td>2026-04-05</td></tr>
+<tr><td>#108</td><td>@johnny30678</td><td class="t">905</td><td class="r">90,210–91,114</td><td>2026-04-05</td></tr>
+<tr><td>#109</td><td>l***@gmail.com</td><td class="t">1,104</td><td class="r">91,115–92,218</td><td>2026-04-05</td></tr>
+<tr><td>#110</td><td>b***@gmail.com</td><td class="t">903</td><td class="r">92,219–93,121</td><td>2026-04-05</td></tr>
+<tr><td>#111</td><td>a***@gmail.com</td><td class="t">902</td><td class="r">93,122–94,023</td><td>2026-04-05</td></tr>
+<tr><td>#112</td><td>g***@gmail.com</td><td class="t">1,101</td><td class="r">94,024–95,124</td><td>2026-04-05</td></tr>
+<tr><td>#113</td><td>h***@gmail.com</td><td class="t">1,100</td><td class="r">95,125–96,224</td><td>2026-04-05</td></tr>
+<tr><td>#114</td><td>d***@gmail.com</td><td class="t">899</td><td class="r">96,225–97,123</td><td>2026-04-05</td></tr>
+<tr><td>#115</td><td>m***@gmail.com</td><td class="t">898</td><td class="r">97,124–98,021</td><td>2026-04-05</td></tr>
+<tr><td>#116</td><td>@Maxupport</td><td class="t">897</td><td class="r">98,022–98,918</td><td>2026-04-05</td></tr>
+<tr><td>#117</td><td>s***@gmail.com</td><td class="t">1,096</td><td class="r">98,919–100,014</td><td>2026-04-05</td></tr>
+<tr><td>#118</td><td>h***@gmail.com</td><td class="t">895</td><td class="r">100,015–100,909</td><td>2026-04-05</td></tr>
+<tr><td>#119</td><td>h***@gmail.com</td><td class="t">894</td><td class="r">100,910–101,803</td><td>2026-04-06</td></tr>
+<tr><td>#120</td><td>k***@gmail.com</td><td class="t">894</td><td class="r">101,804–102,697</td><td>2026-04-06</td></tr>
+<tr><td>#121</td><td>e***@gmail.com</td><td class="t">1,092</td><td class="r">102,698–103,789</td><td>2026-04-06</td></tr>
+<tr><td>#122</td><td>y***@gmail.com</td><td class="t">891</td><td class="r">103,790–104,680</td><td>2026-04-06</td></tr>
+<tr><td>#123</td><td>@zidane0000</td><td class="t">894</td><td class="r">104,681–105,574</td><td>2026-04-06</td></tr>
+<tr><td>#124</td><td>@angelasw9</td><td class="t">889</td><td class="r">105,575–106,463</td><td>2026-04-06</td></tr>
+<tr><td>#125</td><td>s***@gmail.com</td><td class="t">1,088</td><td class="r">106,464–107,551</td><td>2026-04-06</td></tr>
+<tr><td>#126</td><td>y***@gmail.com</td><td class="t">887</td><td class="r">107,552–108,438</td><td>2026-04-06</td></tr>
+<tr><td>#127</td><td>a***@gmail.com</td><td class="t">886</td><td class="r">108,439–109,324</td><td>2026-04-06</td></tr>
+<tr><td>#128</td><td>h***@gmail.com</td><td class="t">885</td><td class="r">109,325–110,209</td><td>2026-04-06</td></tr>
+<tr><td>#129</td><td>h***@gmail.com</td><td class="t">884</td><td class="r">110,210–111,093</td><td>2026-04-06</td></tr>
+<tr><td>#130</td><td>K***@gmail.com</td><td class="t">1,083</td><td class="r">111,094–112,176</td><td>2026-04-06</td></tr>
+<tr><td>#131</td><td>c***@icloud.com</td><td class="t">882</td><td class="r">112,177–113,058</td><td>2026-04-06</td></tr>
+<tr><td>#132</td><td>l***@yahoo.com</td><td class="t">881</td><td class="r">113,059–113,939</td><td>2026-04-06</td></tr>
+<tr><td>#133</td><td>k***@gmail.com</td><td class="t">880</td><td class="r">113,940–114,819</td><td>2026-04-06</td></tr>
+<tr><td>#134</td><td>N***@wistron.com</td><td class="t">879</td><td class="r">114,820–115,698</td><td>2026-04-06</td></tr>
+<tr><td>#135</td><td>k***@gmail.com</td><td class="t">1,078</td><td class="r">115,699–116,776</td><td>2026-04-07</td></tr>
+<tr><td>#136</td><td>w***@gmail.com</td><td class="t">877</td><td class="r">116,777–117,653</td><td>2026-04-07</td></tr>
+<tr><td>#137</td><td>E***@gmail.com</td><td class="t">876</td><td class="r">117,654–118,529</td><td>2026-04-07</td></tr>
+<tr><td>#138</td><td>c***@gmail.com</td><td class="t">875</td><td class="r">118,530–119,404</td><td>2026-04-07</td></tr>
+<tr><td>#139</td><td>x***@gmail.com</td><td class="t">874</td><td class="r">119,405–120,278</td><td>2026-04-07</td></tr>
+<tr><td>#141</td><td>k***@gmail.com</td><td class="t">1,072</td><td class="r">120,279–121,350</td><td>2026-04-08</td></tr>
+<tr><td>#142</td><td>L***@gmail.com</td><td class="t">871</td><td class="r">121,351–122,221</td><td>2026-04-08</td></tr>
+<tr><td>#143</td><td>@guancioul</td><td class="t">870</td><td class="r">122,222–123,091</td><td>2026-04-08</td></tr>
+<tr><td>#144</td><td>@dic1911</td><td class="t">1,620</td><td class="r">123,092–124,711</td><td>2026-04-08</td></tr>
+<tr><td>#145</td><td>f***@gmail.com</td><td class="t">870</td><td class="r">124,712–125,581</td><td>2026-04-08</td></tr>
+<tr><td>#146</td><td>@htk030</td><td class="t">873</td><td class="r">125,582–126,454</td><td>2026-04-08</td></tr>
+<tr><td>#147</td><td>h***@gmail.com</td><td class="t">866</td><td class="r">126,455–127,320</td><td>2026-04-08</td></tr>
+<tr><td>#148</td><td>m***@gmail.com</td><td class="t">865</td><td class="r">127,321–128,185</td><td>2026-04-08</td></tr>
+<tr><td>#149</td><td>i***@gmail.com</td><td class="t">1,064</td><td class="r">128,186–129,249</td><td>2026-04-08</td></tr>
+<tr><td>#150</td><td>1***@g.nccu.edu.tw</td><td class="t">1,063</td><td class="r">129,250–130,312</td><td>2026-04-08</td></tr>
+<tr><td>#151</td><td>d***@gmail.com</td><td class="t">1,062</td><td class="r">130,313–131,374</td><td>2026-04-08</td></tr>
+<tr><td>#152</td><td>@fei3363</td><td class="t">1,335</td><td class="r">131,375–132,709</td><td>2026-04-09</td></tr>
+<tr><td>#153</td><td>@fdff87554</td><td class="t">1,068</td><td class="r">132,710–133,777</td><td>2026-04-09</td></tr>
+<tr><td>#154</td><td>s***@gmail.com</td><td class="t">1,059</td><td class="r">133,778–134,836</td><td>2026-04-09</td></tr>
+<tr><td>#155</td><td>q***@gmail.com</td><td class="t">858</td><td class="r">134,837–135,694</td><td>2026-04-09</td></tr>
+<tr><td>#156</td><td>w***@hotmail.com</td><td class="t">857</td><td class="r">135,695–136,551</td><td>2026-04-09</td></tr>
+<tr><td>#157</td><td>c***@gmail.com</td><td class="t">856</td><td class="r">136,552–137,407</td><td>2026-04-09</td></tr>
+<tr><td>#158</td><td>d***@gmail.com</td><td class="t">855</td><td class="r">137,408–138,262</td><td>2026-04-09</td></tr>
+<tr><td>#159</td><td>s***@gmail.com</td><td class="t">854</td><td class="r">138,263–139,116</td><td>2026-04-09</td></tr>
+<tr><td>#160</td><td>y***@gmail.com</td><td class="t">853</td><td class="r">139,117–139,969</td><td>2026-04-09</td></tr>
+<tr><td>#161</td><td>b***@yahoo.com.tw</td><td class="t">852</td><td class="r">139,970–140,821</td><td>2026-04-09</td></tr>
+<tr><td>#162</td><td>s***@gmail.com</td><td class="t">851</td><td class="r">140,822–141,672</td><td>2026-04-09</td></tr>
+<tr><td>#163</td><td>s***@gmail.com</td><td class="t">850</td><td class="r">141,673–142,522</td><td>2026-04-09</td></tr>
+<tr><td>#164</td><td>b***@yahoo.com.tw</td><td class="t">849</td><td class="r">142,523–143,371</td><td>2026-04-09</td></tr>
+<tr><td>#165</td><td>d***@gmail.com</td><td class="t">848</td><td class="r">143,372–144,219</td><td>2026-04-09</td></tr>
+<tr><td>#166</td><td>m***@gmail.com</td><td class="t">848</td><td class="r">144,220–145,067</td><td>2026-04-09</td></tr>
+<tr><td>#167</td><td>a***@yahoo.com.tw</td><td class="t">846</td><td class="r">145,068–145,913</td><td>2026-04-09</td></tr>
+<tr><td>#168</td><td>@cshung1994</td><td class="t">1,073</td><td class="r">145,914–146,986</td><td>2026-04-09</td></tr>
+<tr><td>#169</td><td>n***@gmail.com</td><td class="t">844</td><td class="r">146,987–147,830</td><td>2026-04-09</td></tr>
+<tr><td>#170</td><td>k***@gmail.com</td><td class="t">843</td><td class="r">147,831–148,673</td><td>2026-04-09</td></tr>
+<tr><td>#171</td><td>v***@gmail.com</td><td class="t">842</td><td class="r">148,674–149,515</td><td>2026-04-09</td></tr>
+<tr><td>#172</td><td>s***@gmail.com</td><td class="t">841</td><td class="r">149,516–150,356</td><td>2026-04-09</td></tr>
+<tr><td>#173</td><td>p***@gmail.com</td><td class="t">840</td><td class="r">150,357–151,196</td><td>2026-04-10</td></tr>
+<tr><td>#174</td><td>p***@gmail.com</td><td class="t">839</td><td class="r">151,197–152,035</td><td>2026-04-10</td></tr>
+<tr><td>#175</td><td>m***@gmail.com</td><td class="t">838</td><td class="r">152,036–152,873</td><td>2026-04-10</td></tr>
+<tr><td>#176</td><td>a***@gmail.com</td><td class="t">837</td><td class="r">152,874–153,710</td><td>2026-04-10</td></tr>
+<tr><td>#177</td><td>b***@gmail.com</td><td class="t">836</td><td class="r">153,711–154,546</td><td>2026-04-10</td></tr>
+<tr><td>#178</td><td>r***@gmail.com</td><td class="t">835</td><td class="r">154,547–155,381</td><td>2026-04-10</td></tr>
+<tr><td>#179</td><td>w***@yahoo.com.hk</td><td class="t">1,034</td><td class="r">155,382–156,415</td><td>2026-04-10</td></tr>
+<tr><td>#180</td><td>w***@yahoo.com</td><td class="t">1,033</td><td class="r">156,416–157,448</td><td>2026-04-10</td></tr>
+<tr><td>#181</td><td>p***@gmail.com</td><td class="t">1,032</td><td class="r">157,449–158,480</td><td>2026-04-10</td></tr>
+<tr><td>#182</td><td>a***@gmail.com</td><td class="t">1,031</td><td class="r">158,481–159,511</td><td>2026-04-10</td></tr>
+<tr><td>#183</td><td>h***@gmail.com</td><td class="t">1,030</td><td class="r">159,512–160,541</td><td>2026-04-10</td></tr>
+<tr><td>#184</td><td>a***@gmail.com</td><td class="t">1,029</td><td class="r">160,542–161,570</td><td>2026-04-10</td></tr>
+<tr><td>#185</td><td>w***@gmail.com</td><td class="t">1,028</td><td class="r">161,571–162,598</td><td>2026-04-10</td></tr>
+<tr><td>#186</td><td>h***@gmail.com</td><td class="t">1,027</td><td class="r">162,599–163,625</td><td>2026-04-10</td></tr>
+<tr><td>#187</td><td>J***@gmail.com</td><td class="t">826</td><td class="r">163,626–164,451</td><td>2026-04-10</td></tr>
+<tr><td>#188</td><td>y***@gmail.com</td><td class="t">825</td><td class="r">164,452–165,276</td><td>2026-04-10</td></tr>
+<tr><td>#189</td><td>e***@gmail.com</td><td class="t">824</td><td class="r">165,277–166,100</td><td>2026-04-10</td></tr>
+<tr><td>#190</td><td>l***@gmail.com</td><td class="t">823</td><td class="r">166,101–166,923</td><td>2026-04-11</td></tr>
+<tr><td>#191</td><td>m***@hotmail.com</td><td class="t">822</td><td class="r">166,924–167,745</td><td>2026-04-11</td></tr>
+<tr><td>#192</td><td>F***@gmail.com</td><td class="t">821</td><td class="r">167,746–168,566</td><td>2026-04-11</td></tr>
+<tr><td>#193</td><td>o***@gmail.com</td><td class="t">820</td><td class="r">168,567–169,386</td><td>2026-04-11</td></tr>
+<tr><td>#194</td><td>j***@gmail.com</td><td class="t">819</td><td class="r">169,387–170,205</td><td>2026-04-11</td></tr>
+<tr><td>#195</td><td>y***@hotmail.com</td><td class="t">1,018</td><td class="r">170,206–171,223</td><td>2026-04-11</td></tr>
+<tr><td>#196</td><td>a***@gmail.com</td><td class="t">818</td><td class="r">171,224–172,041</td><td>2026-04-11</td></tr>
+<tr><td>#197</td><td>a***@gmail.com</td><td class="t">816</td><td class="r">172,042–172,857</td><td>2026-04-11</td></tr>
+<tr><td>#198</td><td>y***@yahoo.com.tw</td><td class="t">815</td><td class="r">172,858–173,672</td><td>2026-04-11</td></tr>
+<tr><td>#199</td><td>j***@gmail.com</td><td class="t">814</td><td class="r">173,673–174,486</td><td>2026-04-11</td></tr>
+<tr><td>#200</td><td>t***@gmail.com</td><td class="t">813</td><td class="r">174,487–175,299</td><td>2026-04-12</td></tr>
+<tr><td>#201</td><td>h***@gmail.com</td><td class="t">812</td><td class="r">175,300–176,111</td><td>2026-04-12</td></tr>
+<tr><td>#202</td><td>k***@gmail.com</td><td class="t">1,111</td><td class="r">176,112–177,222</td><td>2026-04-12</td></tr>
+<tr><td>#203</td><td>e***@gmail.com</td><td class="t">810</td><td class="r">177,223–178,032</td><td>2026-04-12</td></tr>
+<tr><td>#204</td><td>B***@gmail.com</td><td class="t">809</td><td class="r">178,033–178,841</td><td>2026-04-12</td></tr>
+<tr><td>#205</td><td>a***@gmail.com</td><td class="t">1,008</td><td class="r">178,842–179,849</td><td>2026-04-13</td></tr>
+<tr><td>#206</td><td>p***@gmail.com</td><td class="t">807</td><td class="r">179,850–180,656</td><td>2026-04-13</td></tr>
+<tr><td>#207</td><td>s***@gmail.com</td><td class="t">1,006</td><td class="r">180,657–181,662</td><td>2026-04-13</td></tr>
+<tr><td>#208</td><td>k***@gmail.com</td><td class="t">1,005</td><td class="r">181,663–182,667</td><td>2026-04-13</td></tr>
+<tr><td>#209</td><td>p***@gmail.com</td><td class="t">804</td><td class="r">182,668–183,471</td><td>2026-04-13</td></tr>
+<tr><td>#210</td><td>f***@gmail.com</td><td class="t">803</td><td class="r">183,472–184,274</td><td>2026-04-15</td></tr>
+<tr><td>#212</td><td>a***@gmail.com</td><td class="t">1,002</td><td class="r">184,275–185,276</td><td>2026-04-19</td></tr>
+<tr><td>#213</td><td>r***@gmail.com</td><td class="t">801</td><td class="r">185,277–186,077</td><td>2026-04-19</td></tr>
+<tr><td>#214</td><td>s***@hotmail.com</td><td class="t">800</td><td class="r">186,078–186,877</td><td>2026-04-19</td></tr>
+<tr><td>#215</td><td>l***@gmail.com</td><td class="t">799</td><td class="r">186,878–187,676</td><td>2026-04-19</td></tr>
+<tr><td>#216</td><td>l***@gmail.com</td><td class="t">798</td><td class="r">187,677–188,474</td><td>2026-04-19</td></tr>
+<tr><td>#217</td><td>m***@gmail.com</td><td class="t">797</td><td class="r">188,475–189,271</td><td>2026-04-19</td></tr>
+<tr><td>#218</td><td>j***@gmail.com</td><td class="t">796</td><td class="r">189,272–190,067</td><td>2026-04-19</td></tr>
+<tr><td>#219</td><td>@zhiweitong</td><td class="t">796</td><td class="r">190,068–190,863</td><td>2026-04-19</td></tr>
+<tr><td>#220</td><td>g***@gmail.com</td><td class="t">794</td><td class="r">190,864–191,657</td><td>2026-04-21</td></tr>
+<tr><td>#221</td><td>g***@goodinc.com.tw</td><td class="t">793</td><td class="r">191,658–192,450</td><td>2026-04-21</td></tr>
+<tr><td>#224</td><td>l***@gmail.com</td><td class="t">991</td><td class="r">192,451–193,441</td><td>2026-04-22</td></tr>
+<tr><td>#225</td><td>p***@yahoo.com.tw</td><td class="t">990</td><td class="r">193,442–194,431</td><td>2026-04-22</td></tr>
+<tr><td>#226</td><td>l***@gmail.com</td><td class="t">789</td><td class="r">194,432–195,220</td><td>2026-04-22</td></tr>
+<tr><td>#227</td><td>b***@gmail.com</td><td class="t">788</td><td class="r">195,221–196,008</td><td>2026-04-23</td></tr>
+<tr><td>#228</td><td>d***@yahoo.com</td><td class="t">787</td><td class="r">196,009–196,795</td><td>2026-04-23</td></tr>
+<tr><td>#229</td><td>e***@gmail.com</td><td class="t">986</td><td class="r">196,796–197,781</td><td>2026-04-23</td></tr>
+<tr><td>#230</td><td>e***@yahoo.com.tw</td><td class="t">985</td><td class="r">197,782–198,766</td><td>2026-04-24</td></tr>
+<tr><td>#231</td><td>c***@gmail.com</td><td class="t">984</td><td class="r">198,767–199,750</td><td>2026-04-24</td></tr>
+<tr><td>#232</td><td>t***@gmail.com</td><td class="t">783</td><td class="r">199,751–200,533</td><td>2026-04-24</td></tr>
+<tr><td>#233</td><td>j***@yahoo.com.tw</td><td class="t">982</td><td class="r">200,534–201,515</td><td>2026-04-24</td></tr>
+<tr><td>#234</td><td>a***@udngroup.com</td><td class="t">981</td><td class="r">201,516–202,496</td><td>2026-04-24</td></tr>
+<tr><td>#235</td><td>b***@gmail.com</td><td class="t">980</td><td class="r">202,497–203,476</td><td>2026-04-24</td></tr>
+<tr><td>#236</td><td>c***@gmail.com</td><td class="t">779</td><td class="r">203,477–204,255</td><td>2026-04-24</td></tr>
+<tr><td>#237</td><td>z***@gmail.com</td><td class="t">778</td><td class="r">204,256–205,033</td><td>2026-04-24</td></tr>
+<tr><td>#238</td><td>w***@gmail.com</td><td class="t">777</td><td class="r">205,034–205,810</td><td>2026-04-25</td></tr>
+<tr><td>#239</td><td>@karakarasuuuu</td><td class="t">776</td><td class="r">205,811–206,586</td><td>2026-04-25</td></tr>
+<tr><td>#240</td><td>B***@gmail.com</td><td class="t">775</td><td class="r">206,587–207,361</td><td>2026-04-25</td></tr>
+<tr><td>#241</td><td>t***@yahoo.com.tw</td><td class="t">774</td><td class="r">207,362–208,135</td><td>2026-04-27</td></tr>
+<tr><td>#242</td><td>0***@mail.fju.edu.tw</td><td class="t">773</td><td class="r">208,136–208,908</td><td>2026-04-27</td></tr>
+<tr><td>#243</td><td>t***@gmail.com</td><td class="t">772</td><td class="r">208,909–209,680</td><td>2026-04-27</td></tr>
+<tr><td>#244</td><td>n***@journeytour.com.tw</td><td class="t">771</td><td class="r">209,681–210,451</td><td>2026-04-28</td></tr>
+<tr><td>#245</td><td>n***@hotmail.com</td><td class="t">870</td><td class="r">210,452–211,321</td><td>2026-04-28</td></tr>
+<tr><td>#246</td><td>t***@gmail.com</td><td class="t">769</td><td class="r">211,322–212,090</td><td>2026-04-28</td></tr>
+<tr><td>#247</td><td>z***@gmail.com</td><td class="t">968</td><td class="r">212,091–213,058</td><td>2026-04-28</td></tr>
+<tr><td>#248</td><td>f***@hotmail.com</td><td class="t">767</td><td class="r">213,059–213,825</td><td>2026-04-29</td></tr>
+<tr><td>#249</td><td>l***@gmail.com</td><td class="t">966</td><td class="r">213,826–214,791</td><td>2026-05-14</td></tr>
+<tr><td>#250</td><td>l***@gmail.com</td><td class="t">765</td><td class="r">214,792–215,556</td><td>2026-05-15</td></tr>
+<tr><td>#251</td><td>g***@hotmail.com</td><td class="t">764</td><td class="r">215,557–216,320</td><td>2026-05-28</td></tr>
+<tr><td>#252</td><td>y***@yahoo.com.tw</td><td class="t">763</td><td class="r">216,321–217,083</td><td>2026-05-29</td></tr>
+<tr><td>#253</td><td>t***@gmail.com</td><td class="t">762</td><td class="r">217,084–217,845</td><td>2026-05-31</td></tr>
+<tr><td>#254</td><td>h***@gmail.com</td><td class="t">762</td><td class="r">217,846–218,607</td><td>2026-05-31</td></tr>
+<tr><td>#255</td><td>s***@gmail.com</td><td class="t">760</td><td class="r">218,608–219,367</td><td>2026-05-31</td></tr></tbody></table></div>
+<p class="note">驗證檔：roster.csv · roster.json · roster_canonical.txt · draw.py · COMMITMENT.txt · PROTOCOL.md（同目錄）</p>
+</div></body></html>
